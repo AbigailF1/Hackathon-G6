@@ -11,7 +11,7 @@ import{
 
 import Home from './pages/Landing';
 import Favorites from './pages/Home';
-import Login from './pages/Logi';
+import Login from './pages/Login';
 import Notification from './pages/Notification';
 import  Post from './pages/Post';
 import Chat from './pages/Chat';
