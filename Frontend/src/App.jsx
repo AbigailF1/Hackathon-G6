@@ -9,7 +9,7 @@ import{
   Route
 }from 'react-router-dom'
 
-import Home from './pages/Landing';
+import Home from './pages/Landi';
 import Favorites from './pages/Home';
 import Login from './pages/Login';
 import Notification from './pages/Notification';
