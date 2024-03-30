@@ -129,9 +129,14 @@ function LoginPage(){
                       </button>
                     )}
                            {!forgotPassword && (
-                        <button className='w-full text-black font-semibold bg-white border border-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer' onClick={()=> {setAction("Signup"); setForgotPassword(false);}}>
-                            Sign Up
+                            <div w-full flex items-center justify-between >
+                        <button className='w-full text-white font-semibold bg-black border border-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer my-4' onClick={()=> {setAction("Signup"); setForgotPassword(false);}}>
+                            Sign Up As Student
                         </button>
+                        <button className='w-full text-white font-semibold bg-black border border-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer' onClick={()=> {setAction("Signup"); setForgotPassword(false);}}>
+                            Sign Up As Recruiter
+                        </button>
+                        </div>
                            )}
                     </div>
 
