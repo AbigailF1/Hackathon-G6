@@ -10,7 +10,7 @@ import{
 }from 'react-router-dom'
 
 import Home from './pages/Landing';
-import Favorites from './pages/Home';
+import Favorites from './pages/Ho';
 import Login from './pages/Login';
 import Notification from './pages/Notification';
 import  Post from './pages/Post';
