@@ -4,6 +4,7 @@ from .views import (
     UserViewSet, ProfileViewSet, SkillViewSet, EducationViewSet,
     UserRegister, UserLogin, UserLogout, UserView
 )
+from . import views
 
 # Create a router and register viewsets with it
 router = DefaultRouter()
