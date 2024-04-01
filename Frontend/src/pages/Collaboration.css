@@ -1,0 +1,35 @@
+.container {
+padding-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  width: 90%;
+  margin: auto;  
+ 
+}
+
+a {
+  text-decoration: none;
+  color: rgb(44, 41, 41);
+  font-weight: bold;
+}
+
+.connectionContainer {
+  width: 70%;
+}
+.connectionRequest div img,
+.recentConnection div img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+hr {
+  display: inline-block;
+  width: 30%;
+  border-color: rgb(203, 200, 197);
+  margin-right: 5px;
+  margin-left: 5px;
+}

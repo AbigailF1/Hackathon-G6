@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import Connections from "../components/Connections/Connections";
+import SideBar from "../components/SideBar/SideBar";
+import "./Collaboration.css";
 
-const Collaborate = () => {
+function Collaborate() {
   return (
-    <div>Collaborate</div>
-  )
+    <div className="container">
+      <SideBar />
+      <Connections />
+    </div>
+  );
 }
 
-export default Collaborate
+export default Collaborate;
