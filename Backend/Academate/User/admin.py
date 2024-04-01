@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib import admin
-from .models import User
+from .models import User,Profile,Skill,Education
 
 admin.site.site_header = 'Academate'
 admin.site.site_title = 'Academate'
@@ -34,5 +34,9 @@ class CustomUserAdmin(BaseUserAdmin):
             return False 
         return super().has_delete_permission(request, obj)
 
-admin.site.register(User, CustomUserAdmin)
+admin.site.register(User)
+admin.site.register(Profile)
+admin.site.register(Skill)
+admin.site.register(Education)
+
 

@@ -1,12 +1,19 @@
 
-from rest_framework import APIView
+
+
+
+
+
+
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import LimitOffsetPagination
-from Academate.Chat.models import ChatRoom,ChatMessage
-from Academate.Chat.serializers import ChatRoomSerializer,ChatMessageSerializer
+from Chat.models import ChatRoom, ChatMessage
+from Chat.serializers import ChatRoomSerializer,ChatMessageSerializer
+
 
 # Create your views here.
 class ChatRoomView(APIView):

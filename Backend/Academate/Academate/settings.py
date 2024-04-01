@@ -32,16 +32,15 @@ CORS_ALLOW_CREDENTIALS = True
 INSTALLED_APPS = [
     'corsheaders',
     'channels',
-    'Academate',
-    'Academate.User',
-    'Academate.Chat',
+    'User',
+    'Chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shortuuidfield',
+  
     'rest_framework',
     'rest_framework_simplejwt'
 ]
@@ -147,7 +146,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-AUTH_USER_MODEL = 'user.User'
+AUTH_USER_MODEL = 'User.User'
 STATIC_URL = '/static/'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
