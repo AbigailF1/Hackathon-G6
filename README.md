@@ -1,16 +1,16 @@
-# Hackathon-G6\
-# Backend Project Setup Guide
+# Hackathon-G6
+## Backend Project Setup Guide
 
 This guide will walk you through the steps to set up the project on your local machine.
 
-## Prerequisites
+### Prerequisites
 
 Before getting started, ensure you have the following installed:
 
 - Python (version 3.x)
 - Git
 
-## Setup Instructions
+### Setup Instructions
 
 1. **Set up the virtual environment**: Use the command `python -m venv venv` to create a virtual environment named `venv`.
 
@@ -32,7 +32,7 @@ Before getting started, ensure you have the following installed:
 
 9. **Start the development server**: Launch the Django development server by executing `python manage.py runserver`.
 
-## Running the Application
+### Running the Application
 
 Once the setup is complete, you can access the application by opening a web browser and navigating to [http://localhost:8000](http://localhost:8000).
 
