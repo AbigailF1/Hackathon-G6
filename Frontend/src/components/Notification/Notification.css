@@ -1,4 +1,29 @@
-.notification{
-    padding: 100px;
-    background-color: red;
+.notification {
+  padding: 100px;
+  background-color: rgb(190, 190, 190);
+  display: flex;
+  gap: 5px;
+}
+img {
+  width: 40px;
+  border-radius: 100%;
+}
+.NotificationMessage {
+  background-color: aliceblue;
+}
+.recentNotification,.earlierNotification {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: aquamarine;
+  gap: 10px;
+}
+.earlierNotification {
+  
+}
+
+.recentNotification p,.earlierNotification p{
+    max-width: 85%;
+    text-overflow:clip;
+    white-space:nowrap;
 }

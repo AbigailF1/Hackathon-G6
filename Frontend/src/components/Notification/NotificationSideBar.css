@@ -1,0 +1,19 @@
+.NotificationSideBar {
+  width: 25%;
+  background-color: rgb(251, 251, 202);
+  padding: 10px;
+}
+.dashboard{
+    display: flex;
+    justify-content: space-between;
+    border-bottom:0.5px solid rgb(202, 198, 198);
+   padding-bottom: 5px;
+   margin-bottom: 10px;
+}
+.NotificationSideBar p{
+font-size:xx-large;
+}
+.stats{
+    color: rgb(7, 106, 219);
+    text-decoration: underline;
+}
