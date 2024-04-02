@@ -1,29 +1,50 @@
 .notification {
   padding: 100px;
-  background-color: rgb(190, 190, 190);
   display: flex;
-  gap: 5px;
+  gap: 15px;
 }
 img {
   width: 40px;
   border-radius: 100%;
 }
 .NotificationMessage {
-  background-color: aliceblue;
 }
-.recentNotification,.earlierNotification {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background-color: aquamarine;
-  gap: 10px;
-}
+.recentNotification,
 .earlierNotification {
-  
+  display: grid;
+  grid-template-columns: 0.5fr 4fr 0.5fr;
+  width: 100%;
+
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 1px 2px 7px 1px rgb(229, 228, 228);
+}
+.NotificationText {
+  max-width: 70%;
+  justify-self: flex-start;
+  flex-grow: 0;
 }
 
-.recentNotification p,.earlierNotification p{
-    max-width: 85%;
-    text-overflow:clip;
-    white-space:nowrap;
+.recentNotification p,
+.earlierNotification p {
+  max-width: 80%;
+  white-space: nowrap;
+}
+
+.dot {
+  justify-self: end;
+  font-size: 40px;
+  align-self: center;
+}
+.TimeStatus {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.TimeStatus hr {
+  width: 45%;
 }

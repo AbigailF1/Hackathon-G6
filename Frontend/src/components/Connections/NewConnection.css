@@ -68,3 +68,11 @@
   padding:15px 0;
   width: 100%;
 }
+
+.connections hr {
+  display: inline-block;
+  width: 30%;
+  border-color: rgb(203, 200, 197);
+  margin-right: 5px;
+  margin-left: 5px;
+}
