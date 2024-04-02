@@ -1,15 +1,18 @@
-import React from 'react'
-import './ButtonConnection.css'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./ButtonConnection.css";
 
-function ButtonConnection() {
+function ButtonConnection({ setActive, Active }) {
   return (
     <div className="conButton">
-      <a href="#received" id="active">
-        RECEIVED
-      </a>
-      <a href="#sent" id='sent'>SENT</a>
+      <NavLink to="/Collaborate">
+        <button id="active">RECEIVED</button>
+      </NavLink>
+      <NavLink to="/SentConnection">
+        <button id="sent">SENT</button>
+      </NavLink>
     </div>
   );
 }
 
-export default ButtonConnection
+export default ButtonConnection;

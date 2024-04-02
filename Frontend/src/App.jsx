@@ -18,22 +18,23 @@ import Chat from './pages/Chat';
 import Collaborate from './pages/Collaborate';
 import Idea from './pages/Idea';
 import Header from './components/Header (2)';
+import SentConnection from './components/Connections/SentConnection';
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-       <Route path='/' element={<Root />} >
+      <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
-        <Route path="/Login" element = {<Login/>} />
-        <Route path="/Collaborate" element = {<Collaborate/>} />
-        <Route path="/Idea" element = {<Idea/>} />
-        <Route path="/Post" element = {<Post/>} />
-        <Route path="/Notifications" element = {<Notifications/>} />
-        <Route path="/Chat" element = {<Chat/>} />
-
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Collaborate" element={<Collaborate />} />
+        <Route path="/SentConnection" element={<SentConnection />} />
+        <Route path="/Idea" element={<Idea />} />
+        <Route path="/Post" element={<Post />} />
+        <Route path="/Notifications" element={<Notifications />} />
+        <Route path="/Chat" element={<Chat />} />
       </Route>
     )
-  )
+  );
   return (
     <>
         <RouterProvider router={router}/>
