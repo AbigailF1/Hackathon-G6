@@ -69,6 +69,11 @@ class UserRegister(APIView):
         clean_data = custom_validation(request.data)
         serializer = UserRegisterSerializer(data=clean_data)
         if serializer.is_valid(raise_exception=True):
+            # Check if email domain is allowed
+            email = serializer.validated_data.get('email')
+            if not email.endswith(('@aau.edu.et', '@aastu.edu.et')):
+                return Response({'error': 'Email domain not allowed'}, status=status.HTTP_400_BAD_REQUEST)
+
             user = serializer.create(clean_data)
             if user:
                 token = RefreshToken.for_user(user).access_token
@@ -77,9 +82,10 @@ class UserRegister(APIView):
                 abs_url = 'http://' + current_site + relative_link + "?token=" + str(token)
                 email_body = 'Hi ' + user.username + ',\n\nUse the link below to verify your email:\n' + abs_url
                 data = {'email_body': email_body, 'to_email': user.email, 'email_subject': 'Verify your email'}
-                Util.send_email(data)  # Util.send_email is assumed to be a function to send emails
+                Util.send_email(data)  #
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class UserLogin(APIView):
