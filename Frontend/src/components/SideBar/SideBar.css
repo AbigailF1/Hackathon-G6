@@ -21,7 +21,7 @@
   text-transform: uppercase;
   font-size: medium;
 }
-.active{
+.sidebar .active{
     border-left: solid rgb(24, 24, 250) 5px;
     padding-left: 10px;
 }

@@ -7,7 +7,7 @@ function SentConnection() {
   return (
     <div className="sentConnection">
       <SideBar/>
-      <div>
+      <div className="Scontainer">
       <ButtonConnection/>
       <div className="connection">
         <div className="profile">
@@ -25,7 +25,7 @@ function SentConnection() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet eligendi
           optio, dolorem earum quasi quia fugit delectus ad! Veniam
         </p>
-        <div className="reqBtn">
+        <div>
           <p className="acceptBtn">ACCEPTED</p>
         </div>
       </div>

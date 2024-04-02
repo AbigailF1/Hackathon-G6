@@ -1,9 +1,43 @@
 .sentConnection {
   padding-top: 100px;
-  box-shadow: 1px 2px 7px 1px rgb(229, 228, 228);
+  width: 95%;
+  margin: auto;
+  gap: 50px;
+}
+
+.sentConnection .Scontainer{
+    width: 70%;
 }
 .connection,
 .profile,
 .sentConnection {
   display: flex;
+}
+.connection {
+  box-shadow: 1px 2px 7px 1px rgb(229, 228, 228);
+  margin: 25px 0;
+}
+.container {
+padding-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  width: 90%;
+  margin: auto;  
+ 
+}
+.sentConnection .profile {
+  border-right: solid 5px;
+  display: flex;
+  padding-right: 10px;
+  margin-left: 10px;
+
+  border-color:  rgb(0 55 136);
+}
+ .connection div img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: inline-block;
+    margin-right: 10px;
 }
