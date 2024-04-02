@@ -12,7 +12,7 @@ import{
 import Home from './pages/Landing';
 import Favorites from './pages/Home';
 import Login from './pages/Login';
-import Notification from './pages/Notification';
+import Notifications from './pages/Notifications';
 import  Post from './pages/Post';
 import Chat from './pages/Chat';
 import Collaborate from './pages/Collaborate';
@@ -28,7 +28,7 @@ function App() {
         <Route path="/Collaborate" element = {<Collaborate/>} />
         <Route path="/Idea" element = {<Idea/>} />
         <Route path="/Post" element = {<Post/>} />
-        <Route path="/Notification" element = {<Notification/>} />
+        <Route path="/Notifications" element = {<Notifications/>} />
         <Route path="/Chat" element = {<Chat/>} />
 
       </Route>

@@ -27,13 +27,14 @@ export default function Header() {
         <h6 className="text-black font-serif mt-2">IDEA FEED</h6>
       </div>
       <div className="mt-3">
-        <GroupsTwoToneIcon
-          sx={{ color: getButtonColor("groups") }}
-          onClick={() => handleButtonClick("groups")}
-        />
-        <h6 className="text-black font-serif mt-2">
-          <NavLink to="/Collaborate">COLLABS</NavLink>
-        </h6>
+        <NavLink to="/Collaborate">
+          {" "}
+          <GroupsTwoToneIcon
+            sx={{ color: getButtonColor("groups") }}
+            onClick={() => handleButtonClick("groups")}
+          />
+          <h6 className="text-black font-serif mt-2">COLLABS</h6>
+        </NavLink>
       </div>
       <div className="mt-3">
         <ChatBubbleOutlineTwoToneIcon
@@ -43,11 +44,14 @@ export default function Header() {
         <h6 className="text-black font-serif mt-2">CHAT</h6>
       </div>
       <div className="mt-3">
+        <NavLink to='/Notifications'>
+
         <NotificationsNoneTwoToneIcon
           sx={{ color: getButtonColor("notifications") }}
           onClick={() => handleButtonClick("notifications")}
         />
         <h6 className="text-black font-serif mt-2">NOTIFICATIONS</h6>
+        </NavLink>
       </div>
       <div className="relative">
         <SearchTwoToneIcon
