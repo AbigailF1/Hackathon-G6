@@ -2,7 +2,11 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     UserViewSet, ProfileViewSet, SkillViewSet, EducationViewSet,
-    UserRegister, UserLogin, UserLogout, UserView
+    UserRegister, UserLogin, UserLogout, UserView,
+    VerifyEmail,  
+    RequestPasswordResetEmail,
+    PasswordTokenCheckAPI,
+    SetNewPasswordAPIView,
 )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
