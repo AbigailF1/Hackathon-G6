@@ -23,6 +23,17 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
+    def create_superuser(self, email, password=None):
+        if not email:
+            raise ValueError('An email is required.')
+        if not password:
+            raise ValueError('A password is required.')
+        user = self.create_user(email, password)
+        user.is_superuser = True
+        user.save()
+        return user
+
+
 class User(AbstractUser, PermissionsMixin):
     ROLES = (
         ('student', 'Student'),
