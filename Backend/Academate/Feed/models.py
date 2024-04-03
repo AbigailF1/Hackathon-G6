@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Feed(models.Model):
     feedText = models.TextField()
     image = models.ImageField(upload_to='feed_images/', null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE ,default=1)
     # tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
 
 # Model for the idea feed, which inherits from Feed

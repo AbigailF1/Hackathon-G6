@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    # 'rest_framework_simplejwt',
 
     # my apps 
     'Chat',
@@ -88,7 +90,7 @@ WSGI_APPLICATION = 'Academate.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Academate',     
+        'NAME': 'Academate2',     
         'USER': 'postgres',  
         'PASSWORD': 'django-H6',  
         'HOST': 'localhost',     

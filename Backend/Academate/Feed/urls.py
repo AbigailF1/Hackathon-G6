@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     # urls related to feed itself
     path('feeds/create/', views.create_feed, name='create_feed'),
+    path('feeds/create/idea/', views.create_idea_feed, name='create_idea_feed'),
     path('feeds/<int:feed_id>/', views.update_feed, name='update_feed'),
     path('feeds/<int:feed_id>/delete/', views.delete_feed, name='delete_feed'),
     path('feeds/', views.list_feeds, name='list_feeds'),
