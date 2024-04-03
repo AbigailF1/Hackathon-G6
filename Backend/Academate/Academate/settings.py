@@ -10,10 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# for medias 
+MEDIA_URL = '/Static/Media/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Static', 'Media')
 
 
 # Quick-start development settings - unsuitable for production
