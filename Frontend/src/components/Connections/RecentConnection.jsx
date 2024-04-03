@@ -15,10 +15,10 @@ function RecentConnection() {
             alt=""
           />
           <div className="about">
-            <p className='name'>Bradon Wilson</p>
-            <p className='skill'>Web developer</p>
+            <p className="name">Bradon Wilson</p>
+            <p className="skill">Web developer</p>
           </div>
-          <p className="date">2024-10-9</p>
+          <p className="ProjectIdea">HOTEL MANAGMENT SYSTEM</p>
         </div>
         <div className="profile">
           <img
@@ -29,7 +29,7 @@ function RecentConnection() {
             <p>Bradon Wilson</p>
             <p>Web developer</p>
           </div>
-          <p className="date">2024-10-9</p>
+          <p className="ProjectIdea">HOTEL MANAGMENT SYSTEM</p>
         </div>
         <div className="profile">
           <img
@@ -40,7 +40,7 @@ function RecentConnection() {
             <p>Bradon Wilson</p>
             <p>Web developer</p>
           </div>
-          <p className="date">2024-10-9</p>
+          <p className="ProjectIdea">HOTEL MANAGMENT SYSTEM</p>
         </div>
         <div className="profile">
           <img
@@ -51,7 +51,7 @@ function RecentConnection() {
             <p>Bradon Wilson</p>
             <p>Web developer</p>
           </div>
-          <p className="date"> 2024-10-9</p>
+          <p className="ProjectIdea">HOTEL MANAGMENT SYSTEM</p>
         </div>
       </div>
     </>

@@ -3,7 +3,6 @@ import { FiLink } from "react-icons/fi";
 import { FaRegCircleDot } from "react-icons/fa6";
 import { GiStrongbox } from "react-icons/gi";
 import { MdOutlineGroup } from "react-icons/md";
-import { FaHashtag } from "react-icons/fa";
 
 import "./SideBar.css";
 function SideBar() {
@@ -32,12 +31,7 @@ function SideBar() {
         </a>
         <span>6</span>
       </div>
-      <div className="hashtags">
-        <a href="#">
-          <FaHashtag /> Hashtags
-        </a>
-        <span>8</span>
-      </div>
+      
     </div>
   );
 }

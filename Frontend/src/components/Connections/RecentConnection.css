@@ -1,11 +1,13 @@
 .recentConnection {
   padding: 10px;
 }
-.date {
+.ProjectIdea {
   text-align: end;
-  padding: 25px 0 0 0;
-  font-size: small;
+  padding: 40px 0 0 0;
+  font-size:xx-small;
   align-self: stretch;
+  color: rgb(26, 251, 138);
+  font-weight: 900;
 }
 .recentConnection .profile {
   display: grid;

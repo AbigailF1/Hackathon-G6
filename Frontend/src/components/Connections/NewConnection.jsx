@@ -5,7 +5,7 @@ function NewConnection() {
   return (
     <div className="connections">
       <p className="connectionText">
-        <hr /> YOU HAVE <span> 2 NEW CONNECTIONS</span> <hr />
+        <hr /> YOU HAVE <span> 2 NEW REQUESTS</span> <hr />
       </p>
       <div className="connectionRequest">
         <div className="profile">
