@@ -14,8 +14,7 @@ import Favorites from './pages/Home';
 import Login from './pages/Login';
 
 import Notifications from './pages/Notifications';
-import  Post from './pages/Post';
-import Notification from './pages/Notification';
+//import  Post from './pages/Post';
 import  Post from './pages/Posts';
 import Feed from './pages/Feed';
 import Chat from './pages/Chat';
