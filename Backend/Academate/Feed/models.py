@@ -4,10 +4,17 @@ from Tag.models import Tag, TagList
 
 # Model for the main feed
 class Feed(models.Model):
+    FEED_TYPE_CHOICES = (
+        ('post', 'Post'),
+        ('idea', 'Idea'),
+    )
     feedText = models.TextField()
     image = models.ImageField(upload_to='feed_images/', null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE ,default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     tag_list = models.ForeignKey(TagList, on_delete=models.CASCADE, default=1)
+    feed_type = models.CharField(max_length=10, choices=FEED_TYPE_CHOICES ,default='post')
+
+
 # Model for the idea feed, which inherits from Feed
 class IdeaFeed(Feed):
     collaborate_button = models.BooleanField(default=False)

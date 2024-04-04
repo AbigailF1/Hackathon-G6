@@ -3,13 +3,15 @@ from . import views
 
 urlpatterns = [
     # urls related to feed itself
-    path('feeds/create/', views.create_feed, name='create_feed'),
+    path('feeds/create/post/', views.create_post_feed, name='create_post_feed'),
     path('feeds/create/idea/', views.create_idea_feed, name='create_idea_feed'),
     path('feeds/<int:feed_id>/', views.update_feed, name='update_feed'),
     path('feeds/<int:feed_id>/delete/', views.delete_feed, name='delete_feed'),
     path('feeds/', views.list_feeds, name='list_feeds'),
+    path('feeds/post/', views.list_post_feeds, name='list_post_feeds'),
+    path('feeds/idea/', views.list_idea_feeds, name='list_idea_feeds'),
     path('feeds/search/user/<str:username>/', views.search_feed_by_user, name='search_feed_by_user'),
-    # path('feeds/search/tag/<str:tag_name>/', views.search_feed_by_tag, name='search_feed_by_tag'),
+    path('feeds/search/tag/<str:tag_name>/', views.search_feed_by_tag, name='search_feed_by_tag'),
 
     # urls related to comments
     path('feeds/<int:feed_id>/comments/', views.list_comments, name='list_comments'),

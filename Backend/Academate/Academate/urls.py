@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('Feed.urls')),
     # path('',include('User.urls')),
-    # path('',include('Tag.urls')),
+    path('',include('Tag.urls')),
     # path('',include('Chat.urls')),
 
 ]

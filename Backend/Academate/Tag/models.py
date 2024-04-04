@@ -10,7 +10,7 @@ class Tag (models.Model):
 
 class TagList(models.Model):
     tag = models.ManyToManyField('Tag')
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE ,default=1)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
 
     def __str__(self):

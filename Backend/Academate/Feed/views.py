@@ -7,11 +7,13 @@ from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer,
 from .models import ( Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification)
 
 # related to the feed itself
+
 @api_view(['POST'])
-def create_feed(request):
+def create_post_feed(request):
     serializer = FeedSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
+        # serializer.save(user=request.user, feed_type='post')
+        serializer.save(feed_type='post')
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -19,7 +21,8 @@ def create_feed(request):
 def create_idea_feed(request):
     serializer = IdeaFeedSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
+        # serializer.save(feed__user=request.user, feed__feed_type='idea')
+        serializer.save(feed_type='idea')
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -53,16 +56,28 @@ def list_feeds(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def list_post_feeds(request):
+    post_feeds = Feed.objects.filter(feed_type='post')
+    serializer = FeedSerializer(post_feeds, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def list_idea_feeds(request):
+    idea_feeds = Feed.objects.filter(feed_type='idea')
+    serializer = IdeaFeedSerializer(idea_feeds, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def search_feed_by_user(request, username):
     user_feeds = Feed.objects.filter(user__username=username)
     serializer = FeedSerializer(user_feeds, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def search_feed_by_tag(request, tag_name):
-#     feeds = Feed.objects.filter(tag_title=tag_name)
-#     serializer = FeedSerializer(feeds, many=True)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def search_feed_by_tag(request, tag_name):
+    feeds = Feed.objects.filter(tag_title=tag_name)
+    serializer = FeedSerializer(feeds, many=True)
+    return Response(serializer.data)
 
 # related to comments 
 @api_view(['POST'])
