@@ -1,0 +1,55 @@
+.sentConnection {
+  padding-top: 100px;
+  width: 95%;
+  margin: auto;
+  gap: 50px;
+}
+
+.sentConnection .connectionMessage{
+    width: 80%;
+    padding: 0 10px;
+    justify-self: start;
+}
+.sentConnection .Scontainer {
+  width: 70%;
+}
+
+.profile,
+.sentConnection {
+  display: flex;
+}
+.connection {
+    display: grid;
+    grid-template-columns: 1.5fr 3fr 1fr;
+  box-shadow: 1px 2px 7px 1px rgb(229, 228, 228);
+  margin: 25px 0;
+}
+.container {
+  padding-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  width: 90%;
+  margin: auto;
+}
+.sentConnection .profile {
+  border-right: solid 5px;
+  display: flex;
+  padding-right: 10px;
+  margin-left: 10px;
+  border-color: rgb(0 55 136);
+}
+.connection div img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.requestStatus {
+  color: rgb(8, 239, 8);
+  font-weight: bolder;
+  align-self: center;
+  justify-self: end;
+  padding-right: 10px;
+}

@@ -1,0 +1,64 @@
+.notification {
+  padding: 100px;
+  display: flex;
+  gap: 15px;
+}
+img {
+  width: 30px;
+  border-radius: 100%;
+}
+
+.recentNotification,
+.earlierNotification {
+  display: grid;
+  grid-template-columns: 0.5fr 4fr 0.5fr;
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 1px 2px 7px 1px rgb(229, 228, 228);
+}
+.NotificationText {
+  max-width: 70%;
+  justify-self: flex-start;
+  flex-grow: 0;
+}
+
+.recentNotification p,
+.earlierNotification p {
+  max-width: 80%;
+  white-space: nowrap;
+}
+
+.dot {
+  justify-self: end;
+  font-size: 40px;
+  align-self: center;
+}
+.TimeStatus {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.TimeStatus hr {
+  width: 45%;
+}
+
+.images {
+  position: relative;
+}
+.firstImg ,.secondImg,.thirdImg {
+  position: absolute;
+  top: 5px;
+  left: 0;
+ 
+}
+.secondImg {
+  left: 18px; 
+}
+.thirdImg {
+  left: 32px;
+}
