@@ -40,7 +40,6 @@ function App() {
         <Route path="/Login" element = {<Login/>} />
         <Route path="/Collaborate" element = {<Collaborate/>} />
         <Route path="/Feed" element = {<Feed/>} />
-        <Route path="/Notification" element = {<Notification/>} />
         <Route path="/Chat" element = {<Chat/>} />
 
 
