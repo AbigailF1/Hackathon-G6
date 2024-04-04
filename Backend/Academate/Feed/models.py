@@ -1,13 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from Tag.models import Tag
+from Tag.models import Tag, TagList
 
 # Model for the main feed
 class Feed(models.Model):
     feedText = models.TextField()
     image = models.ImageField(upload_to='feed_images/', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE ,default=1)
-    # tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    tag_list = models.ForeignKey(TagList, on_delete=models.CASCADE)
 
 # Model for the idea feed, which inherits from Feed
 class IdeaFeed(Feed):
