@@ -7,8 +7,7 @@ class Feed(models.Model):
     feedText = models.TextField()
     image = models.ImageField(upload_to='feed_images/', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE ,default=1)
-    tag_list = models.ForeignKey(TagList, on_delete=models.CASCADE)
-
+    tag_list = models.ForeignKey(TagList, on_delete=models.CASCADE, default=1)
 # Model for the idea feed, which inherits from Feed
 class IdeaFeed(Feed):
     collaborate_button = models.BooleanField(default=False)
