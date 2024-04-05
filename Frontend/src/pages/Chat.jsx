@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import ChatBox from "../components/Chat/ChatBox";
+import SendMessage from "../components/Chat/SendMessage";
 
 const Chat = () => {
   return (
-    <div>Chat</div>
-  )
-}
+    <div className="mt-40 flex flex-col">
+      <ChatBox />
+      <SendMessage />
+    </div>
+  );
+};
 
-export default Chat
+export default Chat;
