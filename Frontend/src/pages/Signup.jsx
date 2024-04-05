@@ -62,12 +62,7 @@ const Signup = () => {
                 <p className="text-sm ">Remember me</p>
               </div>
 
-              <p
-                className="text-sm font-medium whitespace-nowrap cursor-pointer underline underline-offset-2"
-                //   onClick={() => setForgotPassword(true)}
-              >
-                Forgot Password?
-              </p>
+            
             </div>
 
             {/* button */}
