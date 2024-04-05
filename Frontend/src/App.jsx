@@ -1,13 +1,7 @@
 import { useState } from 'react'
 
 //react router dom
-import{
-  createBrowserRouter,
-  RouterProvider,
-  createRoutesFromElements,
-  Outlet,
-  Route
-}from 'react-router-dom'
+import{ createBrowserRouter, RouterProvider, createRoutesFromElements, Outlet, Route, useLocation,}from 'react-router-dom'
 
 import Home from './pages/Landing';
 import Favorites from './pages/Home';
@@ -22,6 +16,8 @@ import Collaborate from './pages/Collaborate';
 import Idea from './pages/Ideas';
 import Header from './components/Header (2)';
 import SentConnection from './components/Connections/SentConnection';
+import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   const router = createBrowserRouter(
@@ -30,6 +26,8 @@ function App() {
         <Route index element={<Home />} />
 
         <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup/>}/>
+        <Route path='/Forgot' element={<ForgotPassword/>}/>
         <Route path="/Collaborate" element={<Collaborate />} />
         <Route path="/SentConnection" element={<SentConnection />} />
         <Route path="/Idea" element={<Idea />} />
@@ -55,9 +53,12 @@ function App() {
 export default App;
 
   const Root=()=>{
+    const location =useLocation();
+    const headerVisiblePaths = ["/", "/Collaborate","/SentConnection", "/Idea", "/Post", "/Notifications", "/Chat", "/Collaborate", "/Feed", "/Chat"];
+    const isHeaderVisible = headerVisiblePaths.includes(location.pathname);
     return(
       <>
-      <div><Header/></div> 
+      {isHeaderVisible && <Header />}
       <div><Outlet/></div>
       </>
     )
