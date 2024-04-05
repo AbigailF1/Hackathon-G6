@@ -24,11 +24,8 @@ colorama==0.4.6
 cryptography==42.0.5
 Django==5.0.3
 django-cors-headers==4.3.1
-Django-Verify-Email==2.0.3
 djangorestframework==3.15.1
-djangorestframework-simplejwt==5.3.1
 dnspython==2.6.1
-drf-yasg==1.21.7
 email_validator==2.1.1
 eventlet==0.34.2
 Flask==2.3.3
@@ -57,7 +54,6 @@ httplib2==0.22.0
 idna==3.6
 importlib_metadata==7.0.2
 importlib_resources==6.3.0
-inflection==0.5.1
 isodate==0.6.1
 itsdangerous==2.1.2
 jaraco.classes==3.3.1
@@ -99,7 +95,6 @@ python-dateutil==2.9.0.post0
 python-engineio==4.9.0
 python-socketio==5.11.1
 pytz==2023.4
-PyYAML==6.0.1
 qrcode==7.4.2
 requests==2.31.0
 requests-oauthlib==1.4.0
