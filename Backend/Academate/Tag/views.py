@@ -20,18 +20,13 @@ def create_tag(request):
         tag_title = serializer.validated_data['tag_title']
         content_type_name = request.data.get('content_type')
         try:
-            # Get the ContentType object based on the content type name
-            content_type = ContentType.objects.get(model=content_type_name.lower())
-
-            # Get or create the TagList associated with the content type
+            content_type = ContentType.objects.get(app_label='Feed', model__in=['IdeaFeed', 'Feed'])
             tag_list, _ = TagList.objects.get_or_create(content_type=content_type)
-            # tag_list, _ = TagList.objects.get_or_create(content_type=content_type, created_by=user)
 
-            # Create or retrieve the tag
             tag, created = Tag.objects.get_or_create(tag_title=tag_title)
             
-            # Associate the tag with the tag list
-            tag_list.tag.add(tag)
+            if created:
+                tag_list.tag.add(tag)
             
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ObjectDoesNotExist:

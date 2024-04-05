@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from .models import Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification, PostReport
+from django.contrib.contenttypes.models import ContentType
 
+class ContentTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContentType
+        fields = ['id', 'app_label', 'model']
+        
 class FeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feed

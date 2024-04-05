@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import status
+from django.contrib.contenttypes.models import ContentType
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
-from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer)
+from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer, ContentTypeSerializer, PostReportSerializer )
 from .models import ( Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification)
 
 # related to the feed itself
@@ -25,6 +26,12 @@ def create_idea_feed(request):
         serializer.save(feed_type='idea')
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def view_content_type(request):
+    content_types = ContentType.objects.all()
+    serializer = ContentTypeSerializer(content_types, many=True)
+    return Response(serializer.data)
 
 @api_view(['PUT'])
 def update_feed(request, feed_id):
@@ -119,38 +126,60 @@ def delete_comment(request, comment_id):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+# related to likes
+
 # related to likes 
-@api_view(['POST'])
-def like_feed(request, feed_id):
+@api_view(['POST', 'DELETE'])
+def toggle_like_feed(request, feed_id):
     try:
         feed = Feed.objects.get(pk=feed_id)
     except Feed.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    # has to be an authenticated user (i think we will handle that)
-    user = request.user
-    like, created = Like.objects.get_or_create(user=user, feed=feed)
-    if created:
-        return Response({'message': 'Liked successfully'}, status=status.HTTP_201_CREATED)
-    else:
-        return Response({'message': 'Already liked'}, status=status.HTTP_200_OK)
-
-
-@api_view(['DELETE'])
-def unlike_feed(request, feed_id):
-    try:
-        feed = Feed.objects.get(pk=feed_id)
-    except Feed.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    # has to be an authenticated user (i think we will handle that)
     user = request.user
     try:
-        like = Like.objects.get(user=user, feed=feed)
+        # like = Like.objects.get(user=user, feed=feed)
+        like = Like.objects.get(feed=feed)
         like.delete()
-        return Response({'message': 'Unliked successfully'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'message': 'Unliked successfully'}, status=status.HTTP_200_OK)
     except Like.DoesNotExist:
-        return Response({'message': 'You have not liked this feed'}, status=status.HTTP_400_BAD_REQUEST)
+        # Like.objects.create(user=user, feed=feed)
+        Like.objects.create(feed=feed)
+        return Response({'message': 'Liked successfully'}, status=status.HTTP_201_CREATED)
+
+
+# @api_view(['POST'])
+# def like_feed(request, feed_id):
+#     try:
+#         feed = Feed.objects.get(pk=feed_id)
+#     except Feed.DoesNotExist:
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+
+#     # has to be an authenticated user (i think we will handle that)
+#     # user = request.user
+#     # like, created = Like.objects.get_or_create(user=user, feed=feed)
+#     like, created = Like.objects.get_or_create(feed=feed)
+#     if created:
+#         return Response({'message': 'Liked successfully'}, status=status.HTTP_201_CREATED)
+#     else:
+#         return Response({'message': 'Already liked'}, status=status.HTTP_200_OK)
+
+
+# @api_view(['DELETE'])
+# def unlike_feed(request, feed_id):
+#     try:
+#         feed = Feed.objects.get(pk=feed_id)
+#     except Feed.DoesNotExist:
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+
+#     # has to be an authenticated user (i think we will handle that)
+#     user = request.user
+#     try:
+#         like = Like.objects.get(user=user, feed=feed)
+#         like.delete()
+#         return Response({'message': 'Unliked successfully'}, status=status.HTTP_204_NO_CONTENT)
+#     except Like.DoesNotExist:
+#         return Response({'message': 'You have not liked this feed'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 # collaborators 

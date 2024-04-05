@@ -23,12 +23,12 @@ class IdeaFeed(Feed):
 class Comment(models.Model):
     text_content = models.TextField()
     feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="1")
     time = models.DateTimeField(auto_now_add=True)
 
 # Model for likes on the feed
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="1")
     feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
 
