@@ -13,7 +13,7 @@ from .serializers import (
 from .validations import custom_validation, validate_email, validate_password
 from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
-from .utils import Util
+from .utils import Util, decode_jwt
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
 from django.conf import settings
@@ -33,7 +33,7 @@ class CustomRedirect(HttpResponsePermanentRedirect):
 
     allowed_schemes = [os.environ.get('APP_SCHEME'), 'http', 'https']
 
-UserModel = get_user_model()
+UserModel= get_user_model()
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -66,15 +66,20 @@ class UserRegister(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
+        role = request.data.get('role', None)
         clean_data = custom_validation(request.data)
         serializer = UserRegisterSerializer(data=clean_data)
         if serializer.is_valid(raise_exception=True):
-            # Check if email domain is allowed
             email = serializer.validated_data.get('email')
-            if not email.endswith(('@aau.edu.et', '@aastu.edu.et')):
-                return Response({'error': 'Email domain not allowed'}, status=status.HTTP_400_BAD_REQUEST)
+            if role == 'student':
+                try:
+                    domain = email.split('@')[1]
+                    if not domain.endswith('.edu.et'):
+                        return Response({'error': 'Email domain not allowed'}, status=status.HTTP_400_BAD_REQUEST)
+                except IndexError:
+                    return Response({'error': 'Invalid email format'}, status=status.HTTP_400_BAD_REQUEST)
 
-            user = serializer.create(clean_data)
+            user = serializer.save()
             if user:
                 token = RefreshToken.for_user(user).access_token
                 current_site = get_current_site(request).domain
@@ -124,25 +129,31 @@ class UserView(APIView):
 
 
 class VerifyEmail(APIView):
-    serializer_class = EmailVerificationSerializer
-
-    token_param_config = openapi.Parameter(
-        'token', in_=openapi.IN_QUERY, description='Description', type=openapi.TYPE_STRING)
-
-    @swagger_auto_schema(manual_parameters=[token_param_config])
     def get(self, request):
-        token = request.GET.get('token')
+        token = request.GET.get('token')  # Extract token from the request query parameters
         try:
-            payload = jwt.decode(token, settings.SECRET_KEY)
-            user = User.objects.get(id=payload['user_id'])
-            if not user.is_verified:
-                user.is_verified = True
-                user.save()
-            return Response({'email': 'Successfully activated'}, status=status.HTTP_200_OK)
-        except jwt.ExpiredSignatureError as identifier:
-            return Response({'error': 'Activation Expired'}, status=status.HTTP_400_BAD_REQUEST)
-        except jwt.exceptions.DecodeError as identifier:
-            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+            payload = decode_jwt(token, settings.SECRET_KEY)  # Decode the token using the decode_jwt function
+            user_id = payload.get('user_id')  # Extract user ID from the decoded payload
+            if user_id is not None: 
+                user = User.objects.get(id=user_id)  
+                if not user.is_verified:  
+                    user.is_verified = True  
+                    role = user.role
+
+                    if role == 'student':
+                        user.is_student = True
+                    elif role == 'recruiter':
+                        user.is_recruiter = True
+                    user.save()  
+                    return Response({'email': 'Successfully activated'}, status=status.HTTP_200_OK)  
+                else:
+                    return Response({'error': 'Email already verified'}, status=status.HTTP_400_BAD_REQUEST)  
+            else:
+                return Response({'error': 'User ID not found in token'}, status=status.HTTP_400_BAD_REQUEST)  
+            return Response({'error': 'Activation Expired'}, status=status.HTTP_400_BAD_REQUEST)  
+        except jwt.exceptions.DecodeError:
+            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)  
+
 
 class RequestPasswordResetEmail(APIView):
     serializer_class = ResetPasswordEmailRequestSerializer
@@ -175,8 +186,8 @@ class PasswordTokenCheckAPI(APIView):
         redirect_url = request.GET.get('redirect_url')
         try:
             id = force_text(urlsafe_base64_decode(uidb64))
-            user = UserModel.objects.get(id=id)
-        except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
+            user = User.objects.get(id=id)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
             user = None
 
         if user is not None and PasswordResetTokenGenerator().check_token(user, token):

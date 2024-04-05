@@ -9,8 +9,8 @@ admin.site.site_title = 'Academate'
 admin.site.index_title = 'Welcome to Academate'
 
 class CustomUserAdmin(BaseUserAdmin):
-    list_display = ['username', 'email', 'is_recruiter', 'is_student', 'is_superuser','is_banned']
-    list_filter = ['is_recruiter', 'is_student', 'is_superuser', 'is_banned']
+    list_display = ['username', 'email', 'is_recruiter', 'is_student', 'is_superuser','is_banned', 'is_verified']
+    list_filter = ['is_recruiter', 'is_student', 'is_superuser', 'is_banned', 'is_verified']
     search_fields = ['username', 'email']
     actions = ['ban_user', 'unban_user']
 
