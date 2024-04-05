@@ -6,7 +6,6 @@ import Validation from "../components/Login/SignupValidation";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
