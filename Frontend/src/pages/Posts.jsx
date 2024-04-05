@@ -1,11 +1,7 @@
-
 import React from 'react'
-
 import NewPost from '../components/NewPost'
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import ProfileSide from '../components/ProfileSide';
 import PostBox from './PostBox';
+
 export default function Posts() {
   const person ={
     name : 'John',

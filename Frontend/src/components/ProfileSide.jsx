@@ -1,5 +1,6 @@
 import { Avatar, Card } from 'antd';
 import { Flex, Tag } from 'antd';
+import Profile from './Profile';
 const { Meta } = Card;
 const gridStyle = {
   width: '25%',
@@ -9,24 +10,7 @@ export default function ProfileSide() {
   return (
     
     <section className='mt-14 flex flex-col gap-5'>
-     <Card
-    style={{
-      width: 250, margin:"auto",
-    }}
-    cover={
-      <img
-        alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      />
-    }
-  >
-    <Meta
-      avatar={<Avatar         src = "../src/assets/react.svg"
-      />}
-      title="User name"
-      description="This is the description"
-    />
-  </Card>
+      <Profile />
 
   <div className="w-[350px] rounded-lg bg-slate-100 shadow-sm py-8 flex flex-col gap-4 justify-center pl-6">  
      <h4 className='text-center text-black font-bold m-4'>My Groups</h4>  
