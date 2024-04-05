@@ -14,8 +14,6 @@ import Favorites from './pages/Home';
 import Login from './pages/Login';
 
 import Notifications from './pages/Notifications';
-import  Post from './pages/Post';
-import Notification from './pages/Notification';
 import  Post from './pages/Posts';
 import Feed from './pages/Feed';
 import Chat from './pages/Chat';
@@ -41,7 +39,6 @@ function App() {
         <Route path="/Login" element = {<Login/>} />
         <Route path="/Collaborate" element = {<Collaborate/>} />
         <Route path="/Feed" element = {<Feed/>} />
-        <Route path="/Notification" element = {<Notification/>} />
         <Route path="/Chat" element = {<Chat/>} />
 
 
