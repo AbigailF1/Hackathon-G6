@@ -1,14 +1,11 @@
 import { useState } from "react";
 
 //react router dom
-import {
-  createBrowserRouter,
-  RouterProvider,
-  createRoutesFromElements,
-  Outlet,
-  Route,
-  useLocation,
-} from "react-router-dom";
+
+
+import{ createBrowserRouter, RouterProvider, createRoutesFromElements, Outlet, Route, useLocation,}from 'react-router-dom'
+import '@mantine/core/styles.css';
+
 
 import "./App.css";
 import Home from "./pages/Landing";

@@ -1,25 +1,33 @@
 import React, { useState } from 'react'
-import { Alert, Button, Space } from 'antd';
+import { Modal } from 'antd';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
-import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
-export default function PostBox({person}) {
+export default function IdeaBox({person}) {
     const[liked, setLiked] = useState(false);
    function toggleFav(){
     setLiked( (prev) => !prev);
    }
-   const [comment,setComment] = useState('');
-   function handleComment(){
-    console.log('comment', comment);
-   }
-   function change(event){
+
+   const [open, setOpen] = useState(false);
+   const showModal = () => {
+     setOpen(true);
+   };
+   function handleComment(event) {
+    event.preventDefault();
+    console.log("You clicked the button");
     setComment(event.target.value)
-   }
- 
-   function sendRequest(){
-    console.log("Request sent");
+    console.log("com", comment);
+    setOpen(false);
+   };
+   const handleCancel = () => {
+     console.log('Clicked cancel button');
+     setOpen(false);
+   };
+   const [comment,setComment] = useState('');
+  function change(event){
+    setComment(event.target.value)
    }
   return (
     <div className="flex flex-col m-5 pt-2.5 bg-white rounded max-w-[850px]">
@@ -39,7 +47,6 @@ export default function PostBox({person}) {
             </div>
         </div>
         <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
-
         <div className="p-5" style={{fontFamily :"Adamina"}}>{person.content}</div>
         {person.image != null ? (
   <div className='border border-solid border-zinc-100'>
@@ -51,25 +58,21 @@ export default function PostBox({person}) {
       <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
         <div className=' flex gap-16 m-5'>
         {liked ? <FavoriteOutlinedIcon sx={{ color: 'red' }} onClick ={toggleFav} /> : <FavoriteBorderOutlinedIcon onClick ={toggleFav} />}
-    <TextsmsOutlinedIcon onClick={()=>    document.getElementById('my_modal_5').showModal()}/>
-    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-  <div className="modal-box bg-white">
-    <h3 className="font-bold text-lg">Comment</h3>
-    <textarea type='text' className="py-4 w-full border rounded resize-none bg-slate-100 p-2 " 
+    <TextsmsOutlinedIcon onClick={ showModal} />
+    
+     <Modal
+        title="Comment"
+        style={{display: 'flex', alignItems: 'center' ,width: '100%'}}
+        open={open}
+        onOk={handleComment}
+        onCancel={handleCancel}
+      >
+ <textarea type='text' className="py-4 w-full border rounded resize-none bg-slate-100 p-2 " 
                 rows="2"
+                style={{width: '600px'}}
                 placeholder='comment...'
                 value={comment}
-                onChange ={change}/>
-    <div className="modal-action">
-      <form method="dialog flex">
-     
-        <button className="btn bg-[rgb(5, 190, 250)] mr-5" onClick={handleComment}>Comment</button>
-        <button className='btn bg-red-500 w-14 text-white'>    X     </button>
-      </form>
-    </div>
-  </div>
-    </dialog>
-   
+                onChange ={change}/>      </Modal>
         </div>
     </div>
     

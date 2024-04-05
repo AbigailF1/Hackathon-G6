@@ -2,12 +2,13 @@ import React from "react";
 import collab from "../assets/collab.jpg";
 import Google_Icon from "../assets/Google_Icon.jpg";
 import { NavLink } from "react-router-dom";
+import Svgp from "../components/Login/Svgp";
 
 const ForgotPassword= () => {
   return (
     <div className="w-full h-screen flex">
-      <div className="relative w-1/2 h-full flex flex-col items-center justify-center">
-        <img src={collab} className="w-full h-96 object-cover" />
+      <div className="relative w-1/2 h-full flex flex-col items-center justify-center" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
+        <Svgp className='w-full h-full object-cover ' />
       </div>
       <div className="w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-20 pt-36 justify-between items-center ">
         <div className=" flex flex-col ">
@@ -30,18 +31,12 @@ const ForgotPassword= () => {
 
               {/* button */}
             <div className="flex flex-col gap-4">
-            <button className="w-full text-white my-2 font-semibold bg-red-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer">
+            <button className="w-full text-white font-semibold bg-red-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer">
               Reset Password
             </button>
 
-              <button
-                className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
-                onClick={() => {}}
-              >
-                Login
-              </button>
             </div>
-            <div className="border border-black w-full flex flex-col gap-6">
+            <div className="border w-full flex flex-col gap-6">
               <div className="w-full flex items-center justify-center relative ">
                 <div className="w-full h-[1px] bg-black/40"></div>
                 <p className="text-lg absolute text-black/80 bg-[#f5f5f5]">
