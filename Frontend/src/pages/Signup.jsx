@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import collab from "../assets/collab.jpg";
 import Google_Icon from "../assets/Google_Icon.jpg";
 import { NavLink } from "react-router-dom";
+import Validation from "../components/Login/SignupValidation";
 
 const Signup = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const [values, setValues] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    tele: "",
+    password: "",
+    cpassword: "",
+  });
+
+  const [errors, setErrors] = useState([]);
+  const handleInput = (event) => {
+    setValues((prev) => ({
+      ...prev,
+      [event.target.name]: [event.target.value],
+    }));
+  };
+
+  async function submit(e) {
+    e.preventDefault();
+    setErrors(Validation(values));
+  }
+
   return (
     <div className="w-full h-screen flex">
       <div className="relative w-1/2 h-full flex flex-col items-center justify-center">
@@ -20,60 +49,109 @@ const Signup = () => {
             </h1>
             <h3 className="text-3xl font-semibold ">Sign Up</h3>
 
-            <input
-              type="text"
-              placeholder="First Name"
-              className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
-            />
-
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
-            />
-
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
-            />
-
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
-            />
-
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
-            />
-
-            <input
-              type="Password"
-              placeholder="Confirm Password"
-              className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
-            />
-            {/* below input */}
-            <div className="flex flex-row gap-2 items-center justify-between">
-              <div className=" flex items-center">
-                <input type="checkbox" className="w-4 " />
-                <p className="text-sm ">Remember me</p>
+            <form action="" onSubmit={submit}>
+              <div className="pb-2">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  onChange={handleInput}
+                  name="fname"
+                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                />
+                {errors.fname && (
+                  <span className="text-red-500">{errors.fname}</span>
+                )}
               </div>
 
-            
-            </div>
+              <div className="pb-2">
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  onChange={handleInput}
+                  name="lname"
+                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                />
+                {errors.lname && (
+                  <span className="text-red-500">{errors.lname}</span>
+                )}
+              </div>
 
-            {/* button */}
-            <div className="flex flex-col gap-4">
-              <button
-                className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
-                onClick={() => {}}
-              >
-                SignUp
-              </button>
-            </div>
+              <div className="pb-2">
+                <input
+                  type="email"
+                  onChange={handleInput}
+                  placeholder="Email"
+                  name="email"
+                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                />
+                {errors.email && (
+                  <span className="text-red-500">{errors.email}</span>
+                )}
+              </div>
+
+              <div className="pb-2">
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  onChange={handleInput}
+                  name="tele"
+                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                />
+                {errors.tele && (
+                  <span className="text-red-500">{errors.tele}</span>
+                )}
+              </div>
+
+              <div className="pb-2">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  onChange={handleInput}
+                  name="password"
+                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                />
+                {errors.password && (
+                  <span className="text-red-500">{errors.password}</span>
+                )}
+                <button onClick={togglePasswordVisibility}>
+                  {showPassword ? "Hide Password" : "Show Password"}
+                </button>
+              </div>
+
+              <div className="pb-2">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Confirm Password"
+                  onChange={handleInput}
+                  name="cpassword"
+                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                />
+                {errors.cpassword && (
+                  <span className="text-red-500">{errors.cpassword}</span>
+                )}
+                <button onClick={togglePasswordVisibility}>
+                  {showPassword ? "Hide Password" : "Show Password"}
+                </button>
+              </div>
+              {/* below input */}
+              <div className="flex flex-row gap-2 items-center justify-between">
+                <div className=" flex items-center">
+                  <input type="checkbox" className="w-4 " />
+                  <p className="text-sm ">Remember me</p>
+                </div>
+              </div>
+
+              {/* button */}
+              <div className="flex flex-col gap-4">
+                <button
+                  type="submit"
+                  className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
+                  onClick={submit}
+                >
+                  SignUp
+                </button>
+              </div>
+            </form>
             <div className="border border-black w-full flex flex-col gap-6">
               <div className="w-full flex items-center justify-center relative ">
                 <div className="w-full h-[1px] bg-black/40"></div>
@@ -88,12 +166,9 @@ const Signup = () => {
                   {" "}
                   Already have an account ?{" "}
                   <NavLink to="/Login">
-                  <span
-                    className="font-semibold underline enderline-offset-2 cursor-pointer"
-                    // onClick={() => setAction("Signup")}
-                  >
-                    Sign In
-                  </span>
+                    <span className="font-semibold underline enderline-offset-2 cursor-pointer">
+                      Sign In
+                    </span>
                   </NavLink>
                 </p>
               </div>
