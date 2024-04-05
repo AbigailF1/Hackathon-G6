@@ -3,7 +3,7 @@ import collab from "../assets/collab.jpg";
 import Google_Icon from "../assets/Google_Icon.jpg";
 import { NavLink } from "react-router-dom";
 import Validation from "../components/Login/SignupValidation";
-
+import Svgp from "../components/Login/Svgp";
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -35,8 +35,8 @@ const Signup = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="relative w-1/2 h-full flex flex-col items-center justify-center">
-        <img src={collab} className="w-full h-96 object-cover" />
+      <div className="relative w-1/2 h-full flex flex-col items-center justify-center" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
+        <Svgp className='w-full h-full object-cover ' />
       </div>
       <div className="w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-20 justify-between items-center">
         <div className=" flex flex-col ">
@@ -136,13 +136,13 @@ const Signup = () => {
               {/* below input */}
               <div className="flex flex-row gap-2 items-center justify-between">
                 <div className=" flex items-center">
-                  <input type="checkbox" className="w-4 " />
-                  <p className="text-sm ">Remember me</p>
+                  {/* <input type="checkbox" className="w-4 " />
+                  <p className="text-sm ">Remember me</p> */}
                 </div>
               </div>
 
               {/* button */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 pt-5 pb-5">
                 <button
                   type="submit"
                   className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
@@ -152,7 +152,7 @@ const Signup = () => {
                 </button>
               </div>
             </form>
-            <div className="border border-black w-full flex flex-col gap-6">
+            <div className="border w-full flex flex-col gap-6">
               <div className="w-full flex items-center justify-center relative ">
                 <div className="w-full h-[1px] bg-black/40"></div>
                 <p className="text-lg absolute text-black/80 bg-[#f5f5f5]">
