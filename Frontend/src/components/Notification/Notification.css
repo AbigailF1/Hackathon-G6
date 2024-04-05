@@ -34,6 +34,7 @@ img {
   justify-self: end;
   font-size: 40px;
   align-self: center;
+  margin-top: -20px;
 }
 .TimeStatus {
   display: flex;
@@ -49,6 +50,7 @@ img {
 
 .images {
   position: relative;
+  top: 6px;
 }
 .firstImg ,.secondImg,.thirdImg {
   position: absolute;
