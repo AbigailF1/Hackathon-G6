@@ -30,10 +30,11 @@ CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
+   
     'channels',
     'User',
     'Chat',
+    'chatbot',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
   
     'rest_framework',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+     'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -99,8 +101,8 @@ CHANNEL_LAYERS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-     "http://localhost:5017",
+    "http://localhost:5173",
+     "http://localhost:5173",
 ]
 
 # Password validation
