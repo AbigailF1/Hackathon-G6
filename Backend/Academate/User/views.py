@@ -95,15 +95,17 @@ class UserRegister(APIView):
 
 class UserLogin(APIView):
     permission_classes = (permissions.AllowAny,)
+    authentication_classes = (SessionAuthentication,)
 
     def post(self, request):
-        serializer = UserLoginSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        user_data = serializer.validated_data  
-
-        return Response(user_data, status=status.HTTP_200_OK)
-
+        data = request.data
+        serializer = UserLoginSerializer(data=data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.check_user(data)
+            login(request, user)
+            # Retrieve the username of the logged-in user
+            username = user.username if user else ''
+            return Response({'username': username}, status=status.HTTP_200_OK)
 
 class UserLogout(APIView):
     permission_classes = (permissions.AllowAny,)

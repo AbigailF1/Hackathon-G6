@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth import get_user_model, authenticate, login
 from rest_framework.exceptions import ValidationError
 from .models import Profile, Skill, Education
 from django.contrib import auth
@@ -81,39 +81,17 @@ class SetNewPasswordSerializer(serializers.Serializer):
             raise AuthenticationFailed('The reset link is invalid', 401)
         return super().validate(attrs)
 
-
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
 
-    def validate(self, attrs):
-        username = attrs.get('username', '')
-        password = attrs.get('password', '')
-
-        if username and password:
-            user = authenticate(request=self.context.get('request'), username=username, password=password)
-            if user:
-                if not user.is_active:
-                    raise AuthenticationFailed('Account disabled, contact admin')
-                if not user.is_verified:
-                    raise AuthenticationFailed('Email is not verified')
-
-                # Generating tokens
-                refresh = RefreshToken.for_user(user)
-                tokens = {
-                    'refresh': str(refresh),
-                    'access': str(refresh.access_token),
-                }
-
-                return {
-                    'username': user.username,
-                    'tokens': tokens
-                }
-            else:
-                raise AuthenticationFailed('Invalid credentials, try again')
-        else:
-            raise AuthenticationFailed('Username and password are required fields')
-
+    def check_user(self, cleaned_data):
+        username = cleaned_data.get('username', '')
+        password = cleaned_data.get('password', '')
+        user = authenticate(username=username, password=password)
+        if not user:
+            raise ValidationError('User not found or incorrect credentials')
+        return user
 
 
 class SkillSerializer(serializers.ModelSerializer):
