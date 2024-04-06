@@ -59,7 +59,7 @@ export default App;
 
   const Root=()=>{
     const location =useLocation();
-    const headerVisiblePaths = [ "/", "/Collaborate","/SentConnection", "/Idea", "/Post", "/Notifications", "/Chat", "/Collaborate", "/Feed", "/Chat",];
+    const headerVisiblePaths = [  "/Collaborate","/SentConnection", "/Idea", "/Post", "/Notifications", "/Chat", "/Collaborate", "/Feed", "/Chat",];
     const isHeaderVisible = headerVisiblePaths.includes(location.pathname);
     return(
       <>
