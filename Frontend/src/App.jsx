@@ -19,6 +19,7 @@ import Header from './components/Header (2)';
 import SentConnection from './components/Connections/SentConnection';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
+import ProfilePage from "./pages/ProfilePage";
 import Landing from './pages/Landing';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/Collaborate" element = {<Collaborate/>} />
         <Route path="/Feed" element = {<Feed/>} />
         <Route path="/Chat" element = {<Chat/>} />
+        <Route path="/Profile" element={<ProfilePage />} />
         <Route path="/Landing" element = {<Landing/>}/>
 
 
@@ -57,7 +59,7 @@ export default App;
 
   const Root=()=>{
     const location =useLocation();
-    const headerVisiblePaths = [ "/Collaborate","/SentConnection", "/Idea", "/Post", "/Notifications", "/Chat", "/Collaborate", "/Feed", "/Chat"];
+    const headerVisiblePaths = [ "/", "/Collaborate","/SentConnection", "/Idea", "/Post", "/Notifications", "/Chat", "/Collaborate", "/Feed", "/Chat",];
     const isHeaderVisible = headerVisiblePaths.includes(location.pathname);
     return(
       <>
