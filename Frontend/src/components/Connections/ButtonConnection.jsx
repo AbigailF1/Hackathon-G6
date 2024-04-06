@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./ButtonConnection.css";
 import { useState } from "react";
 
-function ButtonConnection({ setActive, Active }) {
+function ButtonConnection() {
   const [receivedButtonColor, setReceivedButtonColor] = useState("blue");
   const [sentButtonColor, setSentButtonColor] = useState("white");
 
