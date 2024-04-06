@@ -43,8 +43,25 @@
   margin-left: 5px;
 }
 
-@media (max-width: 623px) {
+@media (max-width: 725px) {
   div.recentConnection {
     grid-template-columns: 1fr;
+  }
+  p.connectionText hr {
+    width: 20%;
+  }
+}
+@media (max-width: 435px) {
+   p.connectionText hr {
+    width: 0%;
+  }
+  .recentConnection div.profile{
+     grid-template-columns: 1fr;
+     align-items: center;
+     justify-items: center;
+  }
+  p.ProjectIdea{
+    text-align: start;
+    padding-top: 10px;
   }
 }

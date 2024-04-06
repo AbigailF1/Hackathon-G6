@@ -91,15 +91,32 @@
     max-width: 100%;
   }
   div.connectionRequest {
-    flex-direction: column;
+    /* align-items: center; */
+  }
+
+  .connections .connectionText hr {
+    width: 20%;
+  }
+}
+
+@media (max-width: 545px) {
+  div.connectionRequest {
     align-items: center;
+    flex-direction: column;
+  }
+  p.connectionMessage {
+    width: 80%;
   }
   div.connections .profile {
     border: 0;
   }
-
   .connections .connectionText hr {
-    width: 25%;
+    width: 10%;
   }
+}
+@media (max-width: 435px) {
   
+  .connections .connectionText hr {
+    width: 0%;
+  }
 }
