@@ -7,6 +7,7 @@ function ButtonConnection({ setActive, Active }) {
   const [receivedButtonColor, setReceivedButtonColor] = useState("blue");
   const [sentButtonColor, setSentButtonColor] = useState("white");
 
+  
   const handleReceivedButtonClick = () => {
     setReceivedButtonColor("blue");
     setSentButtonColor("white");

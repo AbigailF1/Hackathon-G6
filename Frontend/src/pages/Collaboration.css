@@ -1,11 +1,10 @@
 .container {
-padding-top: 100px;
+  padding-top: 100px;
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
   width: 90%;
-  margin: auto;  
- 
+  margin: auto;
 }
 
 a {
@@ -26,4 +25,19 @@ a {
   margin-right: 10px;
 }
 
+@media (max-width: 1028px) {
+  div.container {
+    /* background-color: red; */
+    max-width: 100%;
+    gap: 70px;
+  }
+}
 
+@media (max-width: 830px) {
+  div.connectionContainer {
+    width: 100%;
+  }
+  div.container {
+    max-width: 80%;
+  }
+}
