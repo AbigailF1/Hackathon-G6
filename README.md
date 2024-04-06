@@ -38,4 +38,6 @@ Once the setup is complete, you can access the application by opening a web brow
 
 If the application is running on a different port or host, please use the appropriate URL provided by the development server.
 
-https://hackathon-g6.vercel.app/
+##The Deployed react demo
+
+https://hackathon-g6-ye8r.vercel.app/
