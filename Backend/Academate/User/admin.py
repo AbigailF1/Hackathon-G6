@@ -34,7 +34,7 @@ class CustomUserAdmin(BaseUserAdmin):
             return False 
         return super().has_delete_permission(request, obj)
 
-admin.site.register(User)
+admin.site.register(User, CustomUserAdmin)
 admin.site.register(Profile)
 admin.site.register(Skill)
 admin.site.register(Education)

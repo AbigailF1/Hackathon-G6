@@ -95,19 +95,14 @@ class UserRegister(APIView):
 
 class UserLogin(APIView):
     permission_classes = (permissions.AllowAny,)
-    authentication_classes = (SessionAuthentication,)
 
     def post(self, request):
-        data = request.data
-        
-        assert validate_email(data)
-        assert validate_password(data)
+        serializer = UserLoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        serializer = UserLoginSerializer(data=data)
-        if serializer.is_valid(raise_exception=True):
-            user_data = serializer.validated_data
-            login(request, user_data)  
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        user_data = serializer.validated_data  
+
+        return Response(user_data, status=status.HTTP_200_OK)
 
 
 class UserLogout(APIView):

@@ -83,15 +83,15 @@ class SetNewPasswordSerializer(serializers.Serializer):
 
 
 class UserLoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+    username = serializers.CharField()
     password = serializers.CharField()
 
     def validate(self, attrs):
-        email = attrs.get('email', '')
+        username = attrs.get('username', '')
         password = attrs.get('password', '')
-        
-        if email and password:
-            user = authenticate(email=email, password=password)
+
+        if username and password:
+            user = authenticate(request=self.context.get('request'), username=username, password=password)
             if user:
                 if not user.is_active:
                     raise AuthenticationFailed('Account disabled, contact admin')
@@ -106,13 +106,13 @@ class UserLoginSerializer(serializers.Serializer):
                 }
 
                 return {
-                    'email': user.email,
+                    'username': user.username,
                     'tokens': tokens
                 }
             else:
                 raise AuthenticationFailed('Invalid credentials, try again')
         else:
-            raise AuthenticationFailed('Email and password are required fields')
+            raise AuthenticationFailed('Username and password are required fields')
 
 
 
