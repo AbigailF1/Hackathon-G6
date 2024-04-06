@@ -1,16 +1,13 @@
 import { useState } from "react";
 
 //react router dom
-import {
-  createBrowserRouter,
-  RouterProvider,
-  createRoutesFromElements,
-  Outlet,
-  Route,
-  useLocation,
-} from "react-router-dom";
-import "@mantine/core/styles.css";
 
+
+import{ createBrowserRouter, RouterProvider, createRoutesFromElements, Outlet, Route, useLocation,}from 'react-router-dom'
+import '@mantine/core/styles.css';
+
+
+import "./App.css";
 import Home from "./pages/Landing";
 import Favorites from "./pages/Home";
 import Login from "./pages/Login";
@@ -44,7 +41,6 @@ function App() {
         <Route path="/Post" element={<Post />} />
         <Route path="/Notifications" element={<Notifications />} />
         <Route path="/Chat" element={<Chat />} />
-
         <Route path="/Login" element={<Login />} />
         <Route path="/Collaborate" element={<Collaborate />} />
         <Route path="/Feed" element={<Feed />} />
