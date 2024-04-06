@@ -24,6 +24,7 @@ import SentConnection from "./components/Connections/SentConnection";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProfilePage from "./pages/ProfilePage";
+import Landing from './pages/Landing';
 
 function App() {
   const router = createBrowserRouter(
@@ -45,6 +46,7 @@ function App() {
         <Route path="/Feed" element={<Feed />} />
         <Route path="/Chat" element={<Chat />} />
         <Route path="/Profile" element={<ProfilePage />} />
+        <Route path="/Landing" element = {<Landing/>}/>
       </Route>
     )
   );
@@ -59,7 +61,6 @@ export default App;
 const Root = () => {
   const location = useLocation();
   const headerVisiblePaths = [
-    "/",
     "/Collaborate",
     "/SentConnection",
     "/Idea",
