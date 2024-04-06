@@ -56,7 +56,7 @@ export default App;
   const Root=()=>{
     return(
       <>
-      <div><Header/></div> 
+      {/* <div><Header/></div>  */}
       <div><Outlet/></div>
       </>
     )

@@ -106,7 +106,7 @@ function Notification() {
         <div className="NotificationText">
           <p>
             dolorem iure doloremque a omnis amet tenetur lo consequuntur modi
-            ad, dolor, obcaecati dignissimo
+            ad
           </p>
           <span>9 hours</span>
         </div>
@@ -130,7 +130,7 @@ function Notification() {
         <div className="NotificationText">
           <p>
             dolorem iure doloremque a omnis amet tenetur lo consequuntur modi
-            ad, dolor, obcaecati dignissimo
+            ad
           </p>
           <span>9 hours</span>
         </div>
