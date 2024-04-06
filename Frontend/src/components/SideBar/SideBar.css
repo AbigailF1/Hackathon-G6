@@ -8,7 +8,6 @@
   padding: 10px;
 }
 
-
 .numConnection,
 .invitation,
 .teammates,
@@ -21,16 +20,15 @@
   text-transform: uppercase;
   font-size: medium;
 }
-.sidebar .active{
-    border-left: solid rgb(24, 24, 250) 5px;
-    padding-left: 10px;
+.sidebar .active {
+  border-left: solid rgb(24, 24, 250) 5px;
+  padding-left: 10px;
 }
 
 
-@media (max-width: 830px) {
-
-div.sidebar{
-  width: 100%;
-}
+@media (max-width: 832px) {
+  div.sidebar {
+    width: 100%;
+  }
 
 }

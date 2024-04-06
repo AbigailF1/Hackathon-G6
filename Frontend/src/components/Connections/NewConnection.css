@@ -11,7 +11,6 @@
   display: flex;
   padding-right: 10px;
   margin-left: 10px;
-
   border-color: rgb(0 55 136);
 }
 
@@ -90,9 +89,6 @@
   div.container {
     max-width: 100%;
   }
-  div.connectionRequest {
-    /* align-items: center; */
-  }
 
   .connections .connectionText hr {
     width: 20%;
@@ -100,6 +96,7 @@
 }
 
 @media (max-width: 545px) {
+
   div.connectionRequest {
     align-items: center;
     flex-direction: column;
@@ -115,7 +112,6 @@
   }
 }
 @media (max-width: 435px) {
-  
   .connections .connectionText hr {
     width: 0%;
   }

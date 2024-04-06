@@ -21,10 +21,15 @@
   /* background-color: rgb(255, 255, 255); */
 }
 
-
 @media (max-width: 830px) {
-div.conButton{
-  text-align: center;
+  div.conButton {
+    text-align: center;
+  }
+}
+@media (max-width: 528px) {
+  button #active,
+  button #sent {
+    width: 100%;
+  }
 }
 
-}
