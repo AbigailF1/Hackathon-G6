@@ -4,9 +4,9 @@
 .ProjectIdea {
   text-align: end;
   padding: 40px 0 0 0;
-  font-size:xx-small;
+  font-size: xx-small;
   align-self: stretch;
-  color: rgb(26, 251, 138);
+  color: rgb(3, 102, 222);
   font-weight: 900;
 }
 .recentConnection .profile {
@@ -17,8 +17,8 @@
   margin: 5px;
   box-shadow: 1px 1px 7px 1px rgb(96, 95, 95);
   padding: 5px;
-   background-color: white;
-   border-radius: 3px;
+  background-color: white;
+  border-radius: 3px;
 }
 .recentConnection {
   display: grid;
@@ -28,15 +28,12 @@
 .about p {
   width: 100%;
   margin: 0;
-  
 }
-
-.name{
-font-size: large;
+.name {
+  font-size: large;
 }
-.skill{
-font-size: small;
-
+.skill {
+  font-size: small;
 }
 .connectionText hr {
   display: inline-block;
@@ -44,4 +41,27 @@ font-size: small;
   border-color: rgb(203, 200, 197);
   margin-right: 5px;
   margin-left: 5px;
+}
+
+@media (max-width: 725px) {
+  div.recentConnection {
+    grid-template-columns: 1fr;
+  }
+  p.connectionText hr {
+    width: 20%;
+  }
+}
+@media (max-width: 435px) {
+   p.connectionText hr {
+    width: 0%;
+  }
+  .recentConnection div.profile{
+     grid-template-columns: 1fr;
+     align-items: center;
+     justify-items: center;
+  }
+  p.ProjectIdea{
+    text-align: start;
+    padding-top: 10px;
+  }
 }
