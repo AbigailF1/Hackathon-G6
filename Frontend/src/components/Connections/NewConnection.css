@@ -11,8 +11,7 @@
   display: flex;
   padding-right: 10px;
   margin-left: 10px;
-
-  border-color:  rgb(0 55 136);
+  border-color: rgb(0 55 136);
 }
 
 .connectionRequest {
@@ -27,11 +26,11 @@
 }
 .acceptBtn {
   padding: 5px 13px;
-  background-color:  rgb(18, 86, 189);
+  background-color: rgb(18, 86, 189);
   border-radius: 2px;
   margin: 5px 10px;
   color: white;
-  border-color:  rgb(18, 86, 189);
+  border-color: rgb(18, 86, 189);
   padding-top: 7px;
 }
 .declineBtn {
@@ -65,7 +64,7 @@
 
 .connectionText {
   text-align: center;
-  padding:15px 0;
+  padding: 15px 0;
   width: 100%;
 }
 
@@ -75,4 +74,45 @@
   border-color: rgb(203, 200, 197);
   margin-right: 5px;
   margin-left: 5px;
+}
+
+@media (max-width: 1028px) {
+  .connections .connectionText hr {
+    width: 10%;
+  }
+  .container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 830px) {
+  div.container {
+    max-width: 100%;
+  }
+
+  .connections .connectionText hr {
+    width: 20%;
+  }
+}
+
+@media (max-width: 545px) {
+
+  div.connectionRequest {
+    align-items: center;
+    flex-direction: column;
+  }
+  p.connectionMessage {
+    width: 80%;
+  }
+  div.connections .profile {
+    border: 0;
+  }
+  .connections .connectionText hr {
+    width: 10%;
+  }
+}
+@media (max-width: 435px) {
+  .connections .connectionText hr {
+    width: 0%;
+  }
 }

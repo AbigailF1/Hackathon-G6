@@ -1,10 +1,23 @@
 import React, { useState } from "react";
 import collab from "../assets/collab.jpg";
 import Google_Icon from "../assets/Google_Icon.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink , useNavigate} from "react-router-dom";
 import Validation from "../components/Login/SignupValidation";
 import Svgp from "../components/Login/Svgp";
+
 const Signup = () => {
+
+  const [activeButton, setActiveButton] = useState(null);
+  const navigate = useNavigate();
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+    navigate(`/${buttonName}`);
+  };
+
+  const handleSignUp = () => {
+    alert('Signed up successfully');
+  };
+
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -142,13 +155,17 @@ const Signup = () => {
 
               {/* button */}
               <div className="flex flex-col gap-4 pt-5 pb-5">
+               <NavLink to="/Login">
                 <button
                   type="submit"
                   className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
                   onClick={submit}
+                  onClick={() => handleButtonClick('Feed')}
+                  onClick={handleSignUp}
                 >
                   SignUp
                 </button>
+                </NavLink>
               </div>
             </form>
             <div className="border w-full flex flex-col gap-6">

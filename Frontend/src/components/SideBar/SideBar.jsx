@@ -20,7 +20,7 @@ function SideBar() {
         </a>
         <span>2</span>
       </div>
-      <div className="teammates">
+      <div className="teammates ">
         <a href="#">
           <GiStrongbox /> teammates
         </a>
