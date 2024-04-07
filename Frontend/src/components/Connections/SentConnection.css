@@ -1,14 +1,14 @@
 .sentConnection {
   padding-top: 100px;
-  width: 95%;
+  width: 90%;
   margin: auto;
   gap: 50px;
 }
 
-.sentConnection .connectionMessage{
-    width: 80%;
-    padding: 0 10px;
-    justify-self: start;
+.sentConnection .connectionMessage {
+  width: 80%;
+  padding: 0 10px;
+  justify-self: start;
 }
 .sentConnection .Scontainer {
   width: 70%;
@@ -19,8 +19,8 @@
   display: flex;
 }
 .connection {
-    display: grid;
-    grid-template-columns: 1.5fr 3fr 1fr;
+  display: grid;
+  grid-template-columns: 1.5fr 3fr 1fr;
   box-shadow: 1px 2px 7px 1px rgb(229, 228, 228);
   margin: 25px 0;
 }
@@ -52,4 +52,62 @@
   align-self: center;
   justify-self: end;
   padding-right: 10px;
+}
+
+@media (max-width: 1028px) {
+  div.connection {
+    grid-template-columns: 2fr 3fr 1fr;
+  }
+  p.name {
+    font-size: medium;
+  }
+}
+
+@media (max-width: 832px) {
+  div.sentConnection {
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+  }
+  div.sentConnection .Scontainer {
+    width: 100%;
+  }
+}
+@media (max-width: 745px) {
+  p.name {
+    font-size: small;
+  }
+  p.NumOfConnection {
+    font-size: small;
+  }
+  div.sentConnection {
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+  }
+}
+@media (max-width: 625px) {
+  div.profile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 533px) {
+  div.Scontainer .conButton #active,
+  div.Scontainer .conButton #sent {
+    width: 100%;
+  }
+}
+@media (max-width: 500px) {
+  div.connection {
+    grid-template-columns: 1fr;
+  }
+  div.sentConnection .connectionMessage , div.requestStatus{
+    justify-self: center;
+  }
+
+  div.sentConnection .profile {
+border: 0;
+  }
 }

@@ -11,15 +11,15 @@ function NotificationSideBar() {
       <div>
         <div>
           <p>367</p>
-          <span>views today</span>
+          <span>Likes</span>
         </div>
         <div>
           <p>15</p>
-          <span>post views </span>
+          <span>Post Feed </span>
         </div>
         <div>
           <p>9</p>
-          <span>search Appearances</span>
+          <span>Idea Feed</span>
         </div>
       </div>
     </div>

@@ -4,10 +4,10 @@ import NewConnection from "./NewConnection";
 import RecentConnection from "./RecentConnection";
 import SentConnection from "./SentConnection";
 
-function Connections({ setActive, Active }) {
+function Connections() {
   return (
     <div className="connectionContainer">
-      <ButtonConnection setActive={setActive} Active={Active}/>
+      <ButtonConnection />
       <NewConnection />
       <RecentConnection />
     </div>

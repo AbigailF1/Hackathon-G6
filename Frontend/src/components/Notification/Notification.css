@@ -1,7 +1,9 @@
 .notification {
-  padding: 100px;
+  padding-top: 100px;
   display: flex;
   gap: 15px;
+  justify-content: center;
+  width: 90%;
 }
 img {
   width: 30px;
@@ -34,6 +36,7 @@ img {
   justify-self: end;
   font-size: 40px;
   align-self: center;
+  margin-top: -20px;
 }
 .TimeStatus {
   display: flex;
@@ -49,16 +52,97 @@ img {
 
 .images {
   position: relative;
+  top: 6px;
 }
-.firstImg ,.secondImg,.thirdImg {
+.firstImg,
+.secondImg,
+.thirdImg {
   position: absolute;
   top: 5px;
   left: 0;
- 
 }
 .secondImg {
-  left: 18px; 
+  left: 18px;
 }
 .thirdImg {
   left: 32px;
+}
+
+@media (max-width: 910px) {
+  div.dashboard {
+    flex-direction: column;
+  }
+
+  div.recentNotification,
+  .earlierNotification {
+    grid-template-columns: 1fr 3fr 0.5fr;
+  }
+  .dashboard h4,
+  .dashboard .stats {
+    font-size: small;
+  }
+
+  div.recentNotification p,
+  div.earlierNotification p {
+    white-space: wrap;
+  }
+  div.notification {
+    width: 95%;
+  }
+}
+
+@media (max-width: 700px) {
+  div.notification {
+    flex-direction: column;
+  }
+
+  div.NotificationSideBar {
+    width: 100%;
+  }
+  .dashboard h4,
+  .dashboard .stats {
+    font-size: medium;
+  }
+  div.dashboard {
+    flex-direction: row;
+  }
+
+  div.recentNotification p,
+  div.earlierNotification p {
+    width: 80%;
+    white-space: wrap;
+  }
+  div.recentNotification,
+  .earlierNotification {
+    grid-template-columns: 0.8fr 5fr 0.5fr;
+  }
+}
+
+@media (max-width: 500px) {
+  div.recentNotification,
+  .earlierNotification {
+    grid-template-columns: 1fr;
+  }
+  div.images {
+    left: 40%;
+    margin-bottom: 10px;
+  }
+  div.NotificationText {
+    /* justify-self: center; */
+    padding: 20px 0 0 0 ;
+    max-width: 100%;
+    text-align: center;
+  }
+   div.recentNotification p,
+  div.earlierNotification p {
+    max-width: 100%;
+    white-space: wrap;
+  }
+  div.recentNotification p, div.earlierNotification p {
+    width: 100%;
+  }
+  div.notification{
+   max-width: 95%;
+    margin-left:70px;
+  }
 }

@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import collab from "../assets/collab.jpg";
 import Google_Icon from "../assets/Google_Icon.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Password } from "@mui/icons-material";
 import Validation from "../components/Login/Validation";
 import Svgp from "../components/Login/Svgp";
 
 const Login = () => {
+
+  const [activeButton, setActiveButton] = useState(null);
+  const navigate = useNavigate();
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+    navigate(`/${buttonName}`);
+  };
 
   const [values, setValues] = useState({
     email:'',
@@ -84,10 +91,13 @@ const Login = () => {
               
                 <button
                   className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
-                  type="submit" onClick={submit}
+                  type="submit" 
+                  // onClick={submit}
+                   onClick={() => handleButtonClick('Feed')}
                 >
                   Login
                 </button>
+                
               </div>
             </form>
             <div className="border w-full flex flex-col gap-6">
