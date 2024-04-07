@@ -4,6 +4,7 @@ import { Card, Avatar, Text } from '@mantine/core';
 
 export default function Profile() {
   const navigate = useNavigate();
+  
   function handleProfile(){
      navigate('/Profile')
   }
