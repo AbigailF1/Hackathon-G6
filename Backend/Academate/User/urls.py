@@ -1,13 +1,9 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
-    UserViewSet, ProfileViewSet, SkillViewSet, EducationViewSet,
-    UserRegister, UserLogin, UserLogout, UserView,
-    VerifyEmail,  
-    RequestPasswordResetEmail,
-    PasswordTokenCheckAPI,
-    SetNewPasswordAPIView,
+    UserViewSet, ProfileViewSet, SkillViewSet, EducationViewSet
 )
+from .views import RegisterView, LogoutAPIView, SetNewPasswordAPIView, VerifyEmail, LoginAPIView, PasswordTokenCheckAPI, RequestPasswordResetEmail, UserView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -23,10 +19,10 @@ router.register(r'educations', EducationViewSet)
 # Define paths for custom actions
 urlpatterns = [
     path('', include(router.urls)),
-    path('register/', UserRegister.as_view(), name='register'),
-    path('login/', UserLogin.as_view(), name='login'),
-    path('logout/', UserLogout.as_view(), name='logout'),
     path('user/', UserView.as_view(), name='user'),
+    path('register/', RegisterView.as_view(), name="register"),
+    path('login/', LoginAPIView.as_view(), name="login"),
+    path('logout/', LogoutAPIView.as_view(), name="logout"),
     path('email-verify/', VerifyEmail.as_view(), name="email-verify"),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('request-reset-email/', RequestPasswordResetEmail.as_view(),
