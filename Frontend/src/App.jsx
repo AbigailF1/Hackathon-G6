@@ -12,11 +12,8 @@ import Collaborate from './pages/Collaborate';
 import Idea from './pages/Ideas';
 import Header from './components/Header (2)';
 import SentConnection from './components/Connections/SentConnection';
-
 import{ createBrowserRouter, RouterProvider, createRoutesFromElements, Outlet, Route, useLocation,}from 'react-router-dom'
 import '@mantine/core/styles.css';
-
-
 import "./App.css";
 import Home from "./pages/Landing";
 import Favorites from "./pages/Home";
@@ -46,14 +43,9 @@ function App() {
         <Route path="/Notifications" element={<Notifications />} />
         <Route path="/Chat" element={<Chat />} />
         <Route path="/Feed" element={<Feed />} />
-    
         <Route path="/Profile" element={<ProfilePage />} />
-
         <Route path="/Search" element = {<SearchBar/>}/>
-
         <Route path="/Landing" element = {<Landing/>}/>
-
-
       </Route>
     )
   );
