@@ -27,6 +27,8 @@ import SentConnection from "./components/Connections/SentConnection";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProfilePage from "./pages/ProfilePage";
+import { SearchBar } from "./components/SearchBar/SearchBar";
+import { SearchResultsList } from "./components/SearchBar/SearchResultList";
 
 function App() {
   const router = createBrowserRouter(
@@ -48,6 +50,7 @@ function App() {
         <Route path="/Feed" element={<Feed />} />
         <Route path="/Chat" element={<Chat />} />
         <Route path="/Profile" element={<ProfilePage />} />
+        <Route path="/Search" element = {<SearchBar/>}/>
       </Route>
     )
   );
@@ -55,6 +58,7 @@ function App() {
     <>
       <RouterProvider router={router} />
     </>
+    
   );
 }
 export default App;
@@ -72,6 +76,7 @@ const Root = () => {
     "/Collaborate",
     "/Feed",
     "/Chat",
+    "/Profile",
   ];
   const isHeaderVisible = headerVisiblePaths.includes(location.pathname);
   return (
@@ -80,6 +85,7 @@ const Root = () => {
       <div>
         <Outlet />
       </div>
+      
     </>
   );
 };
