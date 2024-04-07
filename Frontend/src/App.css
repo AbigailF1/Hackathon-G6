@@ -1,8 +1,9 @@
-.app{
- padding-top: 20px;
-  background-color:rgb(240, 238, 255);
+.app {
+  padding-top: 20px;
+  /* background-color:rgb(240, 238, 255); */
 }
-body{
-   font-family: 'Times New Roman', Times, serif;
-   color: rgb(90, 84, 84);
+body {
+  font-family: "Times New Roman", Times, serif;
+  color: rgb(90, 84, 84);
+  background-color: #eeeff1;
 }

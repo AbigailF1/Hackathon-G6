@@ -6,3 +6,7 @@ body{
    font-family: 'Times New Roman', Times, serif;
    color: rgb(90, 84, 84);
 }
+@font-face {
+   font-family: Adamina;
+   src: url('../src/assets/Adamina-Regular.ttf');
+}
