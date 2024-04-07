@@ -9,7 +9,7 @@ const gridStyle = {
 export default function ProfileSide() {
   return (
     
-    <section className='mt-14 flex flex-col gap-5'>
+    <section className='mt-14 flex flex-col gap-5 mr mr-24'>
       <Profile />
 
   <div className="w-[350px] rounded-lg bg-slate-100 shadow-sm py-8 flex flex-col gap-4 justify-center pl-6">  
