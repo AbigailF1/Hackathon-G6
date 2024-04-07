@@ -30,7 +30,7 @@ const ProfilePage = () => {
                     </div>
                     <div className="flex flex-row items-start justify-start py-0 px-4">
                       <div className="w-[34px] relative uppercas text-black inline-block min-w-[34px] z-[1]">
-                        feed
+                        Feed
                       </div>
                     </div>
                     <div className="self-stretch h-0.5 relative bg-steelblue-200 z-[1]" />
