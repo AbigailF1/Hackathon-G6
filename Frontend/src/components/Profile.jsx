@@ -1,9 +1,14 @@
 import React from 'react'
-import { Card, Avatar, Text, Group, Button } from '@mantine/core';
+import { useNavigate } from "react-router-dom";
+import { Card, Avatar, Text } from '@mantine/core';
 
 export default function Profile() {
+  const navigate = useNavigate();
+  function handleProfile(){
+     navigate('/Profile')
+  }
   return (
-    <div>
+    <div className="cursor-pointer" onClick={handleProfile}>
          <Card withBorder radius="md" w={300} mx="auto" my={15} > 
       <Card.Section
         h={120}

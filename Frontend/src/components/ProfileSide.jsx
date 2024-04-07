@@ -88,37 +88,37 @@ export default function ProfileSide() {
         </Card>
       </div>
 
-  <div className='m-auto shadow-md bg-gray-900 rounded p-7 gap-2 mb-16'>
-    <div className='m-auto text-white'>FOLLOWED TAGS</div>
-    <div className='grid grid-cols-4 gap-5'>
-    <Tag bordered={false} closable>
+  <div className='m-auto shadow-md bg-slate-100 rounded p-7 gap-2 mb-16'>
+    <div className='m-auto text-black'>FOLLOWED TAGS</div>
+    <div className='grid grid-cols-4 gap-5 pt-5'>
+    <Tag bordered={false} closable  color='gray'>
         Tag
       </Tag>
-      <Tag bordered={false} closable>
+      <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
-      </Tag> <Tag bordered={false} closable>
+      </Tag> <Tag bordered={false} closable color='gray'>
         Tag
       </Tag>
     </div>
