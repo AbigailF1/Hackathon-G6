@@ -3,67 +3,55 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 import GroupsTwoToneIcon from "@mui/icons-material/GroupsTwoTone";
 import NotificationsNoneTwoToneIcon from "@mui/icons-material/NotificationsNoneTwoTone";
 import ChatBubbleOutlineTwoToneIcon from "@mui/icons-material/ChatBubbleOutlineTwoTone";
-import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
-import { NavLink } from "react-router-dom";
+import { Layout, Menu, Input } from 'antd';
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
   const [activeButton, setActiveButton] = useState(null);
+  const { Header} = Layout;
+  const navigate = useNavigate();
+  const {Search} = Input;
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
+    navigate(`/${buttonName}`);
   };
+
+  function handleProfile(){
+     navigate('/Profile')
+  }
 
   const getButtonColor = (buttonName) => {
     return activeButton === buttonName ? "rgb(5, 190, 250);" : "black";
   };
 
-  return (
-    <div className="absolute top-0 left-0 right-0 h-20 px-4 flex gap-20 items-center bg-white shadow-md">
-      <img className="w-16 h-16 rounded-full" src="../logo.png" alt="Logo" />
-      <div className="mt-3">
-        <RssFeedIcon
-          sx={{ color: getButtonColor("rss") }}
-          onClick={() => handleButtonClick("rss")}
-        />
-        <h6 className="text-black font-serif mt-2">IDEA FEED</h6>
-      </div>
-      <div className="mt-3">
-        <NavLink to="/Collaborate">
-          {" "}
-          <GroupsTwoToneIcon
-            sx={{ color: getButtonColor("groups") }}
-            onClick={() => handleButtonClick("groups")}
-          />
-          <h6 className="text-black font-serif mt-2">COLLABS</h6>
-        </NavLink>
-      </div>
-      <div className="mt-3">
-        <ChatBubbleOutlineTwoToneIcon
-          sx={{ color: getButtonColor("chat") }}
-          onClick={() => handleButtonClick("chat")}
-        />
-        <h6 className="text-black font-serif mt-2">CHAT</h6>
-      </div>
-      <div className="mt-3">
-        <NavLink to='/Notifications'>
+  const icons=[  <RssFeedIcon sx={{color: getButtonColor('Feed')}} onClick={() => handleButtonClick('Feed')} />,
+  <GroupsTwoToneIcon sx={{color: getButtonColor('Collaborate')}} onClick={() => handleButtonClick('Collaborate')}/>, 
+   <ChatBubbleOutlineTwoToneIcon sx={{color: getButtonColor('Chat')}} onClick= {() => handleButtonClick('Chat')} />,
+   <NotificationsNoneTwoToneIcon sx={{color: getButtonColor('Notifications')}} onClick={() => handleButtonClick('Notifications')} />,
+   <Search placeholder="Search.." allowClear  style={{ width: 200, marginTop: 16 }} />
+  ]
 
-        <NotificationsNoneTwoToneIcon
-          sx={{ color: getButtonColor("notifications") }}
-          onClick={() => handleButtonClick("notifications")}
-        />
-        <h6 className="text-black font-serif mt-2">NOTIFICATIONS</h6>
-        </NavLink>
+  const items = new Array(15).fill(null).map((_, index) => ({
+    key: index + 1,
+    label: icons[index],
+  }));
+
+  return (
+  <Header className = 'text-white flex items-center justify-around' bodybg='#f5f5f5'>
+      <img src="../src/assets/react.svg" className='items-center'/>
+      <Menu
+        className='flex w-screen gap-1 justify-around'
+        mode="horizontal"
+        items={items}
+      />
+      <div className="flex flex-col items-center ">
+          <div className="avatar cursor-pointer" onClick={handleProfile}>
+            <div className="w-16 rounded">
+              <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            </div>
+          </div>
       </div>
-      <div className="relative">
-        <SearchTwoToneIcon
-          className="absolute top-1/2 left-2 transform -translate-y-1/2"
-          style={{ color: "rgb(5, 190, 250)" }}
-        />
-        <input
-          type="text"
-          placeholder="Search..."
-          className="pl-10 bg-white  border-black text-black"
-        />
-      </div>
-    </div>
-  );
+  </Header>
+);
 }

@@ -29,6 +29,7 @@ a {
   margin-right: 10px;
 }
 
+
 @media (max-width: 1028px) {
   div.container {
     /* background-color: red; */
@@ -51,3 +52,4 @@ a {
     width: 100%;
   }
 }
+

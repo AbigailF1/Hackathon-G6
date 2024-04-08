@@ -1,5 +1,6 @@
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card } from 'antd';
+import { Flex, Tag } from 'antd';
+import Profile from './Profile';
 const { Meta } = Card;
 const gridStyle = {
   width: '25%',
@@ -8,30 +9,13 @@ const gridStyle = {
 export default function ProfileSide() {
   return (
     
-    <section className="right-0 top-1 absolute left-[80%] flex flex-col gap-14">
-     <Card
-    style={{
-      width: 300,
-    }}
-    cover={
-      <img
-        alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      />
-    }
-  >
-    <Meta
-      avatar={<Avatar         src = "../src/assets/react.svg"
-      />}
-      title="User name"
-      description="This is the description"
-    />
-  </Card>
+    <section className='mt-14 flex flex-col gap-5 mr-16'>
+      <Profile />
 
-  <div className="w-[350px] bg-slate-100 rounded-lg shadow-sm py-8 flex flex-col gap-4 justify-center pl-6">  
-     <h4 className='text-center font-bold m-4'>My Groups</h4>  
+  <div className="w-[350px] rounded-lg bg-slate-100 shadow-sm py-8 flex flex-col gap-4 justify-center pl-6">  
+     <h4 className='text-center text-black font-bold m-4'>My Groups</h4>  
       <Card
-          className="my-card"
+          className="my-card shrink"
           style={{
             width: 300,
             backgroundColor: 'white',
@@ -55,7 +39,7 @@ export default function ProfileSide() {
           />
         </Card>
         <Card
-          className="my-card"
+          className="my-card shrink"
           style={{
             width: 300,
             backgroundColor: 'white',
@@ -79,7 +63,7 @@ export default function ProfileSide() {
           />
         </Card>
         <Card
-          className="my-card"
+          className="my-card shrink"
           style={{
             width: 300,
             backgroundColor: 'white',
@@ -104,23 +88,41 @@ export default function ProfileSide() {
         </Card>
       </div>
 
-      <Card title="Followed Tags"
-      style={{
-        width: 300,
-        backgroundColor: 'white',
-        borderRadius: '10px',
-        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-      }}>
-    <Card.Grid style={gridStyle}>#tag</Card.Grid>
-    <Card.Grid hoverable={false} style={gridStyle}>
-      #tag
-    </Card.Grid>
-    <Card.Grid style={gridStyle}>#tag</Card.Grid>
-    <Card.Grid style={gridStyle}>#tag</Card.Grid>
-    <Card.Grid style={gridStyle}>#tag</Card.Grid>
-    <Card.Grid style={gridStyle}>#tag</Card.Grid>
-    <Card.Grid style={gridStyle}>#tag</Card.Grid>
-  </Card>
+  <div className='m-auto shadow-md bg-slate-100 rounded p-7 gap-2 mb-16'>
+    <div className='m-auto text-black'>FOLLOWED TAGS</div>
+    <div className='grid grid-cols-4 gap-5 pt-5'>
+    <Tag bordered={false} closable  color='gray'>
+        Tag
+      </Tag>
+      <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag> <Tag bordered={false} closable color='gray'>
+        Tag
+      </Tag>
+    </div>
+  </div>
 
 
 </section>
