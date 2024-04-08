@@ -12,8 +12,6 @@ const ProfilePage = () => {
         </div>
 
         
-        
-        
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-[21px] pr-[26px] pl-5 box-border max-w-full text-left text-lg  font-adamina">
           <div className="w-[1186px] flex flex-row flex-wrap items-start justify-start gap-[40px] max-w-full mq750:gap-[20px]">
             <div className="h-[360px] flex-1 relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] min-w-[556px] max-w-full mq450:h-auto mq450:min-h-[360] mq750:min-w-full">
