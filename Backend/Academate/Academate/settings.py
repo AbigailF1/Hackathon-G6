@@ -105,18 +105,18 @@ ASGI_APPLICATION = 'Academate.asgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-#    'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Academate2',     
-#         'USER': 'postgres',  
-#         'PASSWORD': 'django-H6',  
-#         'HOST': 'localhost',     
-#         'PORT': '5432',          
-#     }
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+   'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_h6',     
+        'USER': 'django_h6_user',  
+        'PASSWORD': 'oWdh1CRSMUg1eFeeNouW3GoaR0LbmvN6',  
+        'HOST': 'dpg-co9uhjgcmk4c73e63190-a',     
+        'PORT': '5432',          
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 
 }
 
