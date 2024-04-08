@@ -1,8 +1,20 @@
 from django.urls import path
 from . import views
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+# Define schema view
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Your Feed API",
+        default_version='v1',
+        description="API documentation for managing feeds, comments, likes, collaborators, and notifications.",
+    ),
+    public=True,
+)
 
 urlpatterns = [
-    # urls related to feed itself
+    # Feed-related URLs
     path('feeds/create/post/', views.create_post_feed, name='create_post_feed'),
     path('feeds/create/idea/', views.create_idea_feed, name='create_idea_feed'),
     path('feeds/<int:feed_id>/', views.update_feed, name='update_feed'),
@@ -13,25 +25,30 @@ urlpatterns = [
     path('feeds/search/user/<str:username>/', views.search_feed_by_user, name='search_feed_by_user'),
     path('feeds/search/tag/<str:tag_name>/', views.search_feed_by_tag, name='search_feed_by_tag'),
 
-    # urls related to comments
+    # Comment-related URLs
     path('feeds/<int:feed_id>/comments/', views.list_comments, name='list_comments'),
     path('feeds/<int:feed_id>/comments/add/', views.add_comment, name='add_comment'),
     path('feeds/<int:feed_id>/comments/<int:comment_id>/', views.edit_comment, name='edit_comment'),
     path('feeds/<int:feed_id>/comments/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
     
-    # urls related to likes
+    # Like-related URLs
     path('feeds/<int:feed_id>/like/', views.toggle_like_feed, name='toggle_like_feed'),
-    # path('feeds/<int:feed_id>/like/', views.like_feed, name='like_feed'),
-    # path('feeds/<int:feed_id>/unlike/', views.unlike_feed, name='unlike_feed'),
     
-    # urls related to collaborators
+    # Collaborator-related URLs
     path('feeds/<int:feed_id>/toggle_collaborate/', views.toggle_collaborate_button, name='toggle_collaborate_button'),
     path('feeds/<int:feed_id>/collaborators/', views.list_collaborators, name='list_collaborators'),
     path('feeds/<int:feed_id>/collaborators/<int:collaborator_id>/accept/', views.accept_collaborator, name='accept_collaborator'),
     path('feeds/<int:feed_id>/collaborators/<int:collaborator_id>/decline/', views.decline_collaborator, name='decline_collaborator'),
+    
+    # Notification-related URLs
     path('users/<int:user_id>/notifications/', views.list_notifications, name='list_notifications'),
+
+    # Report post URL
     path('feeds/report/', views.report_post, name='report_post'),
 
-    # url for content type
-    path('feeds/content_type/', views.view_content_type, name='get_content_type')
+    # Content type URL
+    path('feeds/content_type/', views.view_content_type, name='get_content_type'),
+
+    # Swagger documentation URL
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
