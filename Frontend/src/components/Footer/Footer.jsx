@@ -42,10 +42,6 @@ function Footer() {
             <li>Mobile view</li>
           </ul>
         </div>
-        <div>
-          <p>Language</p>
-          <input type="text" placeholder="ENGLISH" />
-        </div>
       </footer>
     </div>
   );

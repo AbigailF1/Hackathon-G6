@@ -8,7 +8,7 @@ const ProfilePage = () => {
           <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] bg-snow w-[850px]" />
           <div className="absolute h-full top-[0px] bottom-[0px] left-[890px] bg-snow w-[290px]" />
         </div>
-        <section className="self-stretch h-[120px] sticky top-[0] z-[99] max-w-full">
+        {/* <section className="self-stretch h-[120px] sticky top-[0] z-[99] max-w-full">
           <header className="absolute top-[0px] left-[0px] w-full h-20 flex flex-row items-start justify-start py-0 pr-10 pl-[143px] box-border max-w-full text-center text-xs  font-adamina mq450:pl-5 mq450:box-border mq750:pl-[71px] mq750:box-border">
             <div className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded bg-white shadow-[0px_10px_40px_rgba(89,_120,_150,_0.06)]" />
             <img
@@ -203,14 +203,14 @@ const ProfilePage = () => {
               </div>
               <div className="self-stretch w-px relative box-border border-r-[1px] border-solid border-whitesmoke-200" />
             </div>
-          </header>
+          </header> 
           <img
             className="absolute top-[0px] left-[29px] rounded-41xl w-[85px] h-[78px] object-cover z-[2]"
             loading="lazy"
             alt=""
             src="/screenshot-20240326-141440-3@2x.png"
           />
-        </section>
+        </section> */}
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-[21px] pr-[26px] pl-5 box-border max-w-full text-left text-lg  font-adamina">
           <div className="w-[1186px] flex flex-row flex-wrap items-start justify-start gap-[40px] max-w-full mq750:gap-[20px]">
             <div className="h-[360px] flex-1 relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] min-w-[556px] max-w-full mq450:h-auto mq450:min-h-[360] mq750:min-w-full">

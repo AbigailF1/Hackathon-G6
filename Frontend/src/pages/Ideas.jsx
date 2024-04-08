@@ -1,8 +1,7 @@
 import React from 'react'
-import IdeaBox from './IdeaBox';
-import NewPost from '../components/NewPost'
+import IdeaBox from '../components/FeedComp/IdeaBox';
+import NewPost from '../components/FeedComp/NewPost'
 
-import ProfileSide from '../components/ProfileSide';
 export default function Ideas() {
    const person ={
     name : 'John',

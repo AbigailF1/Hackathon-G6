@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { Alert, Space, Modal } from 'antd';
+import { Modal } from 'antd';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
-import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
 export default function IdeaBox({person}) {
     const[liked, setLiked] = useState(false);
    function toggleFav(){
     setLiked( (prev) => !prev);
    }
+
    const [open, setOpen] = useState(false);
    const showModal = () => {
      setOpen(true);
@@ -26,18 +26,8 @@ export default function IdeaBox({person}) {
      setOpen(false);
    };
    const [comment,setComment] = useState('');
-   const [apply,setApply] = useState(false);
-
-   function change(event){
-    event.preventDefault();
+  function change(event){
     setComment(event.target.value)
-   }
-   function toggleComment(){
-    setApply((prev) => !prev);
-    sendRequest();
-   }
-   function sendRequest(){
-    console.log("Request sent");
    }
   return (
     <div className="flex flex-col m-5 pt-2.5 bg-white rounded max-w-[850px]">
@@ -57,10 +47,10 @@ export default function IdeaBox({person}) {
             </div>
         </div>
         <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
-        <div className="p-5" style={{fontFamily :"Adamina"}}>{person.content}</div>
+        <div className="p-5" style={{fontFamily :"Adamina"}}>{person.description}</div>
         {person.image != null ? (
   <div className='border border-solid border-zinc-100'>
-    <img src="../src/assets/img.jpg" alt="" className='h-auto max-w-lg rounded-lg w-full m-auto' />
+    <img src={person.image} alt="" className='h-auto max-w-lg rounded-lg w-full m-auto' />
   </div>
 ) : (
   " "
@@ -68,9 +58,9 @@ export default function IdeaBox({person}) {
       <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
         <div className=' flex gap-16 m-5'>
         {liked ? <FavoriteOutlinedIcon sx={{ color: 'red' }} onClick ={toggleFav} /> : <FavoriteBorderOutlinedIcon onClick ={toggleFav} />}
-  
-        <TextsmsOutlinedIcon onClick={ showModal} />
-        <Modal
+    <TextsmsOutlinedIcon onClick={ showModal} />
+    
+     <Modal
         title="Comment"
         style={{display: 'flex', alignItems: 'center' ,width: '100%'}}
         open={open}
@@ -83,18 +73,6 @@ export default function IdeaBox({person}) {
                 placeholder='comment...'
                 value={comment}
                 onChange ={change}/>      </Modal>
-    <PersonAddAlt1OutlinedIcon onClick={toggleComment}/>
-    {apply ? (
-        <Space direction="vertical" style={{ width: '100%' }} >
-         <Alert
-         message="Successful!"
-         description={`You have requested to join ${person.name}'s team`}
-         type="success"
-         banner
-         closable
-       />
-     </Space>
-    ) :('')}
         </div>
     </div>
     
