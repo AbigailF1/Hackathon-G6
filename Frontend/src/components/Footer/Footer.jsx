@@ -13,7 +13,7 @@ function Footer() {
               </a>
             </li>
             <li>
-              <a className="acadamate" href="/">Acadamate</a>
+              <a className="acadamate" href="/">Academate</a>
             </li>
           </ul>
         </div>
