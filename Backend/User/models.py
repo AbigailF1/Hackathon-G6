@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import BaseUserManager
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.conf import settings
 
 
 
@@ -83,7 +84,8 @@ User = get_user_model()
 class OnlineUser(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    # user = models.OneToOneField("User", on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField()
     image = models.ImageField(upload_to="user")
     resume_link = models.URLField(blank=True, null=True)

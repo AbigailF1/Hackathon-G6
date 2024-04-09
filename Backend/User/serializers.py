@@ -81,35 +81,32 @@ class ResetPasswordEmailRequestSerializer(serializers.Serializer):
 
 
 class SetNewPasswordSerializer(serializers.Serializer):
-    password = serializers.CharField(
-        min_length=6, max_length=68, write_only=True)
-    token = serializers.CharField(
-        min_length=1, write_only=True)
-    uidb64 = serializers.CharField(
-        min_length=1, write_only=True)
+    password = serializers.CharField(min_length=6, max_length=68, write_only=True)
+    code = serializers.CharField(min_length=1, write_only=True)
 
     class Meta:
-        fields = ['password', 'token', 'uidb64']
+        fields = ['password', 'code']
 
     def validate(self, attrs):
         try:
             password = attrs.get('password')
-            token = attrs.get('token')
-            uidb64 = attrs.get('uidb64')
+            code = attrs.get('code')
 
-            id = force_str(urlsafe_base64_decode(uidb64))
-            user = User.objects.get(id=id)
-            if not PasswordResetTokenGenerator().check_token(user, token):
-                raise AuthenticationFailed('The reset link is invalid', 401)
+            # Get the user associated with the code
+            password_reset_code = PasswordResetCode.objects.get(code=code)
+            user = password_reset_code.user
 
+            # Set the new password
             user.set_password(password)
             user.save()
 
-            return (user)
-        except Exception as e:
-            raise AuthenticationFailed('The reset link is invalid', 401)
-        return super().validate(attrs)
+            # Delete the password reset code
+            password_reset_code.delete()
 
+            return attrs
+
+        except PasswordResetCode.DoesNotExist:
+            raise serializers.ValidationError('Invalid code')
 
 
 

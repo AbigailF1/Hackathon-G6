@@ -55,7 +55,10 @@ const Login = () => {
 
     try {
       const response = await SignupService.Login(formData);
+      console.log(response.data.token);
       if (response.status == 200) {
+        const token = response.data.token;
+        localStorage.setItem("token", token); // Store token in local storage
         toast.success("successfully logedin");
         console.log("successfully logedin");
         Navigate("/profile");

@@ -13,7 +13,15 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       // Make the HTTP request using Axios
-      const response = await axios.get("http://127.0.0.1:8000/api/feeds/idea/");
+      const token = localStorage.getItem("token"); // Retrieve token from local storage
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/feeds/idea/",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in the request headers
+          },
+        }
+      );
       // Extract the data from the response
       const data = response.data;
       console.log(data);

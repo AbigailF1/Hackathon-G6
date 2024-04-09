@@ -2,22 +2,34 @@ import Footer from "../components/Footer/Footer";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Chat from "../components/Chat";
+import { jwtDecode } from "jwt-decode";
 
 const ProfilePage = () => {
-  const [profileData, setProfileData] = useState(null);
-   const [isChatVisible, setIsChatVisible] = useState(false);
+  const token = localStorage.getItem("token");
+  // const token = "eyJ0eXAiO.../// jwt token";
+  const decoded = jwtDecode(token);
 
-   const toggleChatVisibility = () => {
-     setIsChatVisible(!isChatVisible);
-   };
+  console.log(decoded.user_id);
+  const [profileData, setProfileData] = useState(null);
+  const [isChatVisible, setIsChatVisible] = useState(false);
+
+  const toggleChatVisibility = () => {
+    setIsChatVisible(!isChatVisible);
+  };
 
   useEffect(() => {
     // Define an async function to fetch data
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem("token");
         // Make the HTTP request using Axios
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/profiles/1/"
+          `http://127.0.0.1:8000/api/profiles/${decoded.user_id}/user/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include token in the request headers
+            },
+          }
         );
         // Extract the data from the response
         const data = response.data;

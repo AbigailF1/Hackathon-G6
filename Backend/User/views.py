@@ -126,7 +126,23 @@ class VerifyEmail(views.APIView):
 
 from django.contrib.auth import login as django_login
 
+
 class LoginAPIView(generics.GenericAPIView):
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = LoginSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'detail': 'Logged in successfully',
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'user': UserSerializer(user).data,
+            }, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     permission_classes = (permissions.AllowAny,)
     serializer_class = LoginSerializer
 
@@ -134,8 +150,44 @@ class LoginAPIView(generics.GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-        django_login(request, user)  # Log the user in using Django's login function
-        return Response({'detail': 'Logged in successfully'}, status=status.HTTP_200_OK)
+
+        # Log the user in using Django's login function
+        django_login(request, user)
+
+        # Generate JWT tokens for the user
+        refresh = RefreshToken.for_user(user)
+        access_token = str(refresh.access_token)
+        refresh_token = str(refresh)
+
+        # Return the success response with both tokens
+        return Response({
+            'detail': 'Logged in successfully',
+            'access': access_token,
+            'refresh': refresh_token,
+            'user': UserSerializer(user).data  # Include user data in the response
+        }, status=status.HTTP_200_OK)
+
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = LoginSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        
+        # Log the user in using Django's login function
+        django_login(request, user)
+
+        # Generate JWT token for the user
+        refresh = RefreshToken.for_user(user)
+        token = str(refresh.access_token)
+
+        # Return the success response with token
+        return Response({
+            'detail': 'Logged in successfully',
+            'token': token,
+            'user': UserSerializer(user).data  # Include user data in the response
+        }, status=status.HTTP_200_OK)
 
 
 class RequestPasswordResetEmail(generics.GenericAPIView):
@@ -228,17 +280,44 @@ class UserView(APIView):
         serializer = UserSerializer(request.user)
         return Response({'user': serializer.data}, status=status.HTTP_200_OK)
 
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+
 class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    # permission_classes = [permissions.IsAuthenticated]
-    permission_classes = (permissions.AllowAny,)
+    queryset = Profile.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned profiles to a given user,
+        by filtering against a `user_id` query parameter in the URL.
+        """
+        queryset = self.queryset
+        user_id = self.request.query_params.get('user_id')
+        if user_id is not None:
+            queryset = queryset.filter(user_id=user_id)
+        return queryset
+
+    @action(detail=True, url_path='user', methods=['get'])
+    def user_profile(self, request, pk=None):
+        """
+        Get a profile based on the user_id, not the profile's own ID.
+        """
+        user_id = pk  # Here, 'pk' is used as the user_id
+        profile = get_object_or_404(Profile, user__id=user_id)
+        serializer = self.get_serializer(profile)
+        return Response(serializer.data)
+
+
 
 
 class SkillViewSet(viewsets.ModelViewSet):
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     permission_classes = [permissions.IsAuthenticated]
+    
 
 
 class EducationViewSet(viewsets.ModelViewSet):

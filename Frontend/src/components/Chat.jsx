@@ -6,17 +6,18 @@ function Chat() {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
 
-  // Fetch messages from the backend when the component mounts
   useEffect(() => {
-   
-     fetchMessages();
-    
+    fetchMessages();
   }, []);
 
- 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/chatbot/");
+      const token = localStorage.getItem("token"); // Retrieve token from local storage
+      const response = await axios.get("http://127.0.0.1:8000/api/chatbot/", {
+        headers: {
+          Authorization: `Bearer ${token}`, // Include token in the request headers
+        },
+      });
       setMessages(response.data);
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -25,31 +26,37 @@ function Chat() {
 
   const sendMessage = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/chatbot/", {
-        message: inputMessage,
-      });
+      const token = localStorage.getItem("token"); // Retrieve token from local storage
+      await axios.post(
+        "http://127.0.0.1:8000/api/chatbot/",
+        {
+          message: inputMessage,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in the request headers
+          },
+        }
+      );
       setInputMessage(""); // Clear input field after sending message
-      // Refetch messages to update the chat after sending a new message
-      fetchMessages();
+      fetchMessages(); // Refetch messages to update the chat after sending a new message
     } catch (error) {
       console.error("Error sending message:", error);
     }
   };
-  // write  a code for pressing the enter key
+
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       sendMessage();
     }
-
-  }
+  };
 
   return (
     <div className="chat-container">
-      <h1 className="chat-title">wellcome to Academate</h1>
+      <h1 className="chat-title">Welcome to Academate</h1>
       <div className="messages-container">
         <h4 className="chat-title">
-          
-          I am youfrieid chatbot you can ask me anything you want
+          I am your friend chatbot. You can ask me anything you want.
         </h4>
         {/* Display messages */}
         {messages.map((message, index) => (
@@ -57,7 +64,6 @@ function Chat() {
             <div className="user-message-container">
               <p className="user-message">{message.message}</p>
             </div>
-
             <div className="bot-message-container">
               <p className="bot-message">{message.response}</p>
             </div>
@@ -76,7 +82,7 @@ function Chat() {
           required
         />
         {/* Button to send messages */}
-        <button  type= "submit" onClick={sendMessage} className="send-button">
+        <button type="submit" onClick={sendMessage} className="send-button">
           Send
         </button>
       </div>
