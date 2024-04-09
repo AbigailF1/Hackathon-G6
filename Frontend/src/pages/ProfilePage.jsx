@@ -10,7 +10,6 @@ const ProfilePage = () => {
           <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] bg-snow w-[850px]" />
           <div className="absolute h-full top-[0px] bottom-[0px] left-[890px] bg-snow w-[290px]" />
         </div>
-
         
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-[21px] pr-[26px] pl-5 box-border max-w-full text-left text-lg  font-adamina">
           <div className="w-[1186px] flex flex-row flex-wrap items-start justify-start gap-[40px] max-w-full mq750:gap-[20px]">
@@ -74,9 +73,10 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute top-[206px] left-[606px] text-xs leading-[150%] z-[1]">
+              <div className="absolute top-[206px] left-[606px] text-sm md:text-xs lg:text-sm xl:text-xs leading-normal md:leading-[150%] lg:leading-normal xl:leading-[150%] z-[1]">
                 Saint Petersburg, Russian Federation
               </div>
+
               <img
                 className="absolute top-[207px] left-[582px] w-4 h-4 overflow-hidden z-[1]"
                 alt=""
@@ -102,7 +102,7 @@ const ProfilePage = () => {
                 </div>
                 <div className="flex flex-row items-start justify-start py-0 pr-4 pl-[13px] mt-[-11px] text-sm ">
                   <div className="relative leading-[150%] inline-block min-w-[31px] z-[1]">
-                  likes
+                    likes
                   </div>
                 </div>
               </div>
@@ -208,25 +208,7 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-[670px] flex flex-row items-start justify-between gap-[20px] max-w-full text-3xs mq750:flex-wrap">
-                <div className="w-32 flex flex-row items-start justify-start py-0 pr-2 pl-0 box-border">
-                  <div className="relative leading-[150%] inline-block min-w-[120px] z-[2]">
-                    UX/UI design, 15.07.2019
-                  </div>
-                  <img
-                    className="h-3 w-3 relative z-[1] ml-[-55px]"
-                    loading="lazy"
-                    alt=""
-                    src="/group.svg"
-                  />
-                </div>
-                <div className="relative leading-[150%] inline-block min-w-[128px] z-[1]">
-                  Graphic design, 03.31.2019
-                </div>
-                <div className="relative leading-[150%] z-[1]">
-                  Graphic design, 03.04.2016
-                </div>
-              </div>
+              
             </div>
             <div className="relative text-xs uppercase text-steelblue-200 inline-block min-w-[93px] z-[1]">
               Show all (12)
@@ -421,17 +403,15 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
-
-          
         </section>
         <div className="h-14 w-14 relative z-[6] flex items-center justify-center">
-            <img
-              className="h-full w-full z-[6] object-contain absolute left-[-23px] top-[3px] [transform:scale(2.632)]"
-              loading="lazy"
-              alt=""
-              src="/chat@2x.png"
-            />
-          </div>
+          <img
+            className="h-full w-full z-[6] object-contain absolute left-[-23px] top-[3px] [transform:scale(2.632)]"
+            loading="lazy"
+            alt=""
+            src="/chat@2x.png"
+          />
+        </div>
       </div>
       <Footer />
     </>
