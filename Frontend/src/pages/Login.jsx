@@ -33,7 +33,7 @@ const Login = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="relative w-1/2 h-full flex flex-col items-center justify-center sm:hidden" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
+      <div className="relative w-1/2 h-full lg:flex flex-col items-center justify-center md:block hidden" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
         <Svgp className='w-full h-full object-cover ' />
       </div>
       <div className="sm:w-2/3 w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-20 justify-between items-center">
@@ -110,7 +110,7 @@ const Login = () => {
               </div>
 
               <div className="w-full flex items-center justify-center">
-                <p className="text-sm font-normal text-[#060606]">
+                <p className="text-base font-normal text-[#060606]">
                   {" "}
                   Don't have an account ?{" "}
                   <NavLink to="/Signup">

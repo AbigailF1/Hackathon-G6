@@ -47,7 +47,7 @@ const Signup = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="relative w-1/2 h-full flex flex-col items-center justify-center sm:hidden" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
+      <div className="relative w-1/2 h-full lg:flex flex-col items-center justify-center md:block hidden" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
         <Svgp className=' w-full h-full object-cover ' />
       </div>
       <div className="sm:w-2/3 w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-10 pt-20 justify-between items-center">
@@ -68,7 +68,7 @@ const Signup = () => {
                   placeholder="First Name"
                   onChange={handleInput}
                   name="fname"
-                  className="w-full text-black py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {errors.fname && (
                   <span className="text-red-500">{errors.fname}</span>
@@ -81,7 +81,7 @@ const Signup = () => {
                   placeholder="Last Name"
                   onChange={handleInput}
                   name="lname"
-                  className="w-full text-black py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {errors.lname && (
                   <span className="text-red-500">{errors.lname}</span>
@@ -94,7 +94,7 @@ const Signup = () => {
                   onChange={handleInput}
                   placeholder="Email"
                   name="email"
-                  className="w-full text-black py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {errors.email && (
                   <span className="text-red-500">{errors.email}</span>
@@ -107,7 +107,7 @@ const Signup = () => {
                   placeholder="Phone Number"
                   onChange={handleInput}
                   name="tele"
-                  className="w-full text-black py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {errors.tele && (
                   <span className="text-red-500">{errors.tele}</span>
@@ -120,7 +120,7 @@ const Signup = () => {
                   placeholder="Password"
                   onChange={handleInput}
                   name="password"
-                  className="w-full text-black py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {errors.password && (
                   <span className="text-red-500">{errors.password}</span>
@@ -136,7 +136,7 @@ const Signup = () => {
                   placeholder="Confirm Password"
                   onChange={handleInput}
                   name="cpassword"
-                  className="w-full text-black py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {errors.cpassword && (
                   <span className="text-red-500">{errors.cpassword}</span>
@@ -178,7 +178,7 @@ const Signup = () => {
               </div>
 
               <div className="w-full flex items-center justify-center">
-                <p className="text-lg font-normal text-[#060606]">
+                <p className="text-base font-normal text-[#060606]">
                   {" "}
                   Already have an account ?{" "}
                   <NavLink to="/Login">
