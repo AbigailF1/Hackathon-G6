@@ -82,30 +82,6 @@ class SetNewPasswordSerializer(serializers.Serializer):
     password = serializers.CharField(min_length=6, max_length=68, write_only=True)
     code = serializers.CharField(min_length=1, write_only=True)
 
-    class Meta:
-        fields = ['password', 'code']
-
-    def validate(self, attrs):
-        try:
-            password = attrs.get('password')
-            code = attrs.get('code')
-
-            # Get the user associated with the code
-            password_reset_code = PasswordResetCode.objects.get(code=code)
-            user = password_reset_code.user
-
-            # Set the new password
-            user.set_password(password)
-            user.save()
-
-            # Delete the password reset code
-            password_reset_code.delete()
-
-            return attrs
-
-        except PasswordResetCode.DoesNotExist:
-            raise serializers.ValidationError('Invalid code')
-
 
 
 
