@@ -35,10 +35,10 @@ const Signup = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="relative w-1/2 h-full flex flex-col items-center justify-center" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
-        <Svgp className='w-full h-full object-cover ' />
+      <div className="relative w-1/2 h-full flex flex-col items-center justify-center sm:hidden" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
+        <Svgp className=' w-full h-full object-cover ' />
       </div>
-      <div className="w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-10 pt-20 justify-between items-center">
+      <div className="sm:w-2/3 w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-10 pt-20 justify-between items-center">
         <div className=" flex flex-col ">
           {/* <div className="w-full flex flex-col gap-2">
             <p className="text-base gap-2">Academate</p>
