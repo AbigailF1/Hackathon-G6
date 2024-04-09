@@ -155,15 +155,15 @@ const Signup = () => {
 
               {/* button */}
               <div className="flex flex-col gap-4 pt-5 pb-5">
-               <NavLink to="/Login">
+               <NavLink to="/ProfileList">
                 <button
                   type="submit"
                   className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
                   onClick={submit}
-                  onClick={() => handleButtonClick('Feed')}
+                  onClick={() => handleButtonClick('ProfileList')}
                   onClick={handleSignUp}
                 >
-                  SignUp
+                  Submit And Continue
                 </button>
                 </NavLink>
               </div>

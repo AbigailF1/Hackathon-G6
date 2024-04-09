@@ -24,6 +24,9 @@ import { SearchBar } from "./components/SearchBar/SearchBar";
 import { SearchResultsList } from "./components/SearchBar/SearchResultList";
 import Landing from './pages/Landing';
 import Footer from "./components/Footer/Footer";
+import Skills from "./pages/Skills";
+import Education from "./pages/Education";
+import ProfileList from "./pages/ProfileList";
 
 function App() {
   const router = createBrowserRouter(
@@ -42,6 +45,9 @@ function App() {
         <Route path="/Profile" element={<ProfilePage />} />
         <Route path="/Search" element = {<SearchBar/>}/>
         <Route path="/Landing" element = {<Landing/>}/>
+        <Route path="/Skill" element = {<Skills/>}/>
+        <Route path="/Education" element ={<Education/>}/>
+        <Route path="/ProfileList" element={<ProfileList/>}/>
       </Route>
     )
   );
