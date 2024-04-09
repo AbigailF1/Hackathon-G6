@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 import os 
 import datetime
@@ -32,7 +33,7 @@ SECRET_KEY = 'django-insecure-jj&4=!==d1chledx=(jl1c)ub85w&nf-4p_p@w4ds1ojobqcob
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hackathon-g6.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # CORS_ALLOWED_ORIGINS = [
@@ -119,6 +120,7 @@ DATABASES = {
 
 }
 
+DATABASES["default"] = dj_database_url.parse("postgres://django_h6_user:oWdh1CRSMUg1eFeeNouW3GoaR0LbmvN6@dpg-co9uhjgcmk4c73e63190-a.oregon-postgres.render.com/django_h6")
 
 CHANNEL_LAYERS = {
     "default": {
