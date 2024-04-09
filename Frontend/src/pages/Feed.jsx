@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Ideas from './Ideas';
 import Posts from './Posts';
 import ProfileSide from '../components/ProfileSide';

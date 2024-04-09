@@ -1,0 +1,87 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "./Chat.css"; // Import CSS file for styling
+
+function Chat() {
+  const [messages, setMessages] = useState([]);
+  const [inputMessage, setInputMessage] = useState("");
+
+  // Fetch messages from the backend when the component mounts
+  useEffect(() => {
+   
+     fetchMessages();
+    
+  }, []);
+
+ 
+  const fetchMessages = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/chatbot/");
+      setMessages(response.data);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  };
+
+  const sendMessage = async () => {
+    try {
+      await axios.post("http://127.0.0.1:8000/api/chatbot/", {
+        message: inputMessage,
+      });
+      setInputMessage(""); // Clear input field after sending message
+      // Refetch messages to update the chat after sending a new message
+      fetchMessages();
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };
+  // write  a code for pressing the enter key
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+
+  }
+
+  return (
+    <div className="chat-container">
+      <h1 className="chat-title">wellcome to Academate</h1>
+      <div className="messages-container">
+        <h4 className="chat-title">
+          
+          I am youfrieid chatbot you can ask me anything you want
+        </h4>
+        {/* Display messages */}
+        {messages.map((message, index) => (
+          <div key={index}>
+            <div className="user-message-container">
+              <p className="user-message">{message.message}</p>
+            </div>
+
+            <div className="bot-message-container">
+              <p className="bot-message">{message.response}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="input-container">
+        {/* Input field for typing messages */}
+        <input
+          type="text"
+          value={inputMessage}
+          onChange={(e) => setInputMessage(e.target.value)}
+          onKeyDown={handleKeyPress}
+          className="message-input"
+          placeholder="Type your message here..."
+          required
+        />
+        {/* Button to send messages */}
+        <button  type= "submit" onClick={sendMessage} className="send-button">
+          Send
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default Chat;
