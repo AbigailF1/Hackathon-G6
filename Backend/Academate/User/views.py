@@ -1,12 +1,14 @@
 from rest_framework import viewsets, permissions, status, generics, views
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import login, logout, get_user_model
-from .models import Profile, Skill, Education, User
+from .models import Profile, Skill, Education, User, Project, Experience
 from .serializers import (
     UserSerializer, ProfileSerializer, SkillSerializer,
-    EducationSerializer
+    EducationSerializer, ProjectSerializer, ExperienceSerializer
 )
 from .serializers import RegisterSerializer, SetNewPasswordSerializer, ResetPasswordEmailRequestSerializer, EmailVerificationSerializer, LoginSerializer
 from .validations import custom_validation, validate_email, validate_password
@@ -24,6 +26,8 @@ from django.utils.encoding import smart_str, force_str, smart_bytes, DjangoUnico
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.shortcuts import redirect
 from django.http import HttpResponsePermanentRedirect
+from rest_framework.decorators import api_view
+
 import os
 
 
@@ -232,6 +236,103 @@ class EducationViewSet(viewsets.ModelViewSet):
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+@api_view(['POST'])
+def add_project(request):
+    serializer = ProjectSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def add_experience(request):
+    serializer = ExperienceSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def edit_project(request, project_id):
+    try:
+        project = Project.objects.get(pk=project_id)
+    except Project.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ProjectSerializer(project, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def edit_experience(request, experience_id):
+    try:
+        experience = Experience.objects.get(pk=experience_id)
+    except Experience.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ExperienceSerializer(experience, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def delete_project(request, project_id):
+    try:
+        project = Project.objects.get(pk=project_id)
+    except Project.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    project.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['DELETE'])
+def delete_experience(request, experience_id):
+    try:
+        experience = Experience.objects.get(pk=experience_id)
+    except Experience.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    experience.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def get_all_projects(request):
+    projects = Project.objects.all()
+    serializer = ProjectSerializer(projects, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_project_by_id(request, project_id):
+    try:
+        project = Project.objects.get(pk=project_id)
+    except Project.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ProjectSerializer(project)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_all_experiences(request):
+    experiences = Experience.objects.all()
+    serializer = ExperienceSerializer(experiences, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_experience_by_id(request, experience_id):
+    try:
+        experience = Experience.objects.get(pk=experience_id)
+    except Experience.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ExperienceSerializer(experience)
+    return Response(serializer.data)
+
+
+
 
 
 '''
