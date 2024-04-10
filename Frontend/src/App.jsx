@@ -75,7 +75,7 @@ const Root = () => {
   const isHeaderVisible = headerVisiblePaths.includes(location.pathname);
   return (
     <>
-      {isHeaderVisible && <Header /> }
+      {/* {isHeaderVisible && <Header /> } */}
       <div>
         <Outlet />
       </div>
