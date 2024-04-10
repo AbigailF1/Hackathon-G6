@@ -18,25 +18,54 @@ class IdeaFeedSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()  # Add user field
+
+    def get_user(self, obj):
+        # Serialize user data here
+        return UserSerializer(obj.user).data
+
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ['id', 'text_content', 'user', 'time']
 
 class LikeSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()  # Add user field
+
+    def get_user(self, obj):
+        # Serialize user data here
+        return UserSerializer(obj.user).data
+
     class Meta:
         model = Like
-        fields = '__all__'
+        fields = ['id', 'user', 'time']
 
 class CollaboratorSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()  # Add user field
+
+    def get_user(self, obj):
+        # Serialize user data here
+        return UserSerializer(obj.user).data
+
     class Meta:
         model = Collaborator
-        fields = '__all__'
+        fields = ['id', 'user', 'status']
 
 class CollaboratorChatSerializer(serializers.ModelSerializer):
     class Meta:
         model = CollaboratorChat
         fields = '__all__'
 
+class NotificationSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()  # Add user field
+
+    def get_user(self, obj):
+        # Serialize user data here
+        return UserSerializer(obj.user).data
+
+    class Meta:
+        model = Notification
+        fields = ['id', 'user', 'comment', 'like']
+        
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
