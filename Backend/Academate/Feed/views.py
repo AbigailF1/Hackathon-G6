@@ -4,7 +4,7 @@ from rest_framework import status
 from django.contrib.contenttypes.models import ContentType
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
-from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer, ContentTypeSerializer, PostReportSerializer )
+from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer, ContentTypeSerializer, FeedReportSerializer )
 from .models import ( Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification)
 
 # related to the feed itself
@@ -228,8 +228,8 @@ def list_notifications(request, user_id):
     return Response(serializer.data)
     
 @api_view(['POST'])
-def report_post(request):
-    serializer = PostReportSerializer(data=request.data)
+def report_Feed(request):
+    serializer = FeedReportSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

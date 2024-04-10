@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification, PostReport
+from .models import Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification, FeedReport
 from django.contrib.contenttypes.models import ContentType
 
 class ContentTypeSerializer(serializers.ModelSerializer):
@@ -42,12 +42,12 @@ class NotificationSerializer(serializers.ModelSerializer):
         model = Notification
         fields = '__all__'
 
-class PostReportSerializer(serializers.ModelSerializer):
+class FeedReportSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    post = serializers.PrimaryKeyRelatedField(queryset=Feed.objects.all())
+    Feed = serializers.PrimaryKeyRelatedField(queryset=Feed.objects.all())
     reason = serializers.CharField()
 
     class Meta:
-        model = PostReport
-        fields = ['user', 'post', 'reason', 'created_at']
+        model = FeedReport
+        fields = ['user', 'Feed', 'reason', 'created_at']
         read_only_fields = ['user', 'created_at']
