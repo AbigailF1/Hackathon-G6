@@ -25,7 +25,7 @@ export default function Posts() {
   {fetchData()} ,
    [])
   return (
-    <div className='ml-12'>
+    <div className='ml-2 md:ml-12'>
     <NewPost />
     {posts.map((item, index) => (
         <PostBox key={index} person={item} />

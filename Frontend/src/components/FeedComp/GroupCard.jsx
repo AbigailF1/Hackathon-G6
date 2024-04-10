@@ -8,9 +8,9 @@ export default function GroupCard() {
   return (
     <div>
         <Card
-          className="my-card shrink"
+          className="my-card m-auto w-48 md:w-72"
           style={{
-            width: 290,
+            // width: 290,
             backgroundColor: 'white',
             borderRadius: '10px',
             boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',

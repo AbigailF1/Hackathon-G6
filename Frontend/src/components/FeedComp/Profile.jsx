@@ -10,7 +10,7 @@ export default function Profile() {
   }
   return (
     <div className="cursor-pointer" onClick={handleProfile}>
-         <Card withBorder radius="md" w={290} mx="auto" my={15} > 
+         <Card withBorder radius="md" mx="auto" my={15} className='m-auto w-48 md:w-72' > 
       <Card.Section
         h={120}
         style={{

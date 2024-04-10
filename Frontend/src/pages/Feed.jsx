@@ -33,8 +33,8 @@ const items = [
 ];
 export default function Feed() {
   return (
-<div className='flex'>
-<Tabs defaultActiveKey="1"  centered items={items} onChange={onChange} className='shrink w-[1000px] ml-20' />;
+<div className='flex overflow-x-hidden'>
+<Tabs defaultActiveKey="1"  centered items={items} onChange={onChange} className=' w-[1000px] ml-0 md:ml-20' />
 <ProfileSide className="shrink w-[500px]" />
 
 </div>

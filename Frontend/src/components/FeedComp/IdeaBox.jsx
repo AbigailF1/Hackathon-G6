@@ -40,7 +40,7 @@ export default function IdeaBox({person}) {
     console.log("Request sent");
    }
   return (
-    <div className="flex flex-col m-5 md:shrink-0 pt-2.5 bg-white rounded max-w-[850px]">
+    <div className="flex flex-col m-5 md:shrink-0 pt-2.5 bg-white rounded w-[300px] md:w-[850px] overflow-x-hidden">
         <div className='flex items-center gap-2'>
             <div className="avatar mx-2 mb-2">
                 <div className="w-12 rounded">

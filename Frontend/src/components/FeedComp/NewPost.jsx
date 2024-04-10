@@ -17,7 +17,7 @@ export default function NewPost() {
   };
 
   return (
-    <div className="flex flex-col px-8 bg-white rounded shadow-2xl max-w-[850px] max-md:px-5 mb-12 ml-5 ">
+    <div className="flex flex-col px-8 bg-white rounded shadow-2xl w-[300px] md:w-[850px] max-md:px-5 mb-12 ml-5 ">
       <div className="text-xs uppercase  font-serif font-bold text-neutral-900 max-md:max-w-full mt-5">
         new post
       </div>
