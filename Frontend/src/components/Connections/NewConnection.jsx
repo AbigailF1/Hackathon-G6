@@ -1,7 +1,7 @@
 import React from "react";
 import "./NewConnection.css";
 
-function NewConnection() {
+function NewConnection({ name, skill, message, connection }) {
   return (
     <div className="connections">
       <p className="connectionText">
@@ -14,14 +14,13 @@ function NewConnection() {
             alt=""
           />
           <div className="about">
-            <p className="name">Bradon Wilson</p>
-            <p className="skill">Web developer</p>
-            <p className="NumOfConnection">632 connections</p>
+            <p className="name">{name}</p>
+            <p className="skill">{skill}</p>
+            <p className="NumOfConnection">{connection} connections</p>
           </div>
         </div>
         <p className="connectionMessage">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet eligendi
-          optio, dolorem earum quasi quia fugit delectus ad! Veniam
+         {message}
         </p>
         <div className="reqBtn">
           <button className="acceptBtn">ACCEPT</button>

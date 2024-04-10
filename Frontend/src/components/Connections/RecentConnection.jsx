@@ -1,8 +1,7 @@
-import React from 'react'
+import React from "react";
 import "./RecentConnection.css";
 
-
-function RecentConnection() {
+function RecentConnection({ name, skill, projectIdea }) {
   return (
     <>
       <p className="connectionText">
@@ -15,10 +14,10 @@ function RecentConnection() {
             alt=""
           />
           <div className="about">
-            <p className="name">Bradon Wilson</p>
-            <p className="skill">Web developer</p>
+            <p className="name">{name}</p>
+            <p className="skill">{skill}</p>
           </div>
-          <p className="ProjectIdea">HOTEL MANAGMENT SYSTEM</p>
+          <p className="ProjectIdea">{projectIdea}</p>
         </div>
         <div className="profile">
           <img
@@ -58,4 +57,4 @@ function RecentConnection() {
   );
 }
 
-export default RecentConnection
+export default RecentConnection;
