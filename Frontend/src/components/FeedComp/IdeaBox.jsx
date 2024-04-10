@@ -40,7 +40,7 @@ export default function IdeaBox({person}) {
     console.log("Request sent");
    }
   return (
-    <div className="flex flex-col m-5 md:shrink-0 pt-2.5 bg-white rounded max-w-[850px]">
+    <div className="flex flex-col m-5 md:shrink-0 pt-2.5 bg-white rounded w-[280px] md:w-[450px] sm:w-[400px] lg:w-[850px] overflow-x-hidden">
         <div className='flex items-center gap-2'>
             <div className="avatar mx-2 mb-2">
                 <div className="w-12 rounded">
@@ -59,9 +59,9 @@ export default function IdeaBox({person}) {
         <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
         <div className="p-5" style={{fontFamily :"Adamina"}}>{person.content}</div>
         {person.image != null ? (
-  <div className='border border-solid border-zinc-100'>
-    <img src={person.image} alt="" className='h-auto max-w-lg rounded-lg w-full m-auto' />
-  </div>
+   <div className='border border-solid border-zinc-100'>
+   <img src={person.image} alt="" className='h-[350px] rounded object-cover w-full m-auto' />
+ </div>
 ) : (
   " "
 )}
@@ -77,9 +77,8 @@ export default function IdeaBox({person}) {
         onOk={handleComment}
         onCancel={handleCancel}
       >
- <textarea type='text' className="py-4 w-full border rounded resize-none bg-slate-100 p-2 " 
+ <textarea type='text' className="py-4 w-[250px] md:w-[500px] border rounded resize-none bg-slate-100 p-2 " 
                 rows="2"
-                style={{width: '600px'}}
                 placeholder='comment...'
                 value={comment}
                 onChange ={change}/>      </Modal>

@@ -1,37 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiLink } from "react-icons/fi";
 import { FaRegCircleDot } from "react-icons/fa6";
 import { GiStrongbox } from "react-icons/gi";
 import { MdOutlineGroup } from "react-icons/md";
-
+import { Link, useLocation } from "react-router-dom";
 import "./SideBar.css";
+
 function SideBar() {
+  const [activeLink, setActiveLink] = useState("/");
+  const location = useLocation();
+
+  const handleLinkClick = (path) => {
+    setActiveLink(path);
+  };
+
   return (
     <div className="sidebar">
-      <div className="numConnection">
-        <a href="#">
+      <div
+        className={
+          "numConnection " + (activeLink === "/SentConnection" ? "active" : "")
+        }
+      >
+        <Link
+          to="/SentConnection"
+          onClick={() => handleLinkClick("/SentConnection")}
+        >
           <FiLink /> connection
-        </a>
+        </Link>
         <span>1038</span>
       </div>
-      <div className="invitation active">
-        <a href="#">
+      <div className={"invitation " + (activeLink === "/" ? "active" : "")}>
+        <Link to="/" onClick={() => handleLinkClick("/")}>
           <FaRegCircleDot /> Invitations
-        </a>
+        </Link>
         <span>2</span>
       </div>
-      <div className="teammates ">
-        <a href="#">
+      <div className={"teammates " + (activeLink === "/chat" ? "active" : "")}>
+        <Link to="/chat" onClick={() => handleLinkClick("/chat")}>
           <GiStrongbox /> teammates
-        </a>
+        </Link>
       </div>
-      <div className="groups">
-        <a href="#">
+      <div className={"groups " + (activeLink === "/profile" ? "active" : "")}>
+        <Link to="/profile" onClick={() => handleLinkClick("/profile")}>
           <MdOutlineGroup /> Groups
-        </a>
+        </Link>
         <span>6</span>
       </div>
-      
     </div>
   );
 }
