@@ -44,7 +44,7 @@ urlpatterns = [
     path('users/<int:user_id>/notifications/', views.list_notifications, name='list_notifications'),
 
     # Report post URL
-    path('feeds/report/', views.report_post, name='report_post'),
+    path('feeds/report/', views.report_Feed, name='report_Feed'),
 
     # Content type URL
     path('feeds/content_type/', views.view_content_type, name='get_content_type'),

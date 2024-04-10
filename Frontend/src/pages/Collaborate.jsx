@@ -4,6 +4,7 @@ import Connections from "../components/Connections/Connections";
 import SideBar from "../components/SideBar/SideBar";
 import "./Collaboration.css";
 
+
 function Collaborate() {
 
   return (
