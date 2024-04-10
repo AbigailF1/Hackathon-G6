@@ -58,18 +58,18 @@ export default function IdeaBox({ data }) {
                 className="text-xs text-gray-500"
                 style={{ fontFamily: "Adamina" }}
               >
-                position
+                <p>{person.user.username}</p>
               </div>
             </div>
           </div>
           <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
           <div className="p-5" style={{ fontFamily: "Adamina" }}>
-            {person.feedText}
+            {person.feed.feedText}
           </div>
-          {person.image != null ? (
+          {person.feed.image != null ? (
             <div className="border border-solid border-zinc-100">
               <img
-                src={`http://127.0.0.1:8000/${person.image}`}
+                src={`http://127.0.0.1:8000/${person.feed.image}`}
                 alt=""
                 className="h-auto max-w-lg rounded-lg w-full m-auto"
               />
@@ -101,12 +101,11 @@ export default function IdeaBox({ data }) {
                 placeholder="comment..."
                 value={comment}
                 onChange={change}
-              />{" "}
+              />
             </Modal>
           </div>
         </div>
       ))}
-    
     </>
   );
 }

@@ -2,6 +2,15 @@ from django.db import models
 from User.models import User
 from Tag.models import Tag, TagList
 
+
+
+
+
+
+   
+
+     
+
 # Model for the main feed
 class Feed(models.Model):
     FEED_TYPE_CHOICES = (
@@ -13,8 +22,22 @@ class Feed(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     tag_list = models.ForeignKey(TagList, on_delete=models.CASCADE, default=1)
     feed_type = models.CharField(max_length=10, choices=FEED_TYPE_CHOICES ,default='post')
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     def __str__(self):
         return self.feedText
+    
+    
+    def user_profile_image(self):
+        # Access profile image of the user associated with the feed
+        return self.user.profile.image.url if self.user.profile else None
+
+    def user_skills(self):
+        # Access skills of the user associated with the feed
+        return self.user.profile.skills.all() if self.user.profile else None
+
+    def user_full_name(self):
+        # Access full name of the user associated with the feed
+        return f"{self.user.first_name} {self.user.last_name}" if self.user else None
 
 # Model for the idea feed, which inherits from Feed
 class IdeaFeed(Feed):
@@ -38,7 +61,9 @@ class Like(models.Model):
 class Collaborator(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     idea_feed = models.ForeignKey(IdeaFeed, on_delete=models.CASCADE)
-    status = models.CharField(max_length=10, choices=[('pending', 'Pending'), ('accepted', 'Accepted'), ('declined', 'Declined')])
+    status = models.CharField(max_length=10, choices=[('pending', 'Pending'), ('accepted', 'Accepted'), ('declined', 'Declined') ] ,null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    
 
 # Model for collaborative chats
 class CollaboratorChat(models.Model):
@@ -52,6 +77,8 @@ class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, null=True, blank=True)
     like = models.ForeignKey(Like, on_delete=models.CASCADE, null=True, blank=True)
+    collaborator = models.ForeignKey(Collaborator, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 class PostReport(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

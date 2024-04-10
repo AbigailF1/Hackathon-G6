@@ -16,7 +16,7 @@ import{ createBrowserRouter, RouterProvider, createRoutesFromElements, Outlet, R
 import '@mantine/core/styles.css';
 import "./App.css";
 import Home from "./pages/Landing";
-import Favorites from "./pages/Home";
+// import Favorites from "./pages/Home";
 import Login from "./pages/Login";
 //import  Post from './pages/Post';
 import Signup from "./pages/Signup";

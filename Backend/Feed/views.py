@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response 
 from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer, ContentTypeSerializer, PostReportSerializer )
 from .models import ( Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification)
+from User.serializers import UserSerializer
 
 # related to the feed itself
 
@@ -13,17 +14,27 @@ from .models import ( Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorC
 def create_post_feed(request):
     serializer = FeedSerializer(data=request.data)
     if serializer.is_valid():
-        # serializer.save(user=request.user, feed_type='post')
-        serializer.save(feed_type='post')
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # Save the feed with the authenticated user and feed type
+        serializer.save(user=request.user, feed_type='post')
+
+        # Retrieve the serialized user details
+        user_serializer = UserSerializer(request.user)
+
+        # Combine user and feed data to return in the response
+        response_data = {
+            'user': user_serializer.data,
+            'feed': serializer.data
+        }
+
+        return Response(response_data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def create_idea_feed(request):
     serializer = IdeaFeedSerializer(data=request.data)
     if serializer.is_valid():
-        # serializer.save(feed__user=request.user, feed__feed_type='idea')
-        serializer.save(feed_type='idea')
+        serializer.save(feed__user=request.user, feed__feed_type='idea')
+        # serializer.save(feed_type='idea')
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -58,23 +69,35 @@ def delete_feed(request, feed_id):
 
 @api_view(['GET'])
 def list_feeds(request):
-    feeds = Feed.objects.all()
-    serializer = FeedSerializer(feeds, many=True)
-    return Response(serializer.data)
+    feeds = Feed.objects.order_by('-created_at').all()
+    serialized_data = serialize_feeds(feeds)
+    return Response(serialized_data)
 
 @api_view(['GET'])
 def list_post_feeds(request):
-    post_feeds = Feed.objects.filter(feed_type='post')
-    serializer = FeedSerializer(post_feeds, many=True)
-    
-    return Response(serializer.data)
+    post_feeds = Feed.objects.filter(feed_type='post').order_by('-created_at')
+    serialized_data = serialize_feeds(post_feeds)
+    return Response(serialized_data)
 
 @api_view(['GET'])
 def list_idea_feeds(request):
-    idea_feeds = Feed.objects.filter(feed_type='idea')
-    serializer = IdeaFeedSerializer(idea_feeds, many=True)
-    return Response(serializer.data)
+    idea_feeds = Feed.objects.filter(feed_type='idea').order_by('-created_at')
+    serialized_data = serialize_feeds(idea_feeds)
+    return Response(serialized_data)
 
+def serialize_feeds(feeds):
+    serialized_data = []
+
+    for feed in feeds:
+        user_data = UserSerializer(feed.user).data
+        feed_data = FeedSerializer(feed).data
+        combined_data = {
+            'user': user_data,
+            'feed': feed_data
+        }
+        serialized_data.append(combined_data)
+
+    return serialized_data
 @api_view(['GET'])
 def search_feed_by_user(request, username):
     user_feeds = Feed.objects.filter(user__username=username)
@@ -149,38 +172,6 @@ def toggle_like_feed(request, feed_id):
         return Response({'message': 'Liked successfully'}, status=status.HTTP_201_CREATED)
 
 
-# @api_view(['POST'])
-# def like_feed(request, feed_id):
-#     try:
-#         feed = Feed.objects.get(pk=feed_id)
-#     except Feed.DoesNotExist:
-#         return Response(status=status.HTTP_404_NOT_FOUND)
-
-#     # has to be an authenticated user (i think we will handle that)
-#     # user = request.user
-#     # like, created = Like.objects.get_or_create(user=user, feed=feed)
-#     like, created = Like.objects.get_or_create(feed=feed)
-#     if created:
-#         return Response({'message': 'Liked successfully'}, status=status.HTTP_201_CREATED)
-#     else:
-#         return Response({'message': 'Already liked'}, status=status.HTTP_200_OK)
-
-
-# @api_view(['DELETE'])
-# def unlike_feed(request, feed_id):
-#     try:
-#         feed = Feed.objects.get(pk=feed_id)
-#     except Feed.DoesNotExist:
-#         return Response(status=status.HTTP_404_NOT_FOUND)
-
-#     # has to be an authenticated user (i think we will handle that)
-#     user = request.user
-#     try:
-#         like = Like.objects.get(user=user, feed=feed)
-#         like.delete()
-#         return Response({'message': 'Unliked successfully'}, status=status.HTTP_204_NO_CONTENT)
-#     except Like.DoesNotExist:
-#         return Response({'message': 'You have not liked this feed'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 # collaborators 
@@ -198,6 +189,22 @@ def list_collaborators(request, feed_id):
     serializer = CollaboratorSerializer(collaborators, many=True)
     return Response(serializer.data)
 
+
+
+
+def serialize_collaborators(collaborators):
+    serialized_data = []
+
+    for collaborator in collaborators:
+        user_data = UserSerializer(collaborator.user).data
+        feed_data = FeedSerializer(collaborator).data
+        combined_data = {
+            'user': user_data,
+            'feed': feed_data
+        }
+        serialized_data.append(combined_data)
+
+    return serialized_data
 @api_view(['PUT'])
 def accept_collaborator(request, collaborator_id):
     try:
@@ -218,7 +225,7 @@ def decline_collaborator(request, collaborator_id):
 
     collaborator.status = 'declined'
     collaborator.save()
-    return Response({'message': 'Collaborator declined successfully'}, status=status.HTTP_200_OK)
+    return Response({'message': 'Collaborator declined '}, status=status.HTTP_200_OK)
 
 
 #  Notifiction views 

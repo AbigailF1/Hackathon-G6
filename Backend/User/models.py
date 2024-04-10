@@ -87,7 +87,7 @@ class Profile(models.Model):
     # user = models.OneToOneField("User", on_delete=models.CASCADE, related_name='profile')
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField()
-    image = models.ImageField(upload_to="user")
+    image = models.ImageField(upload_to="user",)
     resume_link = models.URLField(blank=True, null=True)
     skills = models.ManyToManyField('Skill')
     educations = models.ManyToManyField('Education')

@@ -8,7 +8,7 @@ from .models import Chat
 from .serializers import ChatSerializer
 import openai
 
-openai_api_key = 'place your api key'
+openai_api_key = 'your api key here'
 openai.api_key = openai_api_key
 
 @method_decorator(csrf_exempt, name='dispatch')
