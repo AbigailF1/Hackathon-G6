@@ -46,6 +46,7 @@ const ProfilePage = () => {
 
     // Call the async function to fetch data when the component mounts
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // E
   console.log(profileData);
 
@@ -332,7 +333,7 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className="absolute top-[206px] left-[606px] text-xs leading-[150%] z-[1]">
-                Saint Petersburg, Russian Federation
+               Addis Ababa Ethiopia
               </div>
               <img
                 className="absolute top-[207px] left-[582px] w-4 h-4 overflow-hidden z-[1]"
@@ -347,7 +348,7 @@ const ProfilePage = () => {
                   your dashboard
                 </div>
                 <div className="w-[88px] relative [text-decoration:underline] uppercase text-steelblue-200 text-right inline-block min-w-[88px] z-[1]">
-                  go to stats
+                  your posts
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-[9px]">
@@ -365,11 +366,11 @@ const ProfilePage = () => {
               </div>
               <div className="flex flex-col items-start justify-start">
                 <div className="relative uppercase inline-block min-w-[52px] z-[1] mq450:text-12xl mq1050:text-23xl">
-                  15
+                  3
                 </div>
                 <div className="flex flex-row items-start justify-start py-0 pr-0 pl-0.5 mt-[-11px] text-sm ">
                   <div className="relative leading-[150%] inline-block min-w-[77px] z-[1]">
-                    posts views
+                  your post
                   </div>
                 </div>
               </div>
@@ -378,7 +379,7 @@ const ProfilePage = () => {
                   9
                 </div>
                 <div className="relative text-sm leading-[150%]  z-[1] mt-[-4px]">
-                  search appereances
+                  notifications
                 </div>
               </div>
             </div>
@@ -425,7 +426,7 @@ const ProfilePage = () => {
                   Projects
                 </h3>
                 <div className="relative text-dimgray inline-block min-w-[56px] z-[1]">
-                  3 of 12
+                  3 of 5
                 </div>
               </div>
               <div className="flex justify-between gap-9">
@@ -434,21 +435,21 @@ const ProfilePage = () => {
                     className="w-full h-full object-contain rounded-none"
                     loading="lazy"
                     alt=""
-                    src="/ext@2x.png"
+                    src="/1.png"
                   />
                 </div>
                 <div className="flex-none  w-56 h-56">
                   <img
                     className="w-full h-full object-contain rounded-none"
                     alt=""
-                    src="/ext-1@2x.png"
+                    src="/2.png"
                   />
                 </div>
                 <div className="flex-none w-56 h-56">
                   <img
                     className="w-full h-full object-contain rounded-none"
                     alt=""
-                    src="/ext-2@2x.png"
+                    src="/3.png"
                   />
                 </div>
               </div>
