@@ -73,23 +73,28 @@ User = get_user_model()
   
 class OnlineUser(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+class Education(models.Model):
+    year = models.IntegerField()
+    department = models.CharField(max_length=100)
+    university_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.university_name
+
+class Skill(models.Model):
+    title = models.CharField(max_length=100)
+    def __str__(self):
+           return self.title
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField()
     image = models.ImageField(upload_to="user")
     resume_link = models.URLField(blank=True, null=True)
-    skills = models.ManyToManyField('Skill')
-    educations = models.ManyToManyField('Education')
+    skills = models.ManyToManyField(Skill)
+    educations = models.ManyToManyField(Education)
 
     def __str__(self):
         return self.user.username
-class Skill(models.Model):
-    title = models.CharField(max_length=100)
-    def __str__(self):
-           return self.title
-class Education(models.Model):
-    year = models.IntegerField()
-    department = models.CharField(max_length=100)
-    university_name = models.CharField(max_length=100)
-    def __str__(self):
-           return self.university_name
+
