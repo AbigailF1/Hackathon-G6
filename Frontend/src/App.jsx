@@ -17,6 +17,13 @@ import "./App.css";
 import Home from "./pages/Landing";
 import Favorites from "./pages/Home";
 import Login from "./pages/Login";
+
+
+
+//import  Post from './pages/Post';
+
+
+
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProfilePage from "./pages/ProfilePage";
@@ -41,7 +48,9 @@ function App() {
         <Route path="/SentConnection" element={<SentConnection />} />
         <Route path="/Notifications" element={<Notifications />} />
         <Route path="/Chat" element={<Chat />} />
+
         <Route path="/Feed" element={<Feed />} />
+
         <Route path="/Profile" element={<ProfilePage />} />
         <Route path="/Search" element = {<SearchBar/>}/>
         <Route path="/Landing" element = {<Landing/>}/>
