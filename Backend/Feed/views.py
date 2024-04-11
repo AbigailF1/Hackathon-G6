@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
 from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer, ContentTypeSerializer, PostReportSerializer )
-from .models import ( Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification)
+from .models import ( User,Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification)
 from User.serializers import UserSerializer
 
 # related to the feed itself
@@ -120,9 +120,15 @@ def add_comment(request, feed_id):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# @api_view(['GET'])
+# def list_comments(request, feed_id):
+#     comments = Comment.objects.filter(feed_id=feed_id)
+#     serializer = CommentSerializer(comments, many=True)
+#     return Response(serializer.data)
 @api_view(['GET'])
-def list_comments(request, feed_id):
-    comments = Comment.objects.filter(feed_id=feed_id)
+def list_comments(request, user_id):
+    # Filter comments by user_id
+    comments = Comment.objects.filter(user__id=user_id)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
@@ -154,22 +160,25 @@ def delete_comment(request, comment_id):
 
 # related to likes 
 @api_view(['POST', 'DELETE'])
-def toggle_like_feed(request, feed_id):
+def toggle_like_feed(request, user_id, feed_id):
     try:
+        user = User.objects.get(pk=user_id)
         feed = Feed.objects.get(pk=feed_id)
-    except Feed.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    except (User.DoesNotExist, Feed.DoesNotExist):
+        return Response({'error': 'User or Feed not found'}, status=status.HTTP_404_NOT_FOUND)
 
-    user = request.user
+    # Checking if the user is the same as the request user for security purposes
+    if request.user != user:
+        return Response({'error': 'Unauthorized action'}, status=status.HTTP_403_FORBIDDEN)
+
     try:
-        # like = Like.objects.get(user=user, feed=feed)
-        like = Like.objects.get(feed=feed)
+        like = Like.objects.get(user=user, feed=feed)
         like.delete()
         return Response({'message': 'Unliked successfully'}, status=status.HTTP_200_OK)
     except Like.DoesNotExist:
-        # Like.objects.create(user=user, feed=feed)
-        Like.objects.create(feed=feed)
+        Like.objects.create(user=user, feed=feed)
         return Response({'message': 'Liked successfully'}, status=status.HTTP_201_CREATED)
+
 
 
 
@@ -197,10 +206,10 @@ def serialize_collaborators(collaborators):
 
     for collaborator in collaborators:
         user_data = UserSerializer(collaborator.user).data
-        feed_data = FeedSerializer(collaborator).data
+        collaborator_data=  CollaboratorSerializer(collaborator).data
         combined_data = {
             'user': user_data,
-            'feed': feed_data
+            'collaborator': collaborator_data
         }
         serialized_data.append(combined_data)
 
