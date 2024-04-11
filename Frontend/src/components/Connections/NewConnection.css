@@ -5,7 +5,9 @@
   margin: 0;
   width: 45%;
 }
-
+.about {
+  width: 110px;
+}
 .connections .profile {
   border-right: solid 5px;
   display: flex;
@@ -23,6 +25,10 @@
   padding: 10px 0;
   background-color: white;
   border-radius: 3px;
+}
+.reqBtn {
+  margin-left: auto;
+  align-items: center;
 }
 .acceptBtn {
   padding: 5px 13px;
@@ -96,7 +102,6 @@
 }
 
 @media (max-width: 545px) {
-
   div.connectionRequest {
     align-items: center;
     flex-direction: column;
