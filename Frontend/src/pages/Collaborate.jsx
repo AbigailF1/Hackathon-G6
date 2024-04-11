@@ -7,6 +7,7 @@ import "./Collaboration.css";
 import Footer from "../components/Footer/Footer";
 import ProfileHeader from "../components/Header/ProfileHeader";
 
+
 function Collaborate() {
 
   //http://127.0.0.1:8000/api/feeds/2/collaborators/

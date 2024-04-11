@@ -1,29 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./ButtonConnection.css";
-import { useState } from "react";
 
 function ButtonConnection() {
   const [receivedButtonColor, setReceivedButtonColor] = useState("blue");
   const [sentButtonColor, setSentButtonColor] = useState("white");
 
-  
   const handleReceivedButtonClick = () => {
     setReceivedButtonColor("blue");
     setSentButtonColor("white");
+    setActiveButton("received");
   };
 
   const handleSentButtonClick = (e) => {
-    // e.preventDefault();
     setReceivedButtonColor("white");
     setSentButtonColor("blue");
+    setActiveButton("sent");
   };
 
   return (
     <div className="conButton">
       <NavLink to="/Collaborate">
         <button
-          id="active"
           style={{
             backgroundColor: receivedButtonColor,
             color: receivedButtonColor === "blue" ? "white" : "black",
@@ -33,9 +31,9 @@ function ButtonConnection() {
           RECEIVED
         </button>
       </NavLink>
+
       <NavLink to="/SentConnection">
         <button
-          id="sent"
           style={{
             backgroundColor: sentButtonColor,
             color: sentButtonColor === "blue" ? "white" : "black",

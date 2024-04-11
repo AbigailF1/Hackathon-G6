@@ -1,15 +1,10 @@
-import Ideas from "./Ideas";
-import Posts from "./Posts";
-import ProfileSide from "../components/ProfileSide";
-import EmojiObjectsOutlinedIcon from "@mui/icons-material/EmojiObjectsOutlined";
-import WysiwygOutlinedIcon from "@mui/icons-material/WysiwygOutlined";
-import { Tabs } from "antd";
-import Footer from "../components/Footer/Footer";
-import ProfileHeader from "../components/Header/ProfileHeader";
-import { useState } from "react";
-import Chat from "../components/Chat";
-
-// import Chat from './Chat';
+import React from 'react'
+import Ideas from './Ideas';
+import Posts from './Posts';
+import ProfileSide from '../components/FeedComp/ProfileSide';
+import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
+import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
+import { Tabs } from 'antd';
 const onChange = (key) => {
   console.log(key);
 };

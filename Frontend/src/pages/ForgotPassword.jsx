@@ -39,7 +39,7 @@ const ForgotPassword = () => {
       >
         <Svgp className="w-full h-full object-cover " />
       </div>
-      <div className="w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-20 pt-36 justify-between items-center ">
+      <div className="sm:w-2/3 w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-20 pt-36 justify-between items-center ">
         <div className=" flex flex-col ">
           {/* <div className="w-full flex flex-col gap-2">
             <p className="text-base gap-2"></p>
@@ -84,7 +84,7 @@ const ForgotPassword = () => {
               </div>
 
               <div className="w-full flex items-center justify-center">
-                <p className="text-sm font-normal text-[#060606]">
+                <p className="text-base font-normal text-[#060606]">
                   {" "}
                   Don't have an account ?{" "}
                   <NavLink to="/Signup">

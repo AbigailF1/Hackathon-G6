@@ -13,7 +13,7 @@ function Footer() {
               </a>
             </li>
             <li>
-              <a className="acadamate" href="/">Acadamate</a>
+              <a className="acadamate" href="/">Academate</a>
             </li>
           </ul>
         </div>
@@ -41,10 +41,6 @@ function Footer() {
             <li>Privacy & Terms</li>
             <li>Mobile view</li>
           </ul>
-        </div>
-        <div>
-          <p>Language</p>
-          <input type="text" placeholder="ENGLISH" />
         </div>
       </footer>
     </div>

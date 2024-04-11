@@ -8,7 +8,6 @@ from django.conf import settings
 
 
 
-
 class UserManager(BaseUserManager):
 
     def create_user(self, username, email, password=None, **extra_fields):
@@ -83,6 +82,7 @@ User = get_user_model()
   
 class OnlineUser(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
+
 class Profile(models.Model):
     # user = models.OneToOneField("User", on_delete=models.CASCADE, related_name='profile')
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
@@ -104,3 +104,24 @@ class Education(models.Model):
     university_name = models.CharField(max_length=100)
     def __str__(self):
            return self.university_name
+
+class Project(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.ImageField(upload_to="projects")
+    link = models.URLField()
+
+    def __str__(self):
+        return self.title
+
+class Experience(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title

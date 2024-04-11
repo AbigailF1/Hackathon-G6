@@ -80,7 +80,7 @@ class Notification(models.Model):
     collaborator = models.ForeignKey(Collaborator, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-class PostReport(models.Model):
+class FeedReport(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Feed, on_delete=models.CASCADE)
     reason = models.TextField()

@@ -136,6 +136,7 @@ const ProfilePage = () => {
               <div className="absolute top-[206px] left-[606px] text-xs leading-[150%] z-[1]">
                 Addis Ababa Ethiopia
               </div>
+
               <img
                 className="absolute top-[207px] left-[582px] w-4 h-4 overflow-hidden z-[1]"
                 alt=""
@@ -176,7 +177,7 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start">
-                <div className="relative uppercase inline-block min-w-[32px] z-[1] mq450:text-12xl mq1050:text-23xl">
+                <div className="relative uppercase inline-block min-w-[32px] z-[1] mq450:text-12xl mq1050:text-23xl text-blue-600 text-4xl">
                   9
                 </div>
                 <div className="relative text-sm leading-[150%]  z-[1] mt-[-4px]">
@@ -199,7 +200,16 @@ const ProfilePage = () => {
                 <div className="self-stretch h-px relative box-border border-t-[1px] border-solid border-gainsboro-100" />
                 <div className="self-stretch flex-1 relative [background:linear-gradient(180deg,_rgba(241,_244,_248,_0.8),_rgba(241,_244,_248,_0))] z-[2] mt-[-1px]" />
               </div>
-              <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start py-[30px] px-7 box-border gap-[20px] max-w-full mt-[-20px]">
+              <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-end justify-start py-[30px] px-7 box-border gap-[20px] max-w-full mt-[-20px]">
+                <button className="cursor-pointer [border:none] pt-[9.9px] px-[9.7px] pb-[7px] bg-gray-400 flex-1 rounded shadow-[0px_10px_30px_rgba(113,_123,_133,_0.05)] flex flex-row items-end justify-start gap-[6.3px] z-[2]">
+                    <div className="h-9 w-[132px] relative rounded bg-gray-400 shadow-[0px_10px_30px_rgba(113,_123,_133,_0.05)] hidden" />
+                    
+                    <div className="flex-1 flex flex-col items-start justify-start pt-[3.1px] px-0 pb-0">
+                      <div className="self-stretch relative text-xs uppercase font-adamina  text-center inline-block min-w-[90px] z-[1]">
+                        Edit profile
+                      </div>
+                    </div>
+                  </button>
                 <div className="w-[850px] h-[170px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
                 <div className="self-stretch flex flex-row items-start justify-start py-0 px-0.5 box-border max-w-full">
                   <div className="flex-1 flex flex-col items-start justify-start gap-[7px] max-w-full">
@@ -269,25 +279,7 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-[670px] flex flex-row items-start justify-between gap-[20px] max-w-full text-3xs mq750:flex-wrap">
-                <div className="w-32 flex flex-row items-start justify-start py-0 pr-2 pl-0 box-border">
-                  <div className="relative leading-[150%] inline-block min-w-[120px] z-[2]">
-                    UX/UI design, 15.07.2019
-                  </div>
-                  <img
-                    className="h-3 w-3 relative z-[1] ml-[-55px]"
-                    loading="lazy"
-                    alt=""
-                    src="/group.svg"
-                  />
-                </div>
-                <div className="relative leading-[150%] inline-block min-w-[128px] z-[1]">
-                  Graphic design, 03.31.2019
-                </div>
-                <div className="relative leading-[150%] z-[1]">
-                  Graphic design, 03.04.2016
-                </div>
-              </div>
+              
             </div>
             <div className="relative text-xs uppercase text-steelblue-200 inline-block min-w-[93px] z-[1]">
               Show all (12)

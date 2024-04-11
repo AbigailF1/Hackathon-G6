@@ -158,8 +158,10 @@ const Signup = () => {
         style={{ background: "linear-gradient(to bottom, #93C5FD, #3B82F6)" }}
       >
         <Svgp className="w-full h-full object-cover " />
+      <div className="relative w-1/2 h-full lg:flex flex-col items-center justify-center md:block hidden" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
+        <Svgp className=' w-full h-full object-cover ' />
       </div>
-      <div className="w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-20 justify-between items-center">
+      <div className="sm:w-2/3 w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-10 pt-20 justify-between items-center">
         <div className=" flex flex-col ">
           {/* <div className="w-full flex flex-col gap-2">
             <p className="text-base gap-2">Academate</p>
@@ -170,37 +172,17 @@ const Signup = () => {
             </h1>
             <h3 className="text-3xl font-semibold ">Sign Up</h3>
 
-            <form action="" onSubmit={handleSubmit}>
-              <div className="pb-2">
-                <input
-                  type="text"
-                  placeholder="User Name"
-                  onChange={(e) => [
-                    setUsername(e.target.value),
-                    setUsernameError(""),
-                  ]}
-                  value={username}
-                  name="fname"
-                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
-                />
-                {usernameError && (
-                  <span className="text-red-500">{usernameError}</span>
-                )}
-              </div>
+            <form action="" onSubmit={submit}>
               <div className="pb-2">
                 <input
                   type="text"
                   placeholder="First Name"
-                  onChange={(e) => [
-                    setFirst_name(e.target.value),
-                    setFirst_nameError(""),
-                  ]}
-                  value={first_name}
+                  onChange={handleInput}
                   name="fname"
-                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
-                {firt_nameError && (
-                  <span className="text-red-500">{firt_nameError}</span>
+                {errors.fname && (
+                  <span className="text-red-500">{errors.fname}</span>
                 )}
               </div>
 
@@ -214,7 +196,7 @@ const Signup = () => {
                   ]}
                   value={last_name}
                   name="lname"
-                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {last_nameError && (
                   <span className="text-red-500">{last_nameError}</span>
@@ -231,7 +213,7 @@ const Signup = () => {
                   value={email}
                   placeholder="Email"
                   name="email"
-                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {emailError && (
                   <span className="text-red-500">{emailError}</span>
@@ -247,7 +229,7 @@ const Signup = () => {
                     setPhone_numberError(""),
                   ]}
                   name="tele"
-                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {phone_numberError && (
                   <span className="text-red-500">{phone_numberError}</span>
@@ -275,7 +257,7 @@ const Signup = () => {
                     setPasswordError(""),
                   ]}
                   name="password"
-                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {passwordError && (
                   <span className="text-red-500">{passwordError}</span>
@@ -297,7 +279,7 @@ const Signup = () => {
                     setConfirm_passwordError("");
                   }}
                   name="cpassword"
-                  className="w-full text-black py-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
                 />
                 {confirm_passwordError && (
                   <span className="text-red-500">{confirm_passwordError}</span>
@@ -320,14 +302,15 @@ const Signup = () => {
               {/* button */}
               <div className="flex flex-col gap-4 pt-5 pb-5">
                 {/* <NavLink to="/Login"> */}
+               <NavLink to="/ProfileList">
                 <button
                   type="submit"
                   className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
-                  // onClick={handleSignUp}
-                  // onClick={() => handleButtonClick('Feed')}
-                  // onClick={handleSignUp}
+                  onClick={submit}
+                  onClick={() => handleButtonClick('ProfileList')}
+                  onClick={handleSignUp}
                 >
-                  SignUp
+                  Submit And Continue
                 </button>
                 {/* </NavLink> */}
               </div>
@@ -342,11 +325,11 @@ const Signup = () => {
               </div>
 
               <div className="w-full flex items-center justify-center">
-                <p className="text-sm font-normal text-[#060606]">
+                <p className="text-base font-normal text-[#060606]">
                   {" "}
                   Already have an account ?{" "}
                   <NavLink to="/Login">
-                    <span className="font-semibold underline enderline-offset-2 cursor-pointer">
+                    <span className="font-semibold underline enderline-offset-2 cursor-pointer pt-10">
                       Sign In
                     </span>
                   </NavLink>

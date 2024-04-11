@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.exceptions import ValidationError
-from .models import Profile, Skill, Education, User
+from .models import Profile, Skill, Education, User , Project, Experience
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
@@ -137,3 +137,26 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = ['id', 'username', 'email', 'role', 'phone_number', 'profile']
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    
+
+ class Meta:
+
+  model = Project
+
+  fields = '__all__' # Include all fields from the model
+
+
+
+class ExperienceSerializer(serializers.ModelSerializer):
+
+ class Meta:
+
+  model = Experience
+
+  fields = '__all__' # Include all fields from the model
+
+
+

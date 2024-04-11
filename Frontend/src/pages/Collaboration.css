@@ -3,10 +3,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
-  width: 90%;
+  width: 70%;
   margin: auto;
+  /* background-color: red; */
 }
-
+@media (min-width: 1280px) {
+  div.container {
+    max-width: 90%;
+  }
+}
 a {
   text-decoration: none;
   color: rgb(44, 41, 41);
@@ -46,7 +51,7 @@ a {
 @media (max-width: 1028px) {
   div.container {
     /* background-color: red; */
-    max-width: 100%;
+    max-width: 90%;
     gap: 70px;
   }
 }
@@ -60,7 +65,8 @@ a {
   }
 }
 @media (max-width: 533px) {
- .connectionContainer .conButton #active , .connectionContainer .conButton #sent{
+  .connectionContainer .conButton #active,
+  .connectionContainer .conButton #sent {
     width: 100%;
   }
 }
