@@ -4,11 +4,17 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
+import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
+import { useDisclosure } from '@mantine/hooks';
+import { Drawer } from '@mantine/core';
+import CommentBox from './CommentBox';
 
 export default function IdeaBox({person}) {
     const[liked, setLiked] = useState(false);
     const [openReport, setOpenReport] = useState(false);
     const [report, setReport] = useState('');
+    const [opened, { open, close }] = useDisclosure(false);
+
    function toggleFav(){
     setLiked( (prev) => !prev);
    }
@@ -22,7 +28,7 @@ export default function IdeaBox({person}) {
     console.log("com", comment);
     setOpenReport(false);
    };
-   const [open, setOpen] = useState(false);
+   const [opens, setOpen] = useState(false);
    const showModal = () => {
      setOpen(true);
    };
@@ -74,12 +80,12 @@ export default function IdeaBox({person}) {
       <div className='flex justify-between'>
         <div className=' flex gap-16 m-5'>
         {liked ? <FavoriteOutlinedIcon sx={{ color: 'red' }} onClick ={toggleFav} className='cursor-pointer'  /> : <FavoriteBorderOutlinedIcon onClick ={toggleFav} className='cursor-pointer'  />}
-    <TextsmsOutlinedIcon onClick={ showModal} className='cursor-pointer' />
+        <AddCommentOutlinedIcon onClick={ showModal} className='cursor-pointer' />
     
      <Modal
         title="Comment"
         style={{display: 'flex', alignItems: 'center' ,width: '100%'}}
-        open={open}
+        open={opens}
         onOk={handleComment}
         onCancel={handleCancel}
       >
@@ -88,6 +94,11 @@ export default function IdeaBox({person}) {
                 placeholder='comment...'
                 value={comment}
                 onChange ={change}/>       </Modal>
+                <Drawer opened={opened} onClose={close} title="Comments">
+      <CommentBox />
+      </Drawer>
+      <TextsmsOutlinedIcon  onClick={open} className='cursor-pointer'/>
+
                    </div>
                    <FlagOutlinedIcon  onClick={show} className='m-4 cursor-pointer'/>  
 

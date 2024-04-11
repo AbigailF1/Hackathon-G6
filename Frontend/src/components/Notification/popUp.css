@@ -1,0 +1,28 @@
+/* CSS code for the popup window */
+div.popup-window {
+  display: none; 
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid rgb(252, 244, 244);
+  z-index: 1;
+   box-shadow: 0 4px 8px rgba(31, 28, 28, 0.1); 
+}
+
+div.popup-window.open {
+  display: block; 
+}
+
+.popup-content {
+  position: relative;
+  padding: 15px;
+}
+
+.close-btn {
+ position: absolute;
+  top: 0px; 
+  right: 0px; 
+}
