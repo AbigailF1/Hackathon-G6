@@ -7,8 +7,9 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
 import SignupService from "../services/signup.service";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "../services/jwt.decode"; 
+import axios from 'axios';
+import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
 
 export default function IdeaBox({ data }) {
   const [liked, setLiked] = useState(false);
@@ -148,7 +149,7 @@ export default function IdeaBox({ data }) {
                 <FavoriteBorderOutlinedIcon onClick={toggleFav} />
               )}
 
-              <TextsmsOutlinedIcon onClick={showModal} />
+              <AddCommentOutlinedIcon onClick={showModal} />
               <Modal
                 title="Comment"
                 style={{ display: "flex", alignItems: "center", width: "100%" }}
@@ -169,6 +170,7 @@ export default function IdeaBox({ data }) {
                 <div>{comment[0].text_content
                       }</div>
               </Modal>
+              <TextsmsOutlinedIcon />
               <PersonAddAlt1OutlinedIcon onClick={toggleComment} />
               {apply ? (
                 <Space direction="vertical" style={{ width: "100%" }}>

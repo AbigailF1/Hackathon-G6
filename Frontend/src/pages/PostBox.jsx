@@ -4,6 +4,7 @@ import { Modal } from "antd";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
+import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
 
 // eslint-disable-next-line react/prop-types
 export default function IdeaBox({ data }) {
@@ -92,7 +93,7 @@ export default function IdeaBox({ data }) {
             ) : (
               <FavoriteBorderOutlinedIcon onClick={toggleFav} />
             )}
-            <TextsmsOutlinedIcon onClick={showModal} />
+            <AddCommentOutlinedIcon onClick={showModal} />
 
             <Modal
               title="Comment"
@@ -111,6 +112,7 @@ export default function IdeaBox({ data }) {
                 onChange={change}
               />
             </Modal>
+            <TextsmsOutlinedIcon />
           </div>
         </div>
       ))}
