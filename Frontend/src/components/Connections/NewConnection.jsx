@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./NewConnection.css";
+import axios from "axios";
+
 
 function NewConnection({ name, skill, message, connection }) {
   // const [collaborate, setCollaborate] = useState([]);
@@ -35,6 +37,80 @@ function NewConnection({ name, skill, message, connection }) {
   // }, []);
 
   // console.log(collaborate);
+
+  // const accepted = async (status) => {
+  //   try {
+  //     const response = await axios.post(
+  //       "http://127.0.0.1:8000/api/feeds/2/collaborators/",
+  //       status
+  //     );
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   return response;
+  // };
+  // const declined = async (status) => {
+  //   try {
+  //     const response = await axios.post(
+  //       "http://127.0.0.1:8000/api/feeds/2/collaborators/",
+  //       status
+  //     );
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   return response;
+  // };
+
+  const handleAccept = async (collaboratorId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/accept_request/", //  API endpoint
+        {
+          collaboratorId: collaboratorId,
+          status: "accepted",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(
+        "There was a problem accepting the request:",
+        error.message
+      );
+    }
+  };
+
+  const handleDecline = async (collaboratorId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/decline_request/", //  API endpoint
+        {
+          collaboratorId: collaboratorId,
+          status: "declined",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(
+        "There was a problem declining the request:",
+        error.message
+      );
+    }
+  };
+
   const collaborate = [
     {
       id: 1,
@@ -81,7 +157,6 @@ function NewConnection({ name, skill, message, connection }) {
     },
   ];
 
-
   return (
     <>
       <div className="connections">
@@ -102,13 +177,22 @@ function NewConnection({ name, skill, message, connection }) {
             </div>
             <p className="connectionMessage">{collaborator.message}</p>
             <div className="reqBtn">
-              <button className="acceptBtn">ACCEPT</button>
-              <button className="declineBtn">DECLINE</button>
+              <button
+                className="acceptBtn"
+                onClick={() => handleAccept(collaborator.id)}
+              >
+                ACCEPT
+              </button>
+              <button
+                className="declineBtn"
+                onClick={() => handleDecline(collaborator.id)}
+              >
+                DECLINE
+              </button>
             </div>
           </div>
         ))}
       </div>
-      
     </>
   );
 }
