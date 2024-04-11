@@ -115,3 +115,9 @@
 .send-button:hover {
     background-color: #0056b3;
 }
+.chat{
+position:fixed;
+right: 0;
+top:300px;
+
+}

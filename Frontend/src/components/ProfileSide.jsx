@@ -64,6 +64,7 @@ export default function ProfileSide() {
           }}
           cover={
             <img
+            className="w-[300px] h-[200px]"
               alt="example"
               src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
             />

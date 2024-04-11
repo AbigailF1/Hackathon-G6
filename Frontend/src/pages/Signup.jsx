@@ -6,7 +6,7 @@ import SignupService from "../services/signup.service";
 // import Google_Icon from "../assets/Google_Icon.jpg";
 import { toast } from "react-toastify";
 import { NavLink, useNavigate } from "react-router-dom";
-import Validation from "../components/Login/SignupValidation";
+// import Validation from "../components/Login/SignupValidation";
 import Svgp from "../components/Login/Svgp";
 
 const Signup = () => {

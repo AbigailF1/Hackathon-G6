@@ -11,7 +11,7 @@ urlpatterns = [
     path('feeds/post/', views.list_post_feeds, name='list_post_feeds'),
     path('feeds/idea/', views.list_idea_feeds, name='list_idea_feeds'),
     path('feeds/search/user/<str:username>/', views.search_feed_by_user, name='search_feed_by_user'),
-    path('feeds/search/tag/<str:tag_name>/', views.search_feed_by_tag, name='search_feed_by_tag'),
+    path('feeds/search/tag/<str:tag_>/', views.search_feed_by_tag, name='search_feed_by_tag'),
 
     # urls related to comments
     

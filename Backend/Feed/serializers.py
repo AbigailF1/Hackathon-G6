@@ -9,12 +9,16 @@ class ContentTypeSerializer(serializers.ModelSerializer):
         model = ContentType
         fields = ['id', 'app_label', 'model']
         
-class FeedSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Feed
-        fields = '__all__'
+from .models import Feed
 
+class FeedSerializer(serializers.ModelSerializer):
+     image = serializers.ImageField(
+        max_length=None, use_url=True,)
+     class Meta:
+        model = Feed
+        fields =  '__all__' # Assuming 'feedText' and 'image' are the fields to be included
 class IdeaFeedSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = IdeaFeed
         fields = '__all__'
@@ -59,15 +63,15 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = '__all__'
+
 class NotificationSerializer(serializers.ModelSerializer):
     # If you had methods or additional fields to include, define them here.
     # For example, if `like_user` is meant to be a nested representation:
     # like_user = ExtendedUserSerializer(source='like.user', read_only=True)
-    user = ExtendedUserSerializer(read_only=True)
+
     class Meta:
         model = Notification
         fields = '__all__'  # This already includes all fields from the Notification model.
-
 
 class PostReportSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)

@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Tag, Input } from 'antd';
-import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
-import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
-import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+import React, { useState } from "react";
+import axios from "axios";
+import { Tag, Input } from "antd";
+import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
+import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 
-export default function NewPost({feedType}) {
-  const [post, setPost] = useState('');
+export default function NewPost({ feedType }) {
+  const [post, setPost] = useState("");
   const tagsData = [
-    'Web Dev',
-    'SQL',
-    'Python',
-    'Space',
-    'JavaScript',
-    'React',
-    'App dev',
-    'Flutter',
-    'Java',
+    "Web Dev",
+    "SQL",
+    "Python",
+    "Space",
+    "JavaScript",
+    "React",
+    "App dev",
+    "Flutter",
+    "Java",
   ];
   const [image, setImage] = useState(null);
   const [selectedTags, setSelectedTags] = useState([]);
   const [newTagInputVisible, setNewTagInputVisible] = useState(false);
-  const [newTagInputValue, setNewTagInputValue] = useState('');
+  const [newTagInputValue, setNewTagInputValue] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [file, setFile] = useState(null);
 
@@ -57,36 +57,47 @@ export default function NewPost({feedType}) {
       setSelectedTags([...selectedTags, newTagInputValue]);
     }
     setNewTagInputVisible(false);
-    setNewTagInputValue('');
+    setNewTagInputValue("");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       const formData = new FormData();
-      formData.append('feedText', post);
-      formData.append('user', 16); // Assuming user ID is fixed for this example
-      formData.append('tag_list', JSON.stringify(selectedTags));
-      formData.append('feed_type', feedType);
-        formData.append('image', image);
-      
-        const jsonData = {};
-        for (const [key, value] of formData.entries()) {
-          jsonData[key] = value;
+      formData.append("feedText", post);
+      formData.append("user", 17); // Assuming user ID is fixed for this example
+      formData.append("tag_list", 15);
+      formData.append("feed_type", feedType);
+      formData.append("image", image);
+
+      // const jsonData = {};
+      // for (const [key, value] of formData.entries()) {
+      //   jsonData[key] = value;
+      // }
+      // console.log(jsonData);
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/feeds/create/${feedType}/`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data", // Include token in the request headers
+          },
         }
-        console.log(jsonData);
-            const response = await axios.post(`http://127.0.0.1:8000/api/feeds/create/${feedType}/`, jsonData);
+      );
+
       console.log(response.data);
-  
-      setPost('');
+
+      setPost("");
       setImage(null);
       setSelectedImage(null); // Reset selectedImage after successful submission
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   return (
     <div className="flex flex-col px-8 bg-white rounded shadow-2xl w-[280px] md:w-[450px] lg:w-[850px] max-md:px-5 mb-12 ml-5 ">
       <div className="text-xs uppercase  font-serif font-bold text-neutral-900 max-md:max-w-full mt-5">
@@ -119,7 +130,7 @@ export default function NewPost({feedType}) {
               autoFocus
               type="text"
               size="small"
-              style={{ width: '100%' }}
+              style={{ width: "100%" }}
               value={newTagInputValue}
               onChange={handleNewTagInputChange}
               onBlur={handleNewTagInputConfirm}
@@ -129,8 +140,8 @@ export default function NewPost({feedType}) {
             <Tag
               onClick={() => setNewTagInputVisible(true)}
               style={{
-                background: '#f0f2f5',
-                borderStyle: 'dashed',
+                background: "#f0f2f5",
+                borderStyle: "dashed",
               }}
             >
               + New Tag
@@ -140,10 +151,12 @@ export default function NewPost({feedType}) {
       </div>
 
       <div className="mt-4 ">
-        <p className="uppercase font-semibold font-serif text-xs">Selected Tags:</p>
+        <p className="uppercase font-semibold font-serif text-xs">
+          Selected Tags:
+        </p>
         <div>
           {selectedTags.length === 0 ? (
-            <span className='text-sm font-sans p-20'> No tags selected</span>
+            <span className="text-sm font-sans p-20"> No tags selected</span>
           ) : (
             selectedTags.map((tag) => (
               <Tag key={tag} closable onClose={() => handleChange(tag, false)}>
@@ -155,31 +168,31 @@ export default function NewPost({feedType}) {
       </div>
 
       <div className="flex flex-1 gap-6 justify-end items-center pb-2 mb-2">
-  <label htmlFor="fileInput">
-    <AttachFileOutlinedIcon sx={{ color: 'gray', cursor: 'pointer' }} />
-  </label>
-  <input
-    type="file"
-    id="fileInput"
-    style={{ display: 'none' }}
-    onChange={handleFileInputChange}
-  />
-  <label htmlFor="imageInput">
-    <ImageOutlinedIcon sx={{ color: 'gray', cursor: 'pointer' }} />
-  </label>
-  <input
-    type="file"
-    accept="image/*"
-    id="imageInput"
-    style={{ display: 'none' }}
-    onChange={handleImageInputChange}
-  />
-  <SendOutlinedIcon
-    sx={{ color: 'rgb(5, 190, 250)', cursor: 'pointer' }}
-    onClick={handleSubmit}
-  />
-</div>
-{/* {selectedFile && <p className='mb-3  ml-96 text-xs'>Selected File: {selectedFile}</p>}
+        <label htmlFor="fileInput">
+          <AttachFileOutlinedIcon sx={{ color: "gray", cursor: "pointer" }} />
+        </label>
+        <input
+          type="file"
+          id="fileInput"
+          style={{ display: "none" }}
+          onChange={handleFileInputChange}
+        />
+        <label htmlFor="imageInput">
+          <ImageOutlinedIcon sx={{ color: "gray", cursor: "pointer" }} />
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          id="imageInput"
+          style={{ display: "none" }}
+          onChange={handleImageInputChange}
+        />
+        <SendOutlinedIcon
+          sx={{ color: "rgb(5, 190, 250)", cursor: "pointer" }}
+          onClick={handleSubmit}
+        />
+      </div>
+      {/* {selectedFile && <p className='mb-3  ml-96 text-xs'>Selected File: {selectedFile}</p>}
 {selectedImage && (
   <div className='mb-3  ml-96 text-xs'>
     <p>Selected Image: {selectedImage}</p>
@@ -187,4 +200,4 @@ export default function NewPost({feedType}) {
 )} */}
     </div>
   );
-};
+}

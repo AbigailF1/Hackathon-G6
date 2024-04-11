@@ -170,6 +170,10 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,  # If rotating, blacklist the old tokens
 }
 
+
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -205,3 +209,4 @@ EMAIL_HOST_PASSWORD='opop xpoz oxii xiwi'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+

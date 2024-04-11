@@ -5,39 +5,58 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
 from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer, ContentTypeSerializer, PostReportSerializer )
-from .models import ( User,Feed, IdeaFeed, Comment, Like, Collaborator, CollaboratorChat, Notification)
+from .models import ( User,Feed, IdeaFeed, Comment, Like, Collaborator, TagList,CollaboratorChat, Notification)
 from User.serializers import UserSerializer
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view, authentication_classes, parser_classes
 
 # related to the feed itself
 
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.decorators import api_view, parser_classes
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+
 @api_view(['POST'])
+@authentication_classes([JWTAuthentication])
+@parser_classes([MultiPartParser, FormParser])
 def create_post_feed(request):
-    serializer = FeedSerializer(data=request.data)
-    if serializer.is_valid():
-        # Save the feed with the authenticated user and feed type
-        serializer.save(user=request.user, feed_type='post')
+    try:
+        if not request.user.is_authenticated:
+            return Response({"error": "User authentication failed"}, status=status.HTTP_401_UNAUTHORIZED)
 
-        # Retrieve the serialized user details
-        user_serializer = UserSerializer(request.user)
-
-        # Combine user and feed data to return in the response
-        response_data = {
-            'user': user_serializer.data,
-            'feed': serializer.data
-        }
-
-        return Response(response_data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        serializer = FeedSerializer(data=request.data)
+        if serializer.is_valid():
+            # If 'image' is provided in the form data, it will be handled by the serializer
+            # Otherwise, it will be set to None automatically
+            serializer.save(user=request.user, feed_type='post')
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 @api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser])
 def create_idea_feed(request):
-    serializer = IdeaFeedSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save(feed__user=request.user, feed__feed_type='idea')
-        # serializer.save(feed_type='idea')
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        # Check if the tag list ID exists
+        tag_list_id = request.data.get('tag_list')
+        tag_list = get_object_or_404(TagList, pk=tag_list_id)
 
+        # If the tag list ID exists, proceed with creating the idea feed
+        serializer = IdeaFeedSerializer(data=request.data)
+        if serializer.is_valid():
+            # Save the idea feed with the validated data
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except TagList.DoesNotExist:
+        # If the tag list ID does not exist, return a 404 response
+        return Response({"error": "Tag list with the provided ID does not exist"}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        # Catch any other unexpected errors and return a 500 response
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 @api_view(['GET'])
 def view_content_type(request):
     content_types = ContentType.objects.all()

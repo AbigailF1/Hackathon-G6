@@ -55,9 +55,9 @@ function Chat() {
     <div className="chat-container">
       <h1 className="chat-title">Welcome to Academate</h1>
       <div className="messages-container">
-        <h4 className="chat-title">
-          I am your friend chatbot. You can ask me anything you want.
-        </h4>
+        <h5 className="chat-title">
+          I am your friend,feel free... 
+        </h5>
         {/* Display messages */}
         {messages.map((message, index) => (
           <div key={index}>
