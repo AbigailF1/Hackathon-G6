@@ -1,21 +1,20 @@
 import React from 'react'
-import { Carousel } from 'antd';
-import Navbar from '../components/Landing/Navbar';
-import FirstSection from '../components/Landing/FirstSection';
-import How from "../components/Landing/How";
-import Testimonials from '../components/Landing/Testimonials';
+import Navbar from '../components/Land/Navbar'
+import How from '../components/Land/How'
+import Testimonials from '../components/Land/Testimonial'
+import Footer from '../components/Land/Footer'
 
 
 const Landing = () => {
   
   
   return (
-    <div>
-      
-      <Navbar />
-      <FirstSection />
-      <How />
-      <Testimonials/>
+    <div className=' bg-white'>
+     <Navbar/>
+    <How/>
+    <Testimonials/>
+    <Footer/>
+     
 
     </div>
   )
