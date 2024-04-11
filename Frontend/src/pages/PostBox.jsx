@@ -43,7 +43,7 @@ export default function IdeaBox({ data }) {
             <div className="avatar mx-2 mb-2">
               <div className="w-12 rounded">
                 <img
-                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                  src={`http://127.0.0.1:8000/${person.user.profile.image}`}
                   alt="Tailwind-CSS-Avatar-component"
                 />
               </div>
@@ -53,13 +53,21 @@ export default function IdeaBox({ data }) {
                 className="text-black text-center font-semibold"
                 style={{ fontFamily: "Adamina" }}
               >
-                {/* {person.name} */}
+                {person.user.username}
               </div>
               <div
                 className="text-xs text-gray-500"
                 style={{ fontFamily: "Adamina" }}
               >
-                <p>{person.user.username}</p>
+                <p>
+                  {person.user.profile.skills.map((skill, index) => (
+                    <React.Fragment key={index}>
+                      <span>{skill.title}</span>
+                      {/* Render '|' if it's not the last skill */}
+                      {index !== person.user.profile.skills.length - 1 && " | "}
+                    </React.Fragment>
+                  ))}
+                </p>
               </div>
             </div>
           </div>

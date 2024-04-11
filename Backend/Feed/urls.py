@@ -14,13 +14,15 @@ urlpatterns = [
     path('feeds/search/tag/<str:tag_name>/', views.search_feed_by_tag, name='search_feed_by_tag'),
 
     # urls related to comments
-    path('feeds/<int:feed_id>/comments/', views.list_comments, name='list_comments'),
+    
+    path('feeds/<user_id>/comments/', views.list_comments, name='list_comments'),
     path('feeds/<int:feed_id>/comments/add/', views.add_comment, name='add_comment'),
     path('feeds/<int:feed_id>/comments/<int:comment_id>/', views.edit_comment, name='edit_comment'),
     path('feeds/<int:feed_id>/comments/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
     
     # urls related to likes
-    path('feeds/<int:feed_id>/like/', views.toggle_like_feed, name='toggle_like_feed'),
+    path('users/<int:user_id>/feeds/<int:feed_id>/toggle-like/', views.toggle_like_feed, name='toggle_like_feed'),
+    
     # path('feeds/<int:feed_id>/like/', views.like_feed, name='like_feed'),
     # path('feeds/<int:feed_id>/unlike/', views.unlike_feed, name='unlike_feed'),
     

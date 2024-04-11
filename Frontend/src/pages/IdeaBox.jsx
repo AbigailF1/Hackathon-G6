@@ -1,16 +1,19 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Space, Modal } from "antd";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
 import SignupService from "../services/signup.service";
-import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
 
 export default function IdeaBox({ data }) {
   const [liked, setLiked] = useState(false);
+   const token = localStorage.getItem("token");
+  const decoded = jwtDecode(token);
+
+  console.log(decoded.user_id);
   function toggleFav() {
     setLiked((prev) => !prev);
   }
@@ -31,6 +34,43 @@ export default function IdeaBox({ data }) {
   };
   const [comment, setComment] = useState("");
   const [apply, setApply] = useState(false);
+
+  // http://127.0.0.1:8000/api/feeds/16/comments/
+
+   useEffect(() => {
+     // Define an async function to fetch data
+     const fetchData = async () => {
+       try {
+         // Make the HTTP request using Axios
+         const token = localStorage.getItem("token"); // Retrieve token from local storage
+         const response = await axios.get(
+          `http://127.0.0.1:8000/api/feeds/${decoded.user_id}/comments/`,
+          
+           {
+             headers: {
+               Authorization: `Bearer ${token}`, // Include token in the request headers
+             },
+           }
+         );
+         // Extract the data from the response
+         const data = response.data;
+         console.log(data);
+         // Set the fetched data to the state
+         setComment(data);
+         // Log the data to the console
+         console.log(data);
+       } catch (error) {
+         console.log(error);
+         // Log any errors to the console
+         console.error("There was a problem fetching the data:", error.message);
+       }
+     };
+
+     // Call the async function to fetch data when the component mounts
+     fetchData();
+   }, []); // E
+   console.log(comment);
+
 
   function change(event) {
     event.preventDefault();
@@ -122,7 +162,10 @@ export default function IdeaBox({ data }) {
                   placeholder="comment..."
                   value={comment}
                   onChange={change}
-                />{" "}
+                />
+
+                <div>{comment[0].text_content
+                      }</div>
               </Modal>
               <TextsmsOutlinedIcon />
               <PersonAddAlt1OutlinedIcon onClick={toggleComment} />
@@ -142,7 +185,6 @@ export default function IdeaBox({ data }) {
             </div>
           </div>
         ))}
-     
     </>
   );
 }

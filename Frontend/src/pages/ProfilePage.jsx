@@ -355,10 +355,10 @@ const ProfilePage = () => {
                 <div className="h-px flex-1 relative box-border z-[1] border-t-[1px] border-solid border-whitesmoke-200" />
               </div>
               <div className="flex flex-col items-start justify-start">
-                <div className="relative uppercase inline-block min-w-[60px] z-[1] mq450:text-12xl mq1050:text-23xl">
+                <div className="relative uppercase inline-block min-w-[52px] z-[1] mq450:text-12xl mq1050:text-23xl">
                   33
                 </div>
-                <div className="flex flex-row items-start justify-start py-0 pr-4 pl-[13px] mt-[-11px] text-sm ">
+                <div className="flex flex-row items-start justify-start py-0 pr-0 pl-[-11px] mt-[-11px] text-sm ">
                   <div className="relative leading-[150%] inline-block min-w-[31px] z-[1]">
                     likes
                   </div>
