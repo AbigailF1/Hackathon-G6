@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import "./NewConnection.css";
 import axios from "axios";
 
-
 function NewConnection({ name, skill, message, connection }) {
   // const [collaborate, setCollaborate] = useState([]);
 
@@ -140,7 +139,7 @@ function NewConnection({ name, skill, message, connection }) {
     },
     {
       id: 4,
-      image: "https://example.com/profile-image-4.jpg",
+      image: "https://shorturl.at/vAHJV",
       name: "Bob Brown",
       skill: "Mobile App Development",
       connection: 80,
@@ -174,6 +173,7 @@ function NewConnection({ name, skill, message, connection }) {
                   {collaborator.connection} connections
                 </p>
               </div>
+              collaborator.image
             </div>
             <p className="connectionMessage">{collaborator.message}</p>
             <div className="reqBtn">
