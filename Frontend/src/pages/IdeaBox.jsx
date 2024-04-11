@@ -7,6 +7,9 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
 import SignupService from "../services/signup.service";
+import {jwtDecode} from "../services/jwt.decode"; 
+import axios from 'axios';
+import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
 
 export default function IdeaBox({ data }) {
   const [liked, setLiked] = useState(false);
