@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import {  Tag, Input } from 'antd';
+import { Tag, Input } from 'antd';
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 export default function NewPost() {
   const [post, setPost] = useState('');
-  const tagsData=[
+  const tagsData = [
     'Web Dev',
     'SQL',
     'Python',
@@ -25,7 +25,6 @@ export default function NewPost() {
     const nextSelectedTags = checked
       ? [...selectedTags, tag]
       : selectedTags.filter((t) => t !== tag);
-    console.log(nextSelectedTags);
     setSelectedTags(nextSelectedTags);
   };
 
@@ -63,10 +62,9 @@ export default function NewPost() {
           placeholder="Write freely..."
           value={post}
           onChange={handleInputChange}
-
         />
       </div>
-    
+
       <div className="mb-5 ">
         <p className="uppercase font-semibold font-serif text-xs ">Tags:</p>
         <div className="grid grid-cols-4 md:grid-cols-8 gap-2 -ml-2 mt-4">
@@ -103,20 +101,22 @@ export default function NewPost() {
           )}
         </div>
       </div>
-      <div className="mt-4 mb-10">
+
+      <div className="mt-4 ">
         <p className="uppercase font-semibold font-serif text-xs">Selected Tags:</p>
         <div>
-          {selectedTags.map((tag) => (
-            <Tag
-              key={tag}
-              closable
-              onClose={() => handleChange(tag, false)}
-            >
-              {tag}
-            </Tag>
-          ))}
+          {selectedTags.length === 0 ? (
+            <span className='text-sm font-sans p-20'> No tags selected</span>
+          ) : (
+            selectedTags.map((tag) => (
+              <Tag key={tag} closable onClose={() => handleChange(tag, false)}>
+                {tag}
+              </Tag>
+            ))
+          )}
         </div>
       </div>
+
       <div className="flex flex-1 gap-6 justify-end items-center pb-2 mb-2">
         <label htmlFor="fileInput">
           <AttachFileOutlinedIcon sx={{ color: 'gray', cursor: 'pointer' }} />
@@ -125,12 +125,7 @@ export default function NewPost() {
         <label htmlFor="imageInput">
           <ImageOutlinedIcon sx={{ color: 'gray', cursor: 'pointer' }} />
         </label>
-        <input
-          type="file"
-          accept="image/*"
-          id="imageInput"
-          style={{ display: 'none' }}
-        />
+        <input type="file" accept="image/*" id="imageInput" style={{ display: 'none' }} />
         <SendOutlinedIcon
           sx={{ color: 'rgb(5, 190, 250)', cursor: 'pointer' }}
           onClick={handleSubmit}
