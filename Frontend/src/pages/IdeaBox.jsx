@@ -7,7 +7,7 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
 import SignupService from "../services/signup.service";
-import {jwtDecode} from "../services/jwt.decode"; 
+import { jwtDecode } from "jwt-decode"; 
 import axios from 'axios';
 import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
 
