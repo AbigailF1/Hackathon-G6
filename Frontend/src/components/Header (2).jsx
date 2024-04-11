@@ -38,20 +38,22 @@ export default function Header() {
   }));
 
   return (
-  <Header className = 'text-white flex items-center justify-around' bodybg='#f5f5f5'>
-      <img src="../src/assets/react.svg" className='items-center'/>
+  <Header className = 'text-white flex items-center justify-around w-full' bodybg='#f5f5f5'>
+      <img src="../src/assets/acadamate.png" className='items-center max-w-full w-16 pr-4 left-0 '/>
       <Menu
         className='flex w-screen gap-1 justify-around'
         mode="horizontal"
         items={items}
       />
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center pl-10">
           <div className="avatar cursor-pointer" onClick={handleProfile}>
             <div className="w-16 rounded">
               <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
             </div>
           </div>
       </div>
+      
+   
   </Header>
 );
 }

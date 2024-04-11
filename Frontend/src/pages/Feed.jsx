@@ -1,7 +1,7 @@
 import React from 'react'
 import Ideas from './Ideas';
 import Posts from './Posts';
-import ProfileSide from '../components/ProfileSide';
+import ProfileSide from '../components/FeedComp/ProfileSide';
 import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import { Tabs } from 'antd';
@@ -33,8 +33,8 @@ const items = [
 ];
 export default function Feed() {
   return (
-<div className='flex'>
-<Tabs defaultActiveKey="1"  centered items={items} onChange={onChange} className='shrink w-[1000px] ml-20' />;
+<div className='flex overflow-x-hidden'>
+<Tabs defaultActiveKey="1"  centered items={items} onChange={onChange} className=' w-[1000px] ml-0  lg:ml-20' />
 <ProfileSide className="shrink w-[500px]" />
 
 </div>
