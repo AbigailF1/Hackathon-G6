@@ -35,30 +35,29 @@ function RecentConnection({ name, skill, projectIdea }) {
 
   // console.log(recentCollaborate);
 
-const recentCollaborate = [
-  {
-    id: 1,
-    image: "https://shorturl.at/vAHJV",
-    name: "John Doe",
-    skill: "Web Development",
-    projectIdea: "Looking for collaborators for a new web project.",
-  },
-  {
-    id: 2,
-    image: "https://shorturl.at/vAHJV",
-    name: "Jane Smith",
-    skill: "Data Science",
-    projectIdea: "Seeking partners for a machine learning project.",
-  },
-  {
-    id: 3,
-    image: "https://shorturl.at/vAHJV",
-    name: "Alice Johnson",
-    skill: "Graphic Design",
-    projectIdea: "Interested in working on creative design projects.",
-  },
-];
-
+  const recentCollaborate = [
+    {
+      id: 1,
+      image: "https://shorturl.at/vAHJV",
+      name: "John Doe",
+      skill: "Web Development",
+      projectIdea: "Looking for collaborators for a new web project.",
+    },
+    {
+      id: 2,
+      image: "https://shorturl.at/gjptN",
+      name: "Jane Smith",
+      skill: "Data Science",
+      projectIdea: "Seeking partners for a machine learning project.",
+    },
+    {
+      id: 3,
+      image: "https://shorturl.at/gjptN",
+      name: "Alice Johnson",
+      skill: "Graphic Design",
+      projectIdea: "Interested in working on creative design projects.",
+    },
+  ];
 
   return (
     <>
@@ -66,7 +65,7 @@ const recentCollaborate = [
         <hr /> RECENT CONNECTIONS <hr />
       </p>
       <div className="recentConnection">
-        {recentCollaborate.map((collaborator) => (
+        {recentCollaborate.slice(-2).map((collaborator) => (
           <div className="profile" key={collaborator.id}>
             <img src={collaborator.image} alt="image" />
             <div className="about">

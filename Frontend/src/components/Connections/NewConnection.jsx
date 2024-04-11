@@ -173,7 +173,7 @@ function NewConnection({ name, skill, message, connection }) {
                   {collaborator.connection} connections
                 </p>
               </div>
-              collaborator.image
+             
             </div>
             <p className="connectionMessage">{collaborator.message}</p>
             <div className="reqBtn">
