@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
 from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer, ContentTypeSerializer, PostReportSerializer )
-from .models import ( User,Feed, IdeaFeed, Comment, Like, Collaborator, TagList,CollaboratorChat, Notification)
+from .models import ( User,Feed, IdeaFeed, Comment, Like, Collaborator, Tag ,CollaboratorChat, Notification)
 from User.serializers import UserSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, authentication_classes, parser_classes
@@ -21,6 +21,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
 @parser_classes([MultiPartParser, FormParser])
+
 def create_post_feed(request):
     try:
         if not request.user.is_authenticated:
@@ -28,35 +29,59 @@ def create_post_feed(request):
 
         serializer = FeedSerializer(data=request.data)
         if serializer.is_valid():
-            # If 'image' is provided in the form data, it will be handled by the serializer
-            # Otherwise, it will be set to None automatically
-            serializer.save(user=request.user, feed_type='post')
+            feed = serializer.save(user=request.user, feed_type='post')
+            
+            # Handle tags
+            tags = request.data.get('tags', [])
+            for tag_name in tags:
+                # Create a new request object for the create_tag function
+                tag_request = Request(request._request)
+                tag_request._full_data = {'tag_title': tag_name}
+                
+                # Call the create_tag function
+                tag_response = create_tag(tag_request)
+                
+                # Check if the tag was created successfully
+                if tag_response.status_code in [status.HTTP_200_OK, status.HTTP_201_CREATED]:
+                    tag_id = tag_response.data.get('tag_id')
+                    tag = Tag.objects.get(id=tag_id)
+                    feed.tags.add(tag)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])
 def create_idea_feed(request):
     try:
-        # Check if the tag list ID exists
-        tag_list_id = request.data.get('tag_list')
-        tag_list = get_object_or_404(TagList, pk=tag_list_id)
-
-        # If the tag list ID exists, proceed with creating the idea feed
         serializer = IdeaFeedSerializer(data=request.data)
         if serializer.is_valid():
-            # Save the idea feed with the validated data
-            serializer.save()
+            idea_feed = serializer.save()
+
+            # Handle tags
+            tags = request.data.get('tags', [])
+            for tag_name in tags:
+                # Create a new request object for the create_tag function
+                tag_request = Request(request._request)
+                tag_request._full_data = {'tag_title': tag_name}
+                
+                # Call the create_tag function
+                tag_response = create_tag(tag_request, idea_feed.id)
+                
+                # Check if the tag was created successfully
+                if tag_response.status_code in [status.HTTP_200_OK, status.HTTP_201_CREATED]:
+                    tag_id = tag_response.data.get('tag_id')
+                    tag = Tag.objects.get(id=tag_id)
+                    idea_feed.tags.add(tag)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    except TagList.DoesNotExist:
-        # If the tag list ID does not exist, return a 404 response
-        return Response({"error": "Tag list with the provided ID does not exist"}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
-        # Catch any other unexpected errors and return a 500 response
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 @api_view(['GET'])
 def view_content_type(request):
     content_types = ContentType.objects.all()
@@ -270,3 +295,10 @@ def report_post(request):
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def list_tags_for_feed(request, feed_id):
+    feed = Feed.objects.get(pk=feed_id)
+    tags = feed.tags.all()
+    serializer = TagSerializer(tags, many=True)
+    return Response(serializer.data)
