@@ -17,6 +17,9 @@ def welcome(request):
 @api_view(['POST'])
 def create_post_feed(request):
     serializer = FeedSerializer(data=request.data)
+
+
+    
     if serializer.is_valid():
         # Save the feed with the authenticated user and feed type
         serializer.save(user=request.user, feed_type='post')
