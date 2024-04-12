@@ -12,3 +12,10 @@ body {
   border-width: 0;
 }
 
+/* Import the font */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Define font-family */
+body {
+  font-family: 'Roboto', sans-serif; /* Use Roboto font with a fallback to sans-serif */
+} */

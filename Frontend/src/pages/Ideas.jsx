@@ -1,7 +1,11 @@
-import React from 'react'
-import IdeaBox from '../components/FeedComp/IdeaBox';
-import NewPost from '../components/FeedComp/NewPost'
+import { useEffect, useState } from "react";
+// import IdeaBox from "./src/pages/Ideas";
+// import NewPost from "../components/NewPost";
 
+// import ProfileSide from '../components/ProfileSide';
+import axios from "axios";
+import NewPost from "../components/NewPost";
+import IdeaBox from "./PostBox";
 export default function Ideas() {
    const person ={
     name : 'John',
@@ -11,10 +15,10 @@ export default function Ideas() {
     ]
   }
   return (
-    <div className='ml-2 sm:ml-2 md:ml-0 lg:ml-12'>
-    <NewPost />
-  <IdeaBox person={person}/>
+    <div className="ml-12">
+      <NewPost feedType="idea" />
 
+      <IdeaBox data={ideaFeed} />
     </div>
-  )
+  );
 }

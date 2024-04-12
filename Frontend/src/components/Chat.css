@@ -1,0 +1,123 @@
+/* Chat container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:30%;
+    margin-left: 70%;
+    justify-content: center;
+    height: full;
+    background-color: #d2cfcf;
+}
+.chat-title{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #bac2d0;
+    padding: 15px;
+    width: 90%;
+    text-align: center;
+    border-radius: 8px;
+}
+/* Messages container */
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align messages to the left */
+    width: 80%;
+    max-height: 70vh; /* Limit height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f4e8e8;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+
+}
+
+
+/* Message style */
+.message {
+    margin-bottom: 10px;
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 8px;
+
+     display: flex;
+    flex-direction: column; /* Assuming messages are stacked vertically */
+    justify-content: flex-end; /* Align messages to the end of the container */
+}
+
+/* User message */
+.user-message {
+   
+    color: white;
+    padding: 5px;
+   
+    
+   
+    
+}
+
+.user-message-container{
+  
+    float: right;
+    background-color: #9cc5ed;
+    border-radius: 10px;
+
+}
+.bot-message-container{
+  
+    float: left;
+    background-color: #c6ebb8;
+    border-radius: 10px;
+}
+
+/* Bot message */
+.bot-message {
+ 
+    color: #333;
+    padding: 5px;
+    
+}
+
+/* Input container */
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 96%;
+}
+
+/* Input field */
+.message-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+   
+    border: 1px solid #ccc;
+}
+
+/* Send button */
+.send-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #c4d5e6;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Hover effect for send button */
+.send-button:hover {
+    background-color: #0056b3;
+}
+.chat{
+position:fixed;
+right: 0;
+top:300px;
+
+}

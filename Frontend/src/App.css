@@ -7,3 +7,10 @@ body {
   color: rgb(90, 84, 84);
   background-color: #eeeff1;
 }
+.password_button {
+  position: absolute;
+  top: 10;
+}
+.password_div {
+  position: relative;
+}

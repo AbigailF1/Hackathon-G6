@@ -32,14 +32,14 @@ export default function IdeaBox({person}) {
     setReport(event.target.value)
     console.log("com", comment);
     setOpenReport(false);
-   };
+   }
    function handleComment(event) {
     event.preventDefault();
     console.log("You clicked the button");
     setComment(event.target.value)
     console.log("com", comment);
     setOpen(false);
-   };
+   }
    const handleCancel = () => {
      console.log('Clicked cancel button');
      setOpen(false);
