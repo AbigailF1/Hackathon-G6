@@ -15,7 +15,7 @@ export default function ProfileSide() {
    console.log(tag)
   return (
     
-    <section className='mt-14 flex flex-col gap-5 mr-2 md:mr-8  invisible md:visible'>
+    <section className='mt-14 flex flex-col gap-5 mr-2 md:mr-20  invisible md:visible'>
       <Profile />
 
   <div className="w-[320px] ml-4 shadow-sm  flex flex-col gap-4 justify-center">  

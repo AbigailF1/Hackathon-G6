@@ -1,6 +1,5 @@
 import React from 'react'
 import { Avatar, Card } from 'antd';
-import { Flex, Tag } from 'antd';
 const { Meta } = Card;
 
 export default function GroupCard() {
@@ -8,7 +7,7 @@ export default function GroupCard() {
   return (
     <div>
         <Card
-          className="my-card m-auto w-48 md:w-72"
+          className="my-card w-48 md:w-60 lg:w-72"
           style={{
             // width: 290,
             backgroundColor: 'white',
