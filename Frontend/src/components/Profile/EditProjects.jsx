@@ -25,7 +25,7 @@ const MyComponent = () => {
 
   return (
     <div>
-      <button onClick={handleEditClick}>
+      <button onClick={handleEditClick} style={{    alignSelf: "end"}}>
         <FiEdit />
       </button>
       <Modal

@@ -3,12 +3,48 @@ import Header from "../components/Header (2)";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import { FiEdit } from "react-icons/fi";
 import { Button, Modal } from "antd";
-import { useState } from "react";
-import Edit from "../components/Profile/EditProjects"
+import { useEffect, useState } from "react";
+import EditProjects from "../components/Profile/EditProjects"
 import EditAbout from "../components/Profile/EditAbout"
 import EditSkill from "../components/Profile/EditSkill"
 
 const ProfilePage = () => {
+
+const [profiledata, setProfileData] = useState([]);
+
+  useEffect(() => {
+    // Define an async function to fetch data
+    const fetchData = async () => {
+      try {
+        // Make the HTTP request using Axios
+        const token = localStorage.getItem("token"); // Retrieve token from local storage
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/feeds/2/profile/",
+          {
+            headers: {
+              Authorization:  `Bearer ${token}`, // Include token in the request headers
+            },
+          }
+        );
+        // Extract the data from the response
+        const data = response.data;
+        console.log(data);
+        // Set the fetched data to the state
+        setProfileData(data);
+      } catch (error) {
+        console.log(error);
+        console.error("There was a problem fetching the data:", error.message);
+      }
+    };
+
+    // Call the async function to fetch data when the component mounts
+    fetchData();
+  }, []);
+
+  console.log(profiledata);
+
+
+
   return (
     <>
       <div className="w-full relative main_container overflow-hidden flex flex-col items-end justify-start tracking-[normal]">
@@ -29,14 +65,10 @@ const ProfilePage = () => {
               />
               <h3 className="m-0 absolute top-[205px] left-[calc(50%_-_202px)] text-inherit  text-black font-normal font-inherit inline-block min-w-[127px] z-[1]">
                 Gebby Tesfaye
+                {/* {profiledata.name} */}
               </h3>
               <div className="absolute top-[237px] left-[calc(50%_-_202px)] text-sm leading-[150%] whitespace-pre-wrap inline-block w-[583px] z-[1]">{`Freelance UX/UI designer, 80+ projects in web design, mobile apps  (iOS & android) and creative projects. Open to offers.`}</div>
-              <button className="cursor-pointer pt-[11px] px-[18px] pb-[5px] bg-white absolute top-[293px] left-[calc(50%_-_17px)] rounded flex flex-row items-start justify-start whitespace-nowrap z-[1] border-[1px] border-solid border-steelblue-200 hover:bg-gainsboro-200 hover:box-border hover:border-[1px] hover:border-solid hover:border-steelblue-100">
-                <div className="h-8 w-[170px] relative rounded bg-white box-border hidden border-[1px] border-solid border-steelblue-200" />
-                <div className="w-[134px] relative text-xs uppercase  text-black font-adamina text-steelblue-200 text-center inline-block z-[1]">
-                  1,043 connections
-                </div>
-              </button>
+              
               <button className="cursor-pointer [border:none] pt-[11px] px-[34px] pb-[5px] bg-[transparent] absolute top-[293px] left-[calc(50%_-_202px)] rounded [background:linear-gradient(180deg,_#0077b5,_#0e6795)] flex flex-row items-start justify-start whitespace-nowrap z-[1]">
                 <div className="h-8 w-[170px] relative rounded [background:linear-gradient(180deg,_#0077b5,_#0e6795)] hidden" />
                 <div className="w-[102px] relative text-xs uppercase  text-black font-adamin  text-center inline-block min-w-[102px] z-[1]">
@@ -80,7 +112,7 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className="absolute top-[206px] left-[606px] text-sm md:text-xs lg:text-sm xl:text-xs leading-normal md:leading-[150%] lg:leading-normal xl:leading-[150%] z-[1]">
-                Saint Petersburg, Russian Federation
+                Saint Petersburg, Ethioian Federation
               </div>
 
               <img
@@ -89,6 +121,8 @@ const ProfilePage = () => {
                 src="/navigation.svg"
               />
             </div>
+
+
             <div className="w-[290px] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[25px] pb-3.5 pr-[29px] pl-[30px] box-border gap-[10px] text-33xl text-steelblue-200">
               <div className="w-[290px] h-[360px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden" />
               <div className="flex flex-row items-start justify-start pt-0 px-0 pb-[5px] gap-[19px] text-xs ">
@@ -135,12 +169,7 @@ const ProfilePage = () => {
         </section>
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-5 pr-[350px] pl-5 box-border max-w-full text-left text-lg  font-adamina  lg:box-border mq450:pr-5 mq450:box-border mq750:pr-[87px] mq750:box-border">
           <div className="w-[850px] flex flex-col items-start justify-start max-w-full">
-            <button className="cursor-pointer [border:none] pt-[21px] px-5 pb-[13px] bg-[transparent] w-60 rounded-t rounded-b-none [background:linear-gradient(180deg,_#0077b5,_#0e6795)] flex flex-row items-start justify-center box-border">
-              <div className="h-[50px] w-60 relative rounded-t rounded-b-none [background:linear-gradient(180deg,_#0077b5,_#0e6795)] hidden" />
-              <div className="w-14 relative text-xs uppercase font-adamina text-white text-center inline-block min-w-[56px] z-[1]">
-                Profile
-              </div>
-            </button>
+            
             <div className="self-stretch flex flex-col items-start justify-start max-w-full">
               <div className="self-stretch h-[50px] flex flex-col items-start justify-start">
                 <div className="self-stretch h-px relative box-border border-t-[1px] border-solid border-gainsboro-100" />
@@ -171,7 +200,7 @@ const ProfilePage = () => {
             <div className="w-[850px] h-[355px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
             <div className="self-stretch flex flex-col items-start justify-start gap-[17px]">
 
-              <Edit />
+              <EditProjects />
 
               <div className="flex flex-row  justify-start gap-[21px]">
                 <h3 className="items-start m-0 relative text-inherit font-normal font-inherit inline-block min-w-[69px] z-[1]">
@@ -222,12 +251,14 @@ const ProfilePage = () => {
               </div>
             </div>
             <div className="relative text-xs uppercase text-steelblue-200 inline-block min-w-[93px] z-[1]">
+
               Show all (12)
+
             </div>
           </div>
         </section>
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-5 pr-[350px] pl-5 box-border max-w-full text-left text-lg font-adamina lg:box-border mq450:pr-5 mq450:box-border mq750:pr-[87px] mq750:box-border">
-          <div className="w-[850px] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] pb-5 pr-4 pl-[30px] box-border gap-[15px] max-w-full">
+          <div className="w-[850px] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-end justify-start pt-[30px] pb-5 pr-4 pl-[30px] box-border gap-[15px] max-w-full">
            <EditSkill/> 
             <div className="w-[850px] h-[220px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
             <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full">
@@ -245,7 +276,10 @@ const ProfilePage = () => {
                       <div className="flex-1 rounded-md bg-white box-border flex flex-row items-start justify-start pt-[7.9px] px-5 pb-[25.3px] min-w-[162px] whitespace-nowrap z-[1] border-[1px] border-solid border-whitesmoke-200">
                         <div className="h-[45px] w-[250px] relative rounded-md bg-white box-border hidden border-[1px] border-solid border-whitesmoke-200" />
                         <div className="relative leading-[11.8px] inline-block min-w-[122px] z-[1]">
+
                           User interface (UI)
+
+                
                         </div>
                       </div>
                     </div>

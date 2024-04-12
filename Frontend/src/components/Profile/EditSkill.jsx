@@ -35,12 +35,24 @@ const MyComponent = () => {
       >
         <div className="flex flex-col gap-1 py-1">
           <label className="text-start" htmlFor="projectName">
-            Project Name
+            Skills
           </label>
           <Input 
             id="projectName"
             className="w-full" 
-            placeholder="Project Name" 
+            
+            autosize={{ minRows: 2, maxRows: 6 }} // Make the input field flexible
+          />
+          <Input 
+            id="projectName"
+            className="w-full" 
+            
+            autosize={{ minRows: 2, maxRows: 6 }} // Make the input field flexible
+          />
+          <Input 
+            id="projectName"
+            className="w-full" 
+            
             autosize={{ minRows: 2, maxRows: 6 }} // Make the input field flexible
           />
         </div>
