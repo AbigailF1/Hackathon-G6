@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import Feed, IdeaFeed, Comment, Like,Collaborator, CollaboratorChat, Notification, PostReport
+from .models import Feed, IdeaFeed, Comment, Like,Collaborator, CollaboratorChat, Notification,PostReport
 from User.serializers import UserSerializer,ProfileSerializer
 from django.contrib.contenttypes.models import ContentType
 from User.models import Profile
+
 
 class ContentTypeSerializer(serializers.ModelSerializer):
     class Meta:

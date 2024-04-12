@@ -87,3 +87,10 @@ class FeedReport(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.reason
+class PostReport(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Feed, on_delete=models.CASCADE)
+    reason = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.reason

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import IdeaBox from "./IdeaBox";
-import NewPost from "../components/NewPost";
+// import IdeaBox from "./src/pages/Ideas";
+// import NewPost from "../components/NewPost";
 
 // import ProfileSide from '../components/ProfileSide';
 import axios from "axios";
+import NewPost from "../components/NewPost";
+import IdeaBox from "./PostBox";
 export default function Ideas() {
   const [ideaFeed, setIdeaFeed] = useState("");
 

@@ -139,24 +139,24 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'role', 'phone_number', 'profile']
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+# class ProjectSerializer(serializers.ModelSerializer):
     
 
- class Meta:
+#  class Meta:
 
-  model = Project
+#   model = Project
 
-  fields = '__all__' # Include all fields from the model
+#   fields = '__all__' # Include all fields from the model
 
 
 
-class ExperienceSerializer(serializers.ModelSerializer):
+# class ExperienceSerializer(serializers.ModelSerializer):
 
- class Meta:
+#  class Meta:
 
-  model = Experience
+#   model = Experience
 
-  fields = '__all__' # Include all fields from the model
+#   fields = '__all__' # Include all fields from the model
 
 
 

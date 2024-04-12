@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Ideas from './Ideas';
 import Posts from './Posts';
 import ProfileSide from '../components/FeedComp/ProfileSide';
 import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import { Tabs } from 'antd';
+import ProfileHeader from '../components/Header/ProfileHeader';
+import Chat from '../components/Chat';
+import Footer from '../components/Footer/Footer';
 const onChange = (key) => {
   console.log(key);
 };

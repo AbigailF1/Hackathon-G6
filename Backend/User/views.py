@@ -326,5 +326,27 @@ class EducationViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     
     
-class UserRegister(APIView):
-    permission_classes = (permissions.AllowAny,)
+# class UserRegister(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class add_project(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class edit_project(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class delete_project(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class get_all_projects(APIView):
+#     permission_classes = (permissions.AllowAny,)    
+# class get_project_by_id(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class add_experience(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class edit_experience(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class delete_experience(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class get_all_experiences(APIView):
+#     permission_classes = (permissions.AllowAny,)
+# class get_experience_by_id(APIView):
+#     permission_classes = (permissions.AllowAny,)
+    
+    

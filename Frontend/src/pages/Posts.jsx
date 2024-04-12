@@ -47,7 +47,7 @@ export default function Posts() {
   // };
   return (
     <div className="ml-12">
-<NewPost feedType="post" />
+<NewPost feedType="idea" />
   <PostBox data={postData} />
     </div>
   );
