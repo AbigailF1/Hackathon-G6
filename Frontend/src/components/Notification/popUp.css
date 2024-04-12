@@ -1,5 +1,5 @@
 /* CSS code for the popup window */
-.popup-window {
+div.popup-window {
   display: none; 
   position: fixed;
   top: 50%;
@@ -12,7 +12,7 @@
    box-shadow: 0 4px 8px rgba(31, 28, 28, 0.1); 
 }
 
-.popup-window.open {
+div.popup-window.open {
   display: block; 
 }
 
@@ -22,7 +22,6 @@
 }
 
 .close-btn {
- 
  position: absolute;
   top: 0px; 
   right: 0px; 
