@@ -106,22 +106,24 @@ ASGI_APPLICATION = 'Academate.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+import dj_database_url
 DATABASES = {
    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'academate',     
-        'USER': 'academate',  
-        'PASSWORD':'academate',  
-        'HOST': 'localhost',     
-        'PORT': '3306',          
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_h6',     
+        'USER': 'django_h6_user',  
+        'PASSWORD': 'oWdh1CRSMUg1eFeeNouW3GoaR0LbmvN6',  
+        'HOST': 'dpg-co9uhjgcmk4c73e63190-a',     
+        'PORT': '5432',          
     }
-   
-
-}
- # 'default': {
+    # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+
+}
+
+DATABASES["default"] = dj_database_url.parse("postgres://django_h6_user:oWdh1CRSMUg1eFeeNouW3GoaR0LbmvN6@dpg-co9uhjgcmk4c73e63190-a.oregon-postgres.render.com/django_h6")
 
 CHANNEL_LAYERS = {
     "default": {
