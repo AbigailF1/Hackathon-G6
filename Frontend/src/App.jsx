@@ -34,6 +34,7 @@ import Footer from "./components/Footer/Footer";
 import Skills from "./pages/Skills";
 import Education from "./pages/Education";
 import ProfileList from "./pages/ProfileList";
+import Privacy from "./Privacy";
 
 function App() {
   const router = createBrowserRouter(
@@ -48,6 +49,7 @@ function App() {
         <Route path="/SentConnection" element={<SentConnection />} />
         <Route path="/Notifications" element={<Notifications />} />
         <Route path="/Chat" element={<Chat />} />
+        <Route path="/Privacy" element={<Privacy/>}/>
 
         <Route path="/Feed" element={<Feed />} />
 
