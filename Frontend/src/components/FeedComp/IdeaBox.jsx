@@ -121,7 +121,7 @@ export default function IdeaBox({person}) {
       <TextsmsOutlinedIcon  onClick={open} className='cursor-pointer'/>
 
     <PersonAddAlt1OutlinedIcon onClick={toggleComment}/>
-    {apply ? (
+    {/* {apply ? (
         <Space direction="vertical" style={{ width: '100%' }} >
          <Alert
          message="Successful!"
@@ -131,7 +131,7 @@ export default function IdeaBox({person}) {
          closable
        />
      </Space>
-    ) :('')}
+    ) :('')} */}
         </div>
         <FlagOutlinedIcon  onClick={show} className='m-5 cursor-pointer'/>  
       <Modal

@@ -26,9 +26,6 @@ export default function Visions() {
         <h3>Driving Positive Social Impact</h3>
         <p>At the heart of our vision lies a deep commitment to using education as a force for positive social change. We aspire to empower learners to become agents of transformation, equipped with the knowledge, skills, and values needed to address the pressing challenges facing our world and contribute to a more equitable, sustainable, and prosperous future.</p>
 
-        <h3>Contact Us</h3>
-        <p>If you share our vision for the future of education or have any questions, we'd love to hear from you. Please don't hesitate to reach out:</p>
-        <p>By visiting this page on our website: <a href="contact.html">http://www.haguash.com/contact</a></p>
       </div>
     </div>
   );

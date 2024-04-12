@@ -9,38 +9,7 @@ import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import ProfileHeader from '../components/Header/ProfileHeader';
 import Chat from '../components/Chat';
 import Footer from '../components/Footer/Footer';
-const onChange = (key) => {
-  console.log(key);
-};
 
-const items = [
-  {
-    key: "1",
-    label: (
-      <div className="flex items-center ">
-        <EmojiObjectsOutlinedIcon
-          className="mr-5"
-          sx={{ color: "rgb(5, 190, 250)" }}
-        />
-        Ideas
-      </div>
-    ),
-    children: <Ideas />,
-  },
-  {
-    key: "2",
-    label: (
-      <div className="flex items-center">
-        <WysiwygOutlinedIcon
-          className="mr-5"
-          sx={{ color: "rgb(5, 190, 250)" }}
-        />
-        Posts
-      </div>
-    ),
-    children: <Posts />,
-  },
-];
 
 export default function Feed() {
   
@@ -59,13 +28,13 @@ export default function Feed() {
       className="shrink w-[1000px] ml-20 mr-10"
       defaultValue="gallery">
       <Tabs.List>
-        <Tabs.Tab value="gallery" leftSection = { <EmojiObjectsOutlinedIcon
+        <Tabs.Tab value="ideas" leftSection = { <EmojiObjectsOutlinedIcon
           className=""
           sx={{ color: "rgb(5, 190, 250)" }}
         />}>
           Ideas
         </Tabs.Tab>
-        <Tabs.Tab value="messages" leftSection={<WysiwygOutlinedIcon
+        <Tabs.Tab value="posts" leftSection={<WysiwygOutlinedIcon
           className=""
           sx={{ color: "rgb(5, 190, 250)" }}
         />} >
@@ -73,11 +42,11 @@ export default function Feed() {
         </Tabs.Tab>
       </Tabs.List>
 
-      <Tabs.Panel value="gallery">
+      <Tabs.Panel value="ideas">
       <div className='py-5'><Ideas /></div>
       </Tabs.Panel>
 
-      <Tabs.Panel value="messages">
+      <Tabs.Panel value="posts">
         <div className='py-5'><Posts /></div>
       
       </Tabs.Panel>

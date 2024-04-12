@@ -34,11 +34,7 @@ export default function Terms() {
           <li>For the performance of a contract.</li>
           <li>...</li>
         </ul>
-        {/* Add more sections as needed */}
-
-        <h3>Contact Us</h3>
-        <p>If you have any questions about this Terms and Condition, You can contact us:</p>
-        <p>By visiting this page on our website: <a href="contact.html">http://www.haguash.com/contact</a></p>
+       
       </div>
     </div>
   );

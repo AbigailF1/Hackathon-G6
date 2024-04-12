@@ -7,8 +7,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createTheme, MantineProvider } from '@mantine/core';
 
+const theme = createTheme({
+  fontFamily: 'Open Sans, sans-serif',
+  primaryColor: 'cyan',
+});
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <MantineProvider>
+  <MantineProvider theme={theme}>
     <App />
     <ToastContainer />
   </MantineProvider>

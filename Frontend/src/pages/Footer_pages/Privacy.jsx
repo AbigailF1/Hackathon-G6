@@ -144,18 +144,9 @@ function Privacy() {
       Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of every site You visit. 
       We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services
     </p>
-    <h4>Changes to this Privacy Policy</h4>
-    <p>
-      We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page. 
-      We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the "Last updated" date at the top of this Privacy Policy. 
-      You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
-    </p>
-    <h3>Contact Us</h3>
-    <p>
-      If you have any questions about this Privacy Policy, You can contact us: 
-      By visiting this page on our website:
+  
+   :
       
-    </p>
   </main>
 </div>
 

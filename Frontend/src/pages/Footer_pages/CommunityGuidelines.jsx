@@ -29,9 +29,6 @@ export default function CommunityGuidelines() {
         <h3>Consequences for Violations</h3>
         <p>Failure to adhere to these community guidelines may result in disciplinary action, including the suspension or termination of your Academate account. We reserve the right to remove any content or ban any user that we deem to be in violation of these guidelines.</p>
 
-        <h3>Contact Us</h3>
-        <p>If you have any questions or concerns about our community guidelines, please don't hesitate to reach out to us:</p>
-        <p>By visiting this page on our website: <a href="contact.html">http://www.haguash.com/contact</a></p>
       </div>
     </div>
   );

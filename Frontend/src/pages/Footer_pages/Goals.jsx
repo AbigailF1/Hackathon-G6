@@ -27,9 +27,6 @@ export default function Goals() {
         <h4>Continuous Improvement and Innovation</h4>
         <p>We are dedicated to continuously improving our platform and evolving our offerings to meet the changing needs of students and educators. We actively seek feedback and incorporate the latest educational research and technology to enhance the learning experience.</p>
 
-        <h3>Contact Us</h3>
-        <p>If you have any questions or suggestions about our goals, please don't hesitate to reach out to us:</p>
-        <p>By visiting this page on our website: <a href="contact.html">http://www.haguash.com/contact</a></p>
       </div>
     </div>
   );
