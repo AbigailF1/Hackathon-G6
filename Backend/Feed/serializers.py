@@ -66,6 +66,7 @@ class LikeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class NotificationSerializer(serializers.ModelSerializer):
+    user = ExtendedUserSerializer(read_only=True)
     # If you had methods or additional fields to include, define them here.
     # For example, if `like_user` is meant to be a nested representation:
     # like_user = ExtendedUserSerializer(source='like.user', read_only=True)
