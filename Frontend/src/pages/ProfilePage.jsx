@@ -1,4 +1,5 @@
 import Footer from "../components/Footer/Footer";
+
 import Header from "../components/Header (2)";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import { FiEdit } from "react-icons/fi";
@@ -8,7 +9,59 @@ import Edit from "../components/Profile/EditProjects"
 import EditAbout from "../components/Profile/EditAbout"
 import EditSkill from "../components/Profile/EditSkill"
 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Chat from "../components/Chat";
+import { jwtDecode } from "jwt-decode";
+import ProfileHeader from "../components/Header/ProfileHeader";
+
+
 const ProfilePage = () => {
+  const token = localStorage.getItem("token");
+  // const token = "eyJ0eXAiO.../// jwt token";
+  const decoded = jwtDecode(token);
+
+  console.log(decoded.user_id);
+  const [profileData, setProfileData] = useState(null);
+  const [isChatVisible, setIsChatVisible] = useState(false);
+
+  const toggleChatVisibility = () => {
+    setIsChatVisible(!isChatVisible);
+  };
+
+  useEffect(() => {
+    // Define an async function to fetch data
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        // Make the HTTP request using Axios
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/profiles/${decoded.user_id}/user/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include token in the request headers
+            },
+          }
+        );
+        // Extract the data from the response
+        const data = response.data;
+        // Set the fetched data to the state
+        setProfileData(data);
+        // Log the data to the console
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+        // Log any errors to the console
+        console.error("There was a problem fetching the data:", error.message);
+      }
+    };
+
+    // Call the async function to fetch data when the component mounts
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // E
+  console.log(profileData);
+
   return (
     <>
       <div className="w-full relative main_container overflow-hidden flex flex-col items-end justify-start tracking-[normal]">
@@ -17,20 +70,41 @@ const ProfilePage = () => {
           <div className="absolute h-full top-[0px] bottom-[0px] left-[890px] bg-snow w-[290px]" />
         </div>
 
+
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-[21px] pr-[26px] pl-5 box-border max-w-full text-left text-lg  font-adamina">
+
+        <div className="header">
+          <ProfileHeader />
+        </div>
+        <section className="self-stretch mt-28 flex flex-row items-start justify-center pt-0 pb-[21px] pr-[26px] pl-5 box-border max-w-full text-left text-lg  font-adamina">
+
           <div className="w-[1186px] flex flex-row flex-wrap items-start justify-start gap-[40px] max-w-full mq750:gap-[20px]">
             <div className="h-[360px] flex-1 relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] min-w-[556px] max-w-full mq450:h-auto mq450:min-h-[360] mq750:min-w-full">
               <div className="absolute top-[0px] left-[calc(50%_-_428px)] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] w-full h-full hidden" />
-              <img
+              
+                <label htmlFor="imageInput">
+                <img
                 className="absolute top-[160px] left-[calc(50%_-_397px)] rounded-[50%] w-[170px] h-[170px] object-cover z-[2]"
                 loading="lazy"
                 alt=""
-                src="/ellipse@2x.png"
+                src={profileData?.image}
               />
+        </label>
+        <input type="file" accept="image/*" id="imageInput" style={{ display: 'none' }} />
               <h3 className="m-0 absolute top-[205px] left-[calc(50%_-_202px)] text-inherit  text-black font-normal font-inherit inline-block min-w-[127px] z-[1]">
                 Gebby Tesfaye
               </h3>
-              <div className="absolute top-[237px] left-[calc(50%_-_202px)] text-sm leading-[150%] whitespace-pre-wrap inline-block w-[583px] z-[1]">{`Freelance UX/UI designer, 80+ projects in web design, mobile apps  (iOS & android) and creative projects. Open to offers.`}</div>
+              <div className="absolute top-[237px] left-[calc(50%_-_202px)] text-sm leading-[150%] whitespace-pre-wrap inline-block w-[583px] z-[1]">
+                <ul style={{ listStyleType: "none", marginLeft: "1%" }}>
+                  {profileData?.skills.map((skill, index) => (
+                    <React.Fragment key={index}>
+                      <span>{skill.title}</span>
+                      {/* Render '|' if it's not the last skill */}
+                      {index !== profileData.skills.length - 1 && " | "}
+                    </React.Fragment>
+                  ))}
+                </ul>
+              </div>
               <button className="cursor-pointer pt-[11px] px-[18px] pb-[5px] bg-white absolute top-[293px] left-[calc(50%_-_17px)] rounded flex flex-row items-start justify-start whitespace-nowrap z-[1] border-[1px] border-solid border-steelblue-200 hover:bg-gainsboro-200 hover:box-border hover:border-[1px] hover:border-solid hover:border-steelblue-100">
                 <div className="h-8 w-[170px] relative rounded bg-white box-border hidden border-[1px] border-solid border-steelblue-200" />
                 <div className="w-[134px] relative text-xs uppercase  text-black font-adamina text-steelblue-200 text-center inline-block z-[1]">
@@ -79,8 +153,8 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute top-[206px] left-[606px] text-sm md:text-xs lg:text-sm xl:text-xs leading-normal md:leading-[150%] lg:leading-normal xl:leading-[150%] z-[1]">
-                Saint Petersburg, Russian Federation
+              <div className="absolute top-[206px] left-[606px] text-xs leading-[150%] z-[1]">
+                Addis Ababa Ethiopia
               </div>
 
               <img
@@ -96,29 +170,29 @@ const ProfilePage = () => {
                   your dashboard
                 </div>
                 <div className="w-[88px] relative [text-decoration:underline] uppercase text-steelblue-200 text-right inline-block min-w-[88px] z-[1]">
-                  go to stats
+                  your posts
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-[9px]">
                 <div className="h-px flex-1 relative box-border z-[1] border-t-[1px] border-solid border-whitesmoke-200" />
               </div>
               <div className="flex flex-col items-start justify-start">
-                <div className="relative uppercase inline-block min-w-[60px] z-[1] mq450:text-12xl mq1050:text-23xl text-blue-600 text-4xl">
+                <div className="relative uppercase inline-block min-w-[52px] z-[1] mq450:text-12xl mq1050:text-23xl">
                   33
                 </div>
-                <div className="flex flex-row items-start justify-start py-0 pr-4 pl-[13px] mt-[-11px] text-sm ">
+                <div className="flex flex-row items-start justify-start py-0 pr-0 pl-[-11px] mt-[-11px] text-sm ">
                   <div className="relative leading-[150%] inline-block min-w-[31px] z-[1]">
                     likes
                   </div>
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start">
-                <div className="relative uppercase inline-block min-w-[52px] z-[1] mq450:text-12xl mq1050:text-23xl text-blue-600 text-4xl">
-                  15
+                <div className="relative uppercase inline-block min-w-[52px] z-[1] mq450:text-12xl mq1050:text-23xl">
+                  3
                 </div>
                 <div className="flex flex-row items-start justify-start py-0 pr-0 pl-0.5 mt-[-11px] text-sm ">
                   <div className="relative leading-[150%] inline-block min-w-[77px] z-[1]">
-                    posts views
+                    your post
                   </div>
                 </div>
               </div>
@@ -127,7 +201,7 @@ const ProfilePage = () => {
                   9
                 </div>
                 <div className="relative text-sm leading-[150%]  z-[1] mt-[-4px]">
-                  search appereances
+                  notifications
                 </div>
               </div>
             </div>
@@ -156,7 +230,9 @@ const ProfilePage = () => {
                     <h3 className="m-0 relative text-inherit font-normal font-inherit inline-block min-w-[53px] z-[1]">
                       About
                     </h3>
-                    <div className="self-stretch relative text-sm leading-[150%] z-[1]">{`I'm more experienced in eCommerce web projects and mobile banking apps, but also like to work with creative projects, such as landing pages or unusual corporate websites. `}</div>
+                    <div className="self-stretch relative text-sm leading-[150%] z-[1]">
+                      {profileData?.bio}
+                    </div>
                   </div>
                 </div>
                 <div className="w-[68px] relative text-xs uppercase text-steelblue-200 text-center inline-block min-w-[68px] z-[1]">
@@ -177,8 +253,13 @@ const ProfilePage = () => {
                 <h3 className="items-start m-0 relative text-inherit font-normal font-inherit inline-block min-w-[69px] z-[1]">
                   Projects
                 </h3>
+
                 <div className="items-start relative text-dimgray inline-block min-w-[56px] z-[1]">
                   3 of 12
+
+                <div className="relative text-dimgray inline-block min-w-[56px] z-[1]">
+                  3 of 5
+
                 </div>
               </div>
               <div className="flex justify-between gap-9">
@@ -187,21 +268,21 @@ const ProfilePage = () => {
                     className="w-full h-full object-contain rounded-none"
                     loading="lazy"
                     alt=""
-                    src="/ext@2x.png"
+                    src="/1.png"
                   />
                 </div>
                 <div className="flex-none  w-56 h-56">
                   <img
                     className="w-full h-full object-contain rounded-none"
                     alt=""
-                    src="/ext-1@2x.png"
+                    src="/2.png"
                   />
                 </div>
                 <div className="flex-none w-56 h-56">
                   <img
                     className="w-full h-full object-contain rounded-none"
                     alt=""
-                    src="/ext-2@2x.png"
+                    src="/3.png"
                   />
                 </div>
               </div>
@@ -226,43 +307,36 @@ const ProfilePage = () => {
             </div>
           </div>
         </section>
+
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-5 pr-[350px] pl-5 box-border max-w-full text-left text-lg font-adamina lg:box-border mq450:pr-5 mq450:box-border mq750:pr-[87px] mq750:box-border">
           <div className="w-[850px] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] pb-5 pr-4 pl-[30px] box-border gap-[15px] max-w-full">
            <EditSkill/> 
+
+        <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-5 pr-[350px] pl-5 max-w-full text-left text-lg font-adamina  mq450:pr-5  mq750:pr-[87px] ">
+          <div className="w-[850px] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] pb-5 pr-4 pl-[30px] gap-[15px] max-w-full">
+
             <div className="w-[850px] h-[220px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
             <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full">
-              <h3 className="m-0 relative text-inherit font-normal font-inherit z-[1]">{`Skills & Endoresments`}</h3>
-              <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-3.5 box-border max-w-full text-sm">
-                <div className="flex-1 flex flex-row flex-wrap items-start justify-start gap-[17px] max-w-full">
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[14px] min-w-[340px] max-w-full mq1050:min-w-full">
-                    <div className="self-stretch flex flex-row items-start justify-start gap-[20px] mq750:flex-wrap">
-                      <div className="flex-1 rounded-md bg-white box-border flex flex-row items-start justify-start pt-[7.9px] px-5 pb-[25.3px] min-w-[162px] whitespace-nowrap z-[1] border-[1px] border-solid border-whitesmoke-200">
-                        <div className="h-[45px] w-[250px] relative rounded-md bg-white box-border hidden border-[1px] border-solid border-whitesmoke-200" />
-                        <div className="relative leading-[11.8px] z-[1]">
-                          User experience (UX)
-                        </div>
+              <h3 className="m-0 relative text-inherit font-normal font-inherit z-[1]">
+                Skills & Endoresments
+              </h3>
+              <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-3.5 max-w-full text-sm">
+                <div className="flex-1 flex flex-col items-start justify-start gap-[14px] min-w-[340px] max-w-full mq1050:min-w-full">
+                  <div className="self-stretch rounded-md bg-white  flex flex-row items-start justify-start pt-[7px] pb-3.5 max-w-full z-[1]  ">
+                    {profileData?.skills.map((skill, index) => (
+                      <div
+                        key={index}
+                        className="w-full py-2 px-4 my-2 rounded-md bg-white border-[1px] border-solid border-whitesmoke-200"
+                      >
+                        {skill.title}
                       </div>
-                      <div className="flex-1 rounded-md bg-white box-border flex flex-row items-start justify-start pt-[7.9px] px-5 pb-[25.3px] min-w-[162px] whitespace-nowrap z-[1] border-[1px] border-solid border-whitesmoke-200">
-                        <div className="h-[45px] w-[250px] relative rounded-md bg-white box-border hidden border-[1px] border-solid border-whitesmoke-200" />
-                        <div className="relative leading-[11.8px] inline-block min-w-[122px] z-[1]">
-                          User interface (UI)
-                        </div>
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-md bg-white box-border flex flex-row items-start justify-start pt-[7px] px-[17px] pb-3.5 max-w-full z-[1] border-[1px] border-solid border-whitesmoke-200">
-                      <div className="h-[45px] w-[523px] relative rounded-md bg-white box-border hidden max-w-full border-[1px] border-solid border-whitesmoke-200" />
-                      <input
-                        className="w-[121px] [border:none] [outline:none] font-adamina text-sm bg-[transparent] h-6 relative leading-[150%]  text-left inline-block p-0 z-[1]"
-                        placeholder="add other skills"
-                        type="text"
-                      />
-                    </div>
+                    ))}
                   </div>
-                  <div className="w-[250px] rounded-md bg-white box-border flex flex-row items-start justify-start pt-[7.9px] px-5 pb-[25.3px] z-[1] border-[1px] border-solid border-whitesmoke-200">
-                    <div className="h-[45px] w-[250px] relative rounded-md bg-white box-border hidden border-[1px] border-solid border-whitesmoke-200" />
+                  <div className="self-stretch rounded-md bg-white  flex flex-row items-start justify-start pt-[7px] px-[17px] pb-3.5 max-w-full z-[1] ">
+                    <div className="h-[45px] w-[523px] relative rounded-md bg-white  hidden max-w-full " />
                     <input
-                      className="w-[97px] [border:none] [outline:none] font-adamina text-sm bg-[transparent] h-[11.8px] relative leading-[150%]  text-left inline-block p-0 z-[1]"
-                      placeholder="Brand identity"
+                      className="w-[121px] [border:none] [outline:none] font-adamina text-sm bg-[transparent] h-6 relative leading-[150%]  text-left inline-block p-0 z-[1]"
+                      placeholder="add other skills"
                       type="text"
                     />
                   </div>
@@ -276,6 +350,7 @@ const ProfilePage = () => {
             </div>
           </div>
         </section>
+
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-5 pr-[350px] pl-5 box-border max-w-full text-left text-lg font-adamina  lg:box-border mq450:pr-5 mq450:box-border mq750:pr-[87px] mq750:box-border">
           <div className="w-[850px] flex flex-col items-start justify-start min-h-[600px] max-w-full mq1050:min-h-[auto]">
             <div className="self-stretch flex flex-col items-start justify-start gap-[20px] max-w-full">
@@ -381,31 +456,38 @@ const ProfilePage = () => {
                   Education
                 </h3>
                 <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full text-sm">
-                  <div className="flex flex-row items-start justify-start gap-[16px] max-w-full mq750:flex-wrap">
-                    <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
-                      <img
-                        className="w-[54px] h-[54px] relative object-cover z-[1]"
-                        alt=""
-                        src="/group-3@2x.png"
-                      />
-                    </div>
-                    <div className="flex flex-col items-start justify-start gap-[5px] max-w-full">
-                      <div className="flex flex-col items-start justify-start gap-[10px] max-w-full">
-                        <div className="relative leading-[150%] inline-block max-w-full z-[1]">
-                          Addis Ababa Science and Technology University
+                  {profileData?.educations.map((education, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-row items-start justify-start gap-[16px] max-w-full mq750:flex-wrap"
+                    >
+                      <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
+                        <img
+                          className="w-[54px] h-[54px] relative object-cover z-[1]"
+                          alt=""
+                          src="/group-3@2x.png"
+                        />
+                      </div>
+                      <div className="flex flex-col items-start justify-start gap-[5px] max-w-full">
+                        <div className="flex flex-col items-start justify-start gap-[10px] max-w-full">
+                          <div className="relative leading-[150%] inline-block max-w-full z-[1]">
+                            {education.university_name}
+                          </div>
+                          <div className="relative text-3xs leading-[150%] z-[1]">
+                            Bachelor's degree Field Of Study:{" "}
+                            {education.department}
+                          </div>
                         </div>
-                        <div className="relative text-3xs leading-[150%] z-[1]">
-                          Bachelor's degree Field Of StudyComputer and
-                          Information Systems Security/Information Assurance
+                        <div className="flex flex-row items-start justify-start py-0 px-px text-3xs">
+                          <div className="relative leading-[150%] inline-block min-w-[59px] z-[1]">
+                            {" "}
+                            Acadamic year-
+                            {education.year}
+                          </div>
                         </div>
                       </div>
-                      <div className="flex flex-row items-start justify-start py-0 px-px text-3xs">
-                        <div className="relative leading-[150%] inline-block min-w-[59px] z-[1]">
-                          2013 — 2017
-                        </div>
-                      </div>
                     </div>
-                  </div>
+                  ))}
                   <div className="self-stretch flex flex-row items-start justify-end max-w-full text-3xs">
                     <div className="w-[719px] relative leading-[150%] inline-block shrink-0 max-w-full z-[1]">
                       Additional English classes and UX profile courses​.
@@ -416,12 +498,17 @@ const ProfilePage = () => {
             </div>
           </div>
         </section>
-        <div className="h-14 w-14 relative z-[6] flex items-center justify-center">
+        <div className="fixed margin-top-30 right-0 mb-4 mr-0 w-full h-">
+          {isChatVisible && <Chat />}
+        </div>
+
+        <div className="h-14 w-14   fixed right-0 top-[500px]  flex items-center justify-center ">
           <img
-            className="h-full w-full z-[6] object-contain absolute left-[-23px] top-[3px] [transform:scale(2.632)]"
+            className="h-full chat cursor-pointer w-full z-[6] object-contain absolute left-[-23px] top-[3px] [transform:scale(2.632)]"
             loading="lazy"
             alt=""
             src="/chat@2x.png"
+            onClick={toggleChatVisibility}
           />
         </div>
       </div>

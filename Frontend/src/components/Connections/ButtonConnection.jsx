@@ -35,7 +35,7 @@ function ButtonConnection() {
       <NavLink to="/SentConnection">
         <button
           style={{
-            backgroundColor: "grey",
+            backgroundColor: sentButtonColor,
             color: sentButtonColor === "blue" ? "white" : "black",
           }}
           onClick={(e) => handleSentButtonClick(e)}

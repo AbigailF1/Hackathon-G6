@@ -1,0 +1,538 @@
+[33mcommit 22d352614bc61c49f12f7ba06a158992fa7771f8[m[33m ([m[1;36mHEAD -> [m[1;32mfinal-hackaton[m[33m)[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Tue Apr 9 21:13:48 2024 +0300
+
+     remove api key
+
+[33mcommit 9e4d12128fad94b3898b3581c10fe6e9ba900785[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Tue Apr 9 21:11:57 2024 +0300
+
+    the authorization and authntication plus fetching data from the database for chatbot post solved
+
+[33mcommit c3ff31b7284f4242428ce7b1ffb109b2d2bcdfe7[m[33m ([m[1;31morigin/final-hackaton[m[33m)[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Tue Apr 9 13:20:41 2024 +0300
+
+    try to connect backend with fronted and signup and login connected
+
+[33mcommit d1278bbda6f217cd2aeffcc3e17c4fec29177e73[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: c5d33f0 a13722e
+Author: Gebrehiwot Tesfaye <113621373+Gebrehiwot-Tesfaye@users.noreply.github.com>
+Date:   Mon Apr 8 11:16:35 2024 +0300
+
+    Merge pull request #11 from AbigailF1/tag-merge
+    
+    Tag merge
+
+[33mcommit c5d33f0d0799691240dbbd362f87622eae765f34[m
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Mon Apr 8 00:24:43 2024 +0300
+
+    Clearly stated import
+
+[33mcommit 3db25403a19e5ef9b39e020aee2fc236d2edf631[m
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Mon Apr 8 00:11:50 2024 +0300
+
+    Duplicated import
+
+[33mcommit a13722ec7c5dc25b0c4a011dae2f91b126eabf06[m[33m ([m[1;31morigin/tag-merge[m[33m)[m
+Author: ZahirSeid <zahirseid1@gmail.com>
+Date:   Sun Apr 7 21:57:56 2024 +0300
+
+    logout update
+
+[33mcommit b09aa5abb37102577b011e2a2aba9be7792f1950[m
+Merge: a1bff1b 548ce6e
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Sun Apr 7 21:33:27 2024 +0300
+
+    Merge branch 'main' of https://github.com/AbigailF1/Hackathon-G6
+
+[33mcommit a1bff1b5b5ad2a3a325aad7c662ac08d00074e4c[m
+Merge: b19439b 5d5d7a9
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Sun Apr 7 21:29:37 2024 +0300
+
+    Merge branch 'main' of https://github.com/AbigailF1/Hackathon-G6
+
+[33mcommit 548ce6eb280aed3fee46e0c00cbd698881790c03[m
+Merge: 5d5d7a9 20cd145
+Author: Yeabebe <128390148+Yeabebe@users.noreply.github.com>
+Date:   Sun Apr 7 21:25:50 2024 +0300
+
+    Merge pull request #8 from AbigailF1/Profile-page
+    
+    Profile page
+
+[33mcommit 20cd145e21471e3881d366b1e4c9d6540bfc27fb[m
+Merge: 545757e 5d5d7a9
+Author: Yeabebe <128390148+Yeabebe@users.noreply.github.com>
+Date:   Sun Apr 7 21:23:50 2024 +0300
+
+    Merge branch 'main' into Profile-page
+
+[33mcommit b19439b59ad210212f082432f43e54b331674e9f[m
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Sun Apr 7 21:03:21 2024 +0300
+
+    react icon installed
+
+[33mcommit 5d5d7a972fd7ca970c0861ccd5f8432a5d38be07[m
+Merge: 9171389 ab598cf
+Author: Solomon Tadesse <122595521+solabest@users.noreply.github.com>
+Date:   Sun Apr 7 20:56:32 2024 +0300
+
+    Merge pull request #9 from AbigailF1/CollaborationAndNotification
+    
+    Collaboration and notification
+
+[33mcommit ab598cf715b0b48de8c3e2c7b86666a2e21cff9b[m[33m ([m[1;31morigin/CollaborationAndNotification[m[33m)[m
+Merge: 01a9f22 9171389
+Author: Solomon Tadesse <122595521+solabest@users.noreply.github.com>
+Date:   Sun Apr 7 20:56:08 2024 +0300
+
+    Merge branch 'main' into CollaborationAndNotification
+
+[33mcommit 91713892403bab5b1081a85ce7602d3e092deb79[m
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Sun Apr 7 20:31:36 2024 +0300
+
+    Update ProfileSide.jsx
+
+[33mcommit 066c3dcb9843337068268bef5d5b90db3082080f[m
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Sun Apr 7 20:27:57 2024 +0300
+
+    margin
+
+[33mcommit 545757ed2f65e2163cb766a7fc483ff2aa85f51c[m
+Merge: 2b12917 f3ce07f
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Sun Apr 7 18:53:57 2024 +0300
+
+    Merge branch 'Profile-page' of https://github.com/AbigailF1/Hackathon-G6 into Profile-page
+
+[33mcommit 2b12917262f53b5ec2c4e8274a769b57a22fbefc[m
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Sun Apr 7 18:50:24 2024 +0300
+
+    Search Bar
+
+[33mcommit 4ad8f3e4a0a53612d07e0904b6c008679faa563b[m
+Author: ZahirSeid <zahirseid1@gmail.com>
+Date:   Sun Apr 7 17:27:23 2024 +0300
+
+    Everything fixed [authentication , session , verification]
+
+[33mcommit efa3b2a1c3e35f8f40974a0aecd530a8e2720f05[m
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Sun Apr 7 15:54:08 2024 +0300
+
+    test
+
+[33mcommit 8168b4f9bfffda7e4c23a7e9e35e66cd55811b2c[m
+Merge: 049eaef 97272d5
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Sun Apr 7 15:42:04 2024 +0300
+
+    Merge branch 'main' of https://github.com/AbigailF1/Hackathon-G6
+
+[33mcommit 97272d5dbe4f48ea6af353bfee9cd1cf7f39c185[m
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Sun Apr 7 15:35:29 2024 +0300
+
+    Update README.md
+
+[33mcommit 049eaef452933cc27ac608e03fdb27c8546d6801[m
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Sun Apr 7 15:33:24 2024 +0300
+
+    minor changes
+
+[33mcommit 01a9f228e2c1de0eab48397bc62a92bc210eb1eb[m
+Author: solabest <soltad65@gmail.com>
+Date:   Sat Apr 6 16:04:05 2024 -0700
+
+    some update
+
+[33mcommit e95c4a62189c75106c6f10ca9d86a31627649968[m
+Author: solabest <soltad65@gmail.com>
+Date:   Sat Apr 6 16:02:51 2024 -0700
+
+    make notification page responsive
+
+[33mcommit 8ded9196a315cf5e828b0f3cfc60bc6d3a4d595a[m
+Author: solabest <soltad65@gmail.com>
+Date:   Sat Apr 6 14:30:55 2024 -0700
+
+     refactor pages code
+
+[33mcommit 07cd41f0d5a947ea66c83fea485749caad0f51fc[m
+Author: solabest <soltad65@gmail.com>
+Date:   Sat Apr 6 14:11:19 2024 -0700
+
+    add some style on sentConnection page
+
+[33mcommit 0329a92cd6c638531567fbb5f643b2cc4fe2d996[m
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Sat Apr 6 20:48:32 2024 +0300
+
+    Update README.md
+
+[33mcommit d6878799ef67b7200ffbf6c3de5e68e47eb3844b[m
+Merge: 206a10a 3cedb65
+Author: yohannaaaa <138145209+yohannaaaa@users.noreply.github.com>
+Date:   Sat Apr 6 19:05:34 2024 +0300
+
+    Merge pull request #7 from AbigailF1/Landing
+    
+    merge Landing Page
+
+[33mcommit 3cedb65269d09bbf9f626faef367ef6b815b05dc[m[33m ([m[1;31morigin/Landing[m[33m)[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Sat Apr 6 19:04:48 2024 +0300
+
+    landing
+
+[33mcommit cb2815fccc9949187418f1d4168b3e6461557df8[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Sat Apr 6 19:02:38 2024 +0300
+
+    landing
+
+[33mcommit abee72b645d2b8dbd1040dd09af8ac7709ba8219[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Sat Apr 6 18:57:31 2024 +0300
+
+    landing
+
+[33mcommit 95ca4e9e2c5317335a1746d56a4574eb22bbf043[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Sat Apr 6 18:56:25 2024 +0300
+
+    landing
+
+[33mcommit 7691dd4cc18cdf4c466062d44e6acbec7e44e3bf[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Sat Apr 6 18:55:07 2024 +0300
+
+    landing
+
+[33mcommit 206a10afef634ecdc9762336239a62de7dd6a119[m
+Author: yohannaaaa <138145209+yohannaaaa@users.noreply.github.com>
+Date:   Sat Apr 6 18:53:35 2024 +0300
+
+    Update App.jsx
+
+[33mcommit feafcbb488fbf02dcee0a63b765b5ed2898df6be[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Sat Apr 6 18:50:24 2024 +0300
+
+    landing
+
+[33mcommit 4e694dd2c52890ac5c9331cd895ae1d6a5a40ac2[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Sat Apr 6 18:23:36 2024 +0300
+
+    Landing
+
+[33mcommit 9540b435f3481bab13ea4873872f042b35ca69d4[m
+Author: ZahirSeid <zahirseid1@gmail.com>
+Date:   Sat Apr 6 17:51:51 2024 +0300
+
+    login half fix
+
+[33mcommit 6e9e87a388a57632c5e4d9967512d95a5020c81c[m
+Author: solabest <soltad65@gmail.com>
+Date:   Sat Apr 6 05:38:02 2024 -0700
+
+    make sentPage responsive
+
+[33mcommit cc34edfae0e4a1d0c0ea4633abba4079da2b549d[m
+Author: solabest <soltad65@gmail.com>
+Date:   Sat Apr 6 04:30:09 2024 -0700
+
+    make recent connection  page responsive
+
+[33mcommit 3ef4b6fe2c9c2c0969c2884049e09f4243e1c45e[m
+Author: solabest <soltad65@gmail.com>
+Date:   Sat Apr 6 03:55:54 2024 -0700
+
+    make responsive new connection page
+
+[33mcommit cb64af9fab0a2a5330676da08e2206e88714ce87[m
+Author: ZahirSeid <zahirseid1@gmail.com>
+Date:   Sat Apr 6 12:08:56 2024 +0300
+
+    model added
+
+[33mcommit 5ad9c3af97b69b7eec5ebbcc525ad1ef79293221[m
+Author: ZahirSeid <zahirseid1@gmail.com>
+Date:   Sat Apr 6 12:06:13 2024 +0300
+
+    login and account creation fix
+
+[33mcommit 2dd40d57a9005191b4021a7b9fbd0b264927adfe[m
+Author: solabest <soltad65@gmail.com>
+Date:   Fri Apr 5 14:46:00 2024 -0700
+
+    add toogle effect on sent and recived button
+
+[33mcommit 654ac574f30796ebe36233b273c93977d67bed54[m
+Merge: 8ab722f f3ce07f
+Author: Yeabebe <128390148+Yeabebe@users.noreply.github.com>
+Date:   Fri Apr 5 23:48:16 2024 +0300
+
+    Merge pull request #6 from AbigailF1/Profile-page
+    
+    Profile page resolve conflict and merge to main
+
+[33mcommit f3ce07f60e9ff17d94307c2869e20dc100393993[m
+Merge: 7122efd 8ab722f
+Author: Yeabebe <128390148+Yeabebe@users.noreply.github.com>
+Date:   Fri Apr 5 23:47:36 2024 +0300
+
+    Merge branch 'main' into Profile-page
+
+[33mcommit 7122efd6dee6049f0be13ccc674f23d91080f34b[m
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Fri Apr 5 23:40:34 2024 +0300
+
+    Profile page
+
+[33mcommit 75b564e559b72bc1d816f6c98a14d6ddc0eb1c33[m
+Author: solabest <soltad65@gmail.com>
+Date:   Fri Apr 5 13:39:48 2024 -0700
+
+    some change on notification sidebar
+
+[33mcommit d97d41b9cd93a3fb0ce6d92fc944f55cf971c794[m
+Author: solabest <soltad65@gmail.com>
+Date:   Fri Apr 5 13:33:39 2024 -0700
+
+    Style avater image of Notification page
+
+[33mcommit 8ab722f5efad195cd6a530e863dd27593f39fddc[m
+Merge: 6920b61 56ce1be
+Author: yohannaaaa <138145209+yohannaaaa@users.noreply.github.com>
+Date:   Fri Apr 5 21:46:09 2024 +0300
+
+    Merge pull request #5 from AbigailF1/Login-React
+    
+    Merge
+
+[33mcommit 56ce1be4cd4860ee5513426d441140c9bb2c35b0[m[33m ([m[1;31morigin/Login-React[m[33m)[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Fri Apr 5 21:45:10 2024 +0300
+
+    updated
+
+[33mcommit 6920b618c5531843ef13b29eacd674499e6d9a33[m
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Fri Apr 5 21:01:59 2024 +0300
+
+    Minor changes to comments
+
+[33mcommit 623f1e7093f1964f74c8cb31122d21b7f1aa077e[m
+Author: Yeabseera Abebe <yeabebe41@gmail.com>
+Date:   Fri Apr 5 20:33:15 2024 +0300
+
+    path add
+
+[33mcommit 3377209f7e85de5253c4ea69ecf04081b6945f27[m
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Fri Apr 5 15:05:59 2024 +0300
+
+    Some header and feed changes
+
+[33mcommit 6ff2636f9faa193ad41e83d6e060dac639d5e375[m
+Author: solabest <soltad65@gmail.com>
+Date:   Fri Apr 5 03:23:03 2024 -0700
+
+    some change on route and import
+
+[33mcommit f2dd0fe711f49983a0d3c185538a6c8b70f0156d[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 13:06:17 2024 +0300
+
+    edit requirements.txt
+
+[33mcommit 4ffc9e4fd65a310c76d10963718e7a6d552e5143[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 13:05:28 2024 +0300
+
+    edit requirements.txt
+
+[33mcommit 2b7887bf089645f5b9fe072ab11a467daccfb46b[m
+Merge: accc2ff c534545
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 13:02:26 2024 +0300
+
+    merging the  four apps
+
+[33mcommit accc2ff52bbc34d26f5e45754256e17d74416f93[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 12:36:42 2024 +0300
+
+    user and chat plus chatbot merged
+
+[33mcommit c5345458112191af4eca56b56300de95188380b3[m[33m ([m[1;31morigin/tag-app[m[33m)[m
+Author: Abigail F.Hassen <bigidovi@gmail.com>
+Date:   Fri Apr 5 12:13:56 2024 +0300
+
+    edit requirements.txt file
+
+[33mcommit 1aa302e9a24b15e7afcd0096b5d476379a12d57b[m
+Author: Abigail F.Hassen <bigidovi@gmail.com>
+Date:   Fri Apr 5 12:10:56 2024 +0300
+
+    edit tag-app
+
+[33mcommit a43b4989b6f927f1d4f3c595a160dd6d4ce719da[m
+Merge: 9614702 3b63f0d
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 11:58:14 2024 +0300
+
+    try to merge with user
+
+[33mcommit 3b63f0d9a779a969f5c30139b6e41aeb637cffc8[m
+Merge: 96eeeb7 b8d7c94
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 11:44:42 2024 +0300
+
+    try terge
+
+[33mcommit 66577ae60e559251978cd4f50ca77b5d56dc2332[m
+Author: Abigail F.Hassen <bigidovi@gmail.com>
+Date:   Fri Apr 5 11:32:28 2024 +0300
+
+    edits to the tag app
+
+[33mcommit 2d16884a5992aeb69ba39aacc45d06c561e4bd17[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Fri Apr 5 10:50:37 2024 +0300
+
+    validation
+
+[33mcommit fc066215c5abc1843b92f542e07d6ff0bea5292d[m
+Merge: 3b72431 9c67044
+Author: yohannaaaa <138145209+yohannaaaa@users.noreply.github.com>
+Date:   Fri Apr 5 10:43:42 2024 +0300
+
+    Merge pull request #4 from AbigailF1/Login-React
+    
+    Validation
+
+[33mcommit 9c670447c865672fa5435d4ac0807e6efe59fead[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Fri Apr 5 10:43:06 2024 +0300
+
+    Validation
+
+[33mcommit 9614702803e048976314bac22781472225ab85db[m[33m ([m[1;31morigin/django-chat[m[33m)[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 10:28:36 2024 +0300
+
+    third commit
+
+[33mcommit cf14357971fe3e1971557d617255d1f5b50491b5[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 09:39:33 2024 +0300
+
+    the chatbot added
+
+[33mcommit 48b4cd00be6899a314da112d00c1071843898317[m
+Author: gebby123 <tefayegebrehiwot123@gmail.com>
+Date:   Fri Apr 5 09:37:55 2024 +0300
+
+    the chatbot part is added
+
+[33mcommit 3b724319225633f87b2ee1d50f37aa54f81f1e96[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Fri Apr 5 07:49:54 2024 +0300
+
+    change to sign up
+
+[33mcommit 5bec10f719342d5e8a6845231f2c1a816764393c[m
+Merge: ac9356e ff6800e
+Author: yohannaaaa <138145209+yohannaaaa@users.noreply.github.com>
+Date:   Fri Apr 5 07:47:08 2024 +0300
+
+    Merge pull request #3 from AbigailF1/Chat
+    
+    chat + signup/signin + routes without header
+
+[33mcommit ff6800e3571b02d2be582a3f77c6c14156cc0d5f[m[33m ([m[1;31morigin/Chat[m[33m)[m
+Author: yohannaaaa <yohannamerawi@gmail.com>
+Date:   Fri Apr 5 07:46:08 2024 +0300
+
+    chat + signup/signin + routes without header
+
+[33mcommit b64f8ebeaa6c3a7238ed38a971d650ca28c61fb5[m
+Author: Abigail F.Hassen <bigidovi@gmail.com>
+Date:   Fri Apr 5 01:06:18 2024 +0300
+
+    edit some models and views in the Feed app
+
+[33mcommit b8d7c940fef2eb6872e07904bc34973aedc40f93[m
+Author: ZahirSeid <zahirseid1@gmail.com>
+Date:   Thu Apr 4 19:12:56 2024 +0300
+
+    email verification fix
+
+[33mcommit b2f887ab6d0119c214372b78d3a71f276a7d44e0[m
+Author: Abigail F.Hassen <bigidovi@gmail.com>
+Date:   Thu Apr 4 18:36:16 2024 +0300
+
+    edit some things on the tag app
+
+[33mcommit 4636cfea34ae9d0c063532389bdeb1fae4433f0e[m
+Author: Abigail F.Hassen <bigidovi@gmail.com>
+Date:   Thu Apr 4 18:26:41 2024 +0300
+
+    add tag app model and view
+
+[33mcommit ac9356eab42763664afdbafe48991bdb15d31f4b[m
+Author: Solomon Tadesse <122595521+solabest@users.noreply.github.com>
+Date:   Thu Apr 4 06:25:55 2024 -0700
+
+    removing duplicated Route for Notification
+
+[33mcommit 01c2c9f05e47f733547beb8466fe0daad60d4b7a[m
+Author: Solomon Tadesse <122595521+solabest@users.noreply.github.com>
+Date:   Thu Apr 4 06:23:47 2024 -0700
+
+    remove duplicated Notification page import
+
+[33mcommit 7224f3206f2ba41d23b18b2e57a8f05eb3e7264b[m
+Merge: 8ed117d 4c3a009
+Author: Solomon Tadesse <122595521+solabest@users.noreply.github.com>
+Date:   Thu Apr 4 15:42:37 2024 +0300
+
+    Merge pull request #2 from AbigailF1/CollaborationAndNotification
+    
+    Collaboration and notification are merged with main
+
+[33mcommit 4c3a0095dd6bba1b69e474388c348118564f2cf6[m
+Merge: 833949a 8ed117d
+Author: Solomon Tadesse <122595521+solabest@users.noreply.github.com>
+Date:   Thu Apr 4 15:41:52 2024 +0300
+
+    Merge branch 'main' into CollaborationAndNotification
+
+[33mcommit 9a46648d666f1720cc64b712cdbd7525c53801ac[m[33m ([m[1;31morigin/Abigail-feed[m[33m)[m
+Author: Abigail F.Hassen <bigidovi@gmail.com>
+Date:   Wed Apr 3 16:46:44 2024 +0300
+
+    debug some functionalities in the Feed app
+
+[33mcommit 8ed117dac066cdb0cce1179f59643b2dd07b650f[m
+Merge: 19be859 1f55783
+Author: Liya Tsegaye <124361861+Liya-st@users.noreply.github.com>
+Date:   Wed Apr 3 15:56:06 2024 +0300
+
+    Merge pull request #1 from AbigailF1/Feed
+    
+    feed
