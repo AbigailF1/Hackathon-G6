@@ -1,6 +1,12 @@
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header (2)";
-import ProfileHeader from "../components/ProfileHeader";
+import ProfileHeader from "../components/Profile/ProfileHeader";
+import { FiEdit } from "react-icons/fi";
+import { Button, Modal } from "antd";
+import { useState } from "react";
+import Edit from "../components/Profile/EditProjects"
+import EditAbout from "../components/Profile/EditAbout"
+import EditSkill from "../components/Profile/EditSkill"
 
 const ProfilePage = () => {
   return (
@@ -10,9 +16,6 @@ const ProfilePage = () => {
           <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] bg-snow w-[850px]" />
           <div className="absolute h-full top-[0px] bottom-[0px] left-[890px] bg-snow w-[290px]" />
         </div>
-
-        
-
 
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-[21px] pr-[26px] pl-5 box-border max-w-full text-left text-lg  font-adamina">
           <div className="w-[1186px] flex flex-row flex-wrap items-start justify-start gap-[40px] max-w-full mq750:gap-[20px]">
@@ -144,15 +147,9 @@ const ProfilePage = () => {
                 <div className="self-stretch flex-1 relative [background:linear-gradient(180deg,_rgba(241,_244,_248,_0.8),_rgba(241,_244,_248,_0))] z-[2] mt-[-1px]" />
               </div>
               <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-end justify-start py-[30px] px-7 box-border gap-[20px] max-w-full mt-[-20px]">
-                <button className="cursor-pointer [border:none] pt-[9.9px] px-[9.7px] pb-[7px] bg-gray-400 flex-1 rounded shadow-[0px_10px_30px_rgba(113,_123,_133,_0.05)] flex flex-row items-end justify-start gap-[6.3px] z-[2]">
-                    <div className="h-9 w-[132px] relative rounded bg-gray-400 shadow-[0px_10px_30px_rgba(113,_123,_133,_0.05)] hidden" />
-                    
-                    <div className="flex-1 flex flex-col items-start justify-start pt-[3.1px] px-0 pb-0">
-                      <div className="self-stretch relative text-xs uppercase font-adamina  text-center inline-block min-w-[90px] z-[1]">
-                        Edit profile
-                      </div>
-                    </div>
-                  </button>
+                
+                <EditAbout/>
+
                 <div className="w-[850px] h-[170px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
                 <div className="self-stretch flex flex-row items-start justify-start py-0 px-0.5 box-border max-w-full">
                   <div className="flex-1 flex flex-col items-start justify-start gap-[7px] max-w-full">
@@ -169,15 +166,18 @@ const ProfilePage = () => {
             </div>
           </div>
         </section>
-        <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-5 pr-[350px] pl-5 box-border max-w-full text-left text-lg font-adamina  lg:box-border mq450:pr-5 mq450:box-border mq750:pr-[87px] mq750:box-border">
+        <section className="self-stretch flex flex-row items-end justify-center pt-0 pb-5 pr-[350px] pl-5 box-border max-w-full text-left text-lg font-adamina  lg:box-border mq450:pr-5 mq450:box-border mq750:pr-[87px] mq750:box-border">
           <div className="w-[850px] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] px-[30px] pb-[26px] box-border gap-[15px] max-w-full mq450:pt-5 mq450:pb-5 mq450:box-border">
             <div className="w-[850px] h-[355px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
             <div className="self-stretch flex flex-col items-start justify-start gap-[17px]">
-              <div className="flex flex-row items-start justify-start gap-[21px]">
-                <h3 className="m-0 relative text-inherit font-normal font-inherit inline-block min-w-[69px] z-[1]">
+
+              <Edit />
+
+              <div className="flex flex-row  justify-start gap-[21px]">
+                <h3 className="items-start m-0 relative text-inherit font-normal font-inherit inline-block min-w-[69px] z-[1]">
                   Projects
                 </h3>
-                <div className="relative text-dimgray inline-block min-w-[56px] z-[1]">
+                <div className="items-start relative text-dimgray inline-block min-w-[56px] z-[1]">
                   3 of 12
                 </div>
               </div>
@@ -220,7 +220,6 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
-              
             </div>
             <div className="relative text-xs uppercase text-steelblue-200 inline-block min-w-[93px] z-[1]">
               Show all (12)
@@ -229,6 +228,7 @@ const ProfilePage = () => {
         </section>
         <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-5 pr-[350px] pl-5 box-border max-w-full text-left text-lg font-adamina lg:box-border mq450:pr-5 mq450:box-border mq750:pr-[87px] mq750:box-border">
           <div className="w-[850px] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] pb-5 pr-4 pl-[30px] box-border gap-[15px] max-w-full">
+           <EditSkill/> 
             <div className="w-[850px] h-[220px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
             <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full">
               <h3 className="m-0 relative text-inherit font-normal font-inherit z-[1]">{`Skills & Endoresments`}</h3>
