@@ -6,6 +6,7 @@ export default function ProfileSide() {
   const person ={
     name : 'John',
     image : "../src/assets/img.jpg",
+    profession: 'Web Developer',
     tags : [
       "tag 1", "tag 2", "tag 3", "tag 4", "tag 5", "tag 6"
     ],
@@ -15,8 +16,8 @@ export default function ProfileSide() {
    console.log(tag)
   return (
     
-    <section className='mt-14 flex flex-col gap-5 mr-2 md:mr-8  invisible md:visible'>
-      <Profile />
+    <section className='mt-14 flex flex-col gap-5 mr-2 md:mr-20  invisible md:visible'>
+      <Profile person={person} />
 
   <div className="w-[320px] ml-4 shadow-sm  flex flex-col gap-4 justify-center">  
      <h4 className='text-center text-black font-bold'>My Groups</h4>  
