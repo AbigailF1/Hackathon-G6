@@ -10,6 +10,10 @@ from User.serializers import UserSerializer
 
 # related to the feed itself
 
+@api_view(['GET'])
+def welcome(request):
+    return Response({'message': 'Welcome to the Academate Feed API!'})
+
 @api_view(['POST'])
 def create_post_feed(request):
     serializer = FeedSerializer(data=request.data)

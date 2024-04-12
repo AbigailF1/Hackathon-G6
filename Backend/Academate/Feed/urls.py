@@ -14,6 +14,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('welcome/', views.welcome, name='welcome'),
     # Feed-related URLs
     path('feeds/create/post/', views.create_post_feed, name='create_post_feed'),
     path('feeds/create/idea/', views.create_idea_feed, name='create_idea_feed'),
