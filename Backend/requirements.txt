@@ -20,6 +20,7 @@ django-widget-tweaks==1.4.8  # Consider using the latest version (1.5.0)
 djangorestframework==3.15.1
 djangorestframework-simplejwt==5.3.1
 dnspython==2.6.1
+drf_yasg==1.21.7
 email_validator==2.1.1
 eventlet==0.34.2
 executing==1.2.0
