@@ -1,9 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (
-    UserViewSet, ProfileViewSet, SkillViewSet, EducationViewSet
+from .views import ( ProfileViewSet, SkillViewSet, EducationViewSet
 )
-from .views import RegisterView, UserLogout, SetNewPasswordAPIView, VerifyEmail, LoginAPIView, PasswordTokenCheckAPI, RequestPasswordResetEmail, UserView
+from .views import RegisterView, UserLogout, SetNewPasswordAPIView, VerifyEmail, LoginAPIView, RequestPasswordResetEmail, UserView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -12,10 +11,10 @@ from . import views
 
 # Create a router and register viewsets with it
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'profiles', ProfileViewSet)
-router.register(r'skills', SkillViewSet)
-router.register(r'educations', EducationViewSet)
+router.register(r'profiles', ProfileViewSet, basename='profile')
+router.register(r'skills', SkillViewSet, basename='skill')
+router.register(r'educations', EducationViewSet, basename='education')
+
 
 # Define paths for custom actions
 urlpatterns = [
@@ -28,10 +27,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('request-reset-email/', RequestPasswordResetEmail.as_view(),
          name="request-reset-email"),
-    path('password-reset/<uidb64>/<token>/',
-         PasswordTokenCheckAPI.as_view(), name='password-reset-confirm'),
-    path('password-reset-complete', SetNewPasswordAPIView.as_view(),
-         name='password-reset-complete'), 
+    path('password-reset/', SetNewPasswordAPIView.as_view(), name='password-reset'), 
 
      # Project URLs
     # path('projects/add/', views.add_project, name='add_project'),

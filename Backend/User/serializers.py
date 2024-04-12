@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.exceptions import ValidationError
-from .models import Profile, Skill, Education, User , Project, Experience
+from .models import Profile, Skill, Education, User , PasswordResetCode , Project, Experience
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
@@ -74,8 +74,6 @@ class LoginSerializer(serializers.Serializer):
 class ResetPasswordEmailRequestSerializer(serializers.Serializer):
     email = serializers.EmailField(min_length=2)
 
-    redirect_url = serializers.CharField(max_length=500, required=False)
-
     class Meta:
         fields = ['email']
 
@@ -83,31 +81,6 @@ class ResetPasswordEmailRequestSerializer(serializers.Serializer):
 class SetNewPasswordSerializer(serializers.Serializer):
     password = serializers.CharField(min_length=6, max_length=68, write_only=True)
     code = serializers.CharField(min_length=1, write_only=True)
-
-    class Meta:
-        fields = ['password', 'code']
-
-    def validate(self, attrs):
-        try:
-            password = attrs.get('password')
-            code = attrs.get('code')
-
-            # Get the user associated with the code
-            password_reset_code = PasswordResetCode.objects.get(code=code)
-            user = password_reset_code.user
-
-            # Set the new password
-            user.set_password(password)
-            user.save()
-
-            # Delete the password reset code
-            password_reset_code.delete()
-
-            return attrs
-
-        except PasswordResetCode.DoesNotExist:
-            raise serializers.ValidationError('Invalid code')
-
 
 
 class SkillSerializer(serializers.ModelSerializer):
