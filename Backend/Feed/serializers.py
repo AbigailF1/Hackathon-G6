@@ -12,12 +12,13 @@ class ContentTypeSerializer(serializers.ModelSerializer):
         
 from .models import Feed
 
+
 class FeedSerializer(serializers.ModelSerializer):
      image = serializers.ImageField(
         max_length=None, use_url=True,)
      class Meta:
         model = Feed
-        fields =  '__all__' # Assuming 'feedText' and 'image' are the fields to be included
+        fields =  '__all__' 
 class IdeaFeedSerializer(serializers.ModelSerializer):
     
     class Meta:

@@ -35,5 +35,8 @@ urlpatterns = [
     path('feeds/report/', views.report_post, name='report_post'),
 
     # url for content type
-    path('feeds/content_type/', views.view_content_type, name='get_content_type')
+    path('feeds/content_type/', views.view_content_type, name='get_content_type'),
+
+    #url related to tags
+    path('tags/list/<int:feed_id>/', views.list_tags_for_feed, name='list_tags_for_feed')
 ]
