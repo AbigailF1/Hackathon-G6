@@ -1,0 +1,65 @@
+.goals-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+  
+  .goals-container header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .goals-container h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  .goals-container h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 40px;
+  }
+  
+  .goals-container h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 30px;
+  }
+  
+  .goals-container h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .goals-container p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  
+  .goals-container ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .goals-container li {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .goals-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .goals-container a:hover {
+    text-decoration: underline;
+  }

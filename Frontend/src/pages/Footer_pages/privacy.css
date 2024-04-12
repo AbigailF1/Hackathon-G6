@@ -40,9 +40,9 @@
   ul li span{
     font-weight: bold;
   }
-  a{
+  /* a{
     color:rgba(62, 62, 252, 0.692);
-  }
+  } */
   @media screen and (max-width:700px){
     *{
       font-size: 80%;

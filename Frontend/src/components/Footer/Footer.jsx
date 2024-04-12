@@ -22,7 +22,7 @@ const onSearch = (value, _e, info) => console.log(info?.source, value);
 function Footer() {
   return (
     <div className="footer">
-      <footer className="footer1 grid grid-cols-5 gap-28">
+      <footer className="footer1 grid grid-cols-4 gap-28">
         <div>
           <ul className="acadamatetop">
             <li>
@@ -39,31 +39,30 @@ function Footer() {
         </div>
         <div>
           <ul>
-            <li>Navigation</li>
-            <li>About</li>
+          <Link to={"/About"}>
+          <li>About</li>
+            </Link>
+            <Link to={"/Goals"}>
             <li>Our Goals</li>
+            </Link>
+            <Link to={"/Visions"}>
             <li>Vision</li>
+            </Link>
           </ul>
         </div>
-        {/* <div className="w-48">
-          {" "}
-          {/* Increased width for Talent Solutions */}
-        {/* <ul>
-            <li>Talent Solutions</li>
-            <li>Marketing Solutions</li>
-            <li>Sales Solutions</li>
-            <li>Safety Center</li>
-          </ul>
-        </div> */}
+      
         <div>
           <ul>
+            <Link to={"/Guidelines"}>
             <li>Community Guidelines</li>
+            </Link>
             <div class="legal-info">
               <Link to={"/Privacy"}>
             <li><a target="_blank">Privacy Policy</a></li>
             </Link>
+            <Link to={"/Terms"}>
             <li><a href="terms.html" target="_blank">Terms of Service</a></li>
-          
+            </Link>
         </div>
           </ul>
         </div>
@@ -92,7 +91,7 @@ function Footer() {
         </div>
        
       </footer>
-      <div className=" pl-96">
+      <div className=" pl-96 mt-10">
         <p className=" pl-52">&copy; 2024 Academate. All rights reserved.</p>
         </div>
     </div>
