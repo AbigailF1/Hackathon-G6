@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { Card, Avatar, Text } from '@mantine/core';
 
-export default function Profile() {
+export default function Profile({person}) {
   const navigate = useNavigate();
   
   function handleProfile(){
@@ -15,12 +15,12 @@ export default function Profile() {
         h={120}
         style={{
           backgroundImage:
-            'url("../src/assets/img.jpg")',
+            `url(${person.image})`,
             backgroundSize: "cover",
             objectFit: "fill"        }}
       />
       <Avatar
-        src="../src/assets/react.svg"
+        src={person.image}
         size={80}
         radius={80}
         mx="auto"
@@ -28,10 +28,10 @@ export default function Profile() {
         className='border border-gray-300'
       />
       <Text ta="center" fz="lg" fw={500} mt="sm">
-        Bill Headbanger
+        {person.name}
       </Text>
       <Text ta="center" fz="sm" c="dimmed">
-        Fullstack engineer
+        {person.profession}
       </Text>
       <Text ta="center" fz="sm" mt="md" >
         This is description        This is description

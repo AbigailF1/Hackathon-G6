@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, Space, Modal } from 'antd';
+import { Alert, Space, Modal, Tag } from 'antd';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
@@ -80,6 +80,16 @@ export default function IdeaBox({person}) {
         </div>
         <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
         <div className="p-5" style={{fontFamily :"Adamina"}}>{person.content}</div>
+         <div className="grid grid-cols-4 md:grid-cols-8 gap-2 ml-4">
+{person.colors.map((color, index) => (
+  <Tag key={index} style={{
+    background: '#f0f2f5',
+    borderStyle: 'dashed',
+  }}>
+    {color}
+  </Tag>
+))}
+</div>
         {person.image != null ? (
    <div className='border border-solid border-zinc-100'>
    <img src={person.image} alt="" className='h-[350px] rounded object-cover w-full m-auto' />
