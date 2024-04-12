@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { Modal, Tag } from 'antd';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
@@ -27,7 +27,7 @@ export default function IdeaBox({person}) {
     setReport(event.target.value)
     console.log("com", comment);
     setOpenReport(false);
-   };
+   }
    const [opens, setOpen] = useState(false);
    const showModal = () => {
      setOpen(true);
@@ -38,7 +38,7 @@ export default function IdeaBox({person}) {
     setComment(event.target.value)
     console.log("com", comment);
     setOpen(false);
-   };
+   }
    const handleCancel = () => {
      console.log('Clicked cancel button');
      setOpen(false);
