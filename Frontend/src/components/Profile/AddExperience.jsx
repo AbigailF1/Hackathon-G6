@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { FiEdit } from 'react-icons/fi';
 import { Button, Modal } from 'antd';
 import { Input } from 'antd';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import axios from 'axios';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
-export default function EditExperience() {
+export default function AddExperience() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [position, setPosition] = useState('');
   const [employmentType, setEmploymentType] = useState('');
@@ -57,13 +57,13 @@ export default function EditExperience() {
   };
 
   return (
-    <div>
+    <div className='pl-96 ml-96'>
       <button onClick={handleEditClick}>
-        <FiEdit />
+      <AddCircleOutlineOutlinedIcon />
       </button>
       <Modal
         className="header:text-center"
-        title="Edit Experience"
+        title="Add Experience"
         visible={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}

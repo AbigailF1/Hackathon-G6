@@ -7,8 +7,28 @@ import { useState } from "react";
 import Edit from "../components/Profile/EditProjects"
 import EditAbout from "../components/Profile/EditAbout"
 import EditSkill from "../components/Profile/EditSkill"
-
+import Experience from "./Experience";
+import AddExperience from "../components/Profile/AddExperience";
 const ProfilePage = () => {
+  const profile = [
+    {
+      position: "Freelance UI/UX designer",
+      employmentType: "Self-Employed",
+      duration: "2017-Present",
+      description: "Work with clients and web studios as a freelancer. Work in areas such as eCommerce web projects, creative landing pages, iOs and Android apps, corporate websites, and corporate identity sometimes."
+    },
+    {
+      position: "UI designer",
+      employmentType: "Upwork",
+      duration: "2013-Present",
+      description: "Work with clients and web studios as a freelancer."
+    }
+  ];
+  function addExperience(){
+    return(
+      <AddExperience />
+    )
+  }
   return (
     <>
       <div className="w-full relative main_container overflow-hidden flex flex-col items-end justify-start tracking-[normal]">
@@ -279,7 +299,7 @@ src="/rectangle-3@2x.png"
             <div className="self-stretch flex flex-col items-start justify-start gap-[20px] max-w-full">
               <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] pb-[31px] pr-[29px] pl-[30px] box-border gap-[19px] max-w-full">
                 <div className="w-[850px] h-[345px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
-                <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-1.5 box-border gap-[17px] max-w-full">
+                {/* <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-1.5 box-border gap-[17px] max-w-full">
                   <h3 className="m-0 relative text-inherit font-normal font-inherit inline-block min-w-[98px] z-[1]">
                     Experience
                   </h3>
@@ -327,9 +347,16 @@ src="/rectangle-3@2x.png"
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="self-stretch h-px relative box-border z-[1] border-t-[1px] border-solid border-whitesmoke-200" />
-                <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full text-sm">
+                </div> */}
+    <div>
+      <AddExperience  />
+      <div className="grid gap-4 mt-4">
+        {profile.map((p, index) => (
+          <Experience key={index} profile={p} />
+        ))}
+      </div>
+    </div>
+                {/* <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full text-sm">
                   <div className="flex flex-row items-start justify-start gap-[16px]">
                     <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
                       <img
@@ -371,7 +398,7 @@ src="/rectangle-3@2x.png"
                       research.
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] px-[30px] pb-8 box-border gap-[17px] max-w-full">
                 <div className="w-[850px] h-[195px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
