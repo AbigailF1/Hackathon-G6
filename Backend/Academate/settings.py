@@ -51,7 +51,6 @@ CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
-   
     'channels',
     'User',
     'Chat',
@@ -68,7 +67,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'cloudinary',
-    'cloudinary_storage'  
+    'cloudinary_storage',
 
 ]
 
@@ -129,7 +128,7 @@ DATABASES = {
 # settings.py
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'Hackathon-G6 ',
+    'CLOUD_NAME': 'Hackathon-G6',
     'API_KEY': '288724422912995',
     'API_SECRET': 'vZ89sfLr_G8x41aBrZl3M8fKz3w'
 }
