@@ -30,18 +30,18 @@ urlpatterns = [
     path('password-reset/', SetNewPasswordAPIView.as_view(), name='password-reset'), 
 
      # Project URLs
-    # path('projects/add/', views.add_project, name='add_project'),
-    # path('projects/<int:project_id>/edit/', views.edit_project, name='edit_project'),
-    # path('projects/<int:project_id>/delete/', views.delete_project, name='delete_project'),
-    # path('projects/', views.get_all_projects, name='get_all_projects'),
-    # path('projects/<int:project_id>/', views.get_project_by_id, name='get_project_by_id'),
+     path('projects/add/', views.add_project, name='add_project'),
+     path('projects/<int:project_id>/edit/', views.edit_project, name='edit_project'),
+     path('projects/<int:project_id>/delete/', views.delete_project, name='delete_project'),
+     path('projects/', views.get_all_projects, name='get_all_projects'),
+     path('projects/<int:project_id>/', views.get_project_by_id, name='get_project_by_id'),
 
-    # # Experience URLs
-    # path('experiences/add/', views.add_experience, name='add_experience'),
-    # path('experiences/<int:experience_id>/edit/', views.edit_experience, name='edit_experience'),
-    # path('experiences/<int:experience_id>/delete/', views.delete_experience, name='delete_experience'),
-    # path('experiences/', views.get_all_experiences, name='get_all_experiences'),
-    # path('experiences/<int:experience_id>/', views.get_experience_by_id, name='get_experience_by_id')
+     # Experience URLs
+     path('experiences/add/', views.add_experience, name='add_experience'),
+     path('experiences/<int:experience_id>/edit/', views.edit_experience, name='edit_experience'),
+     path('experiences/<int:experience_id>/delete/', views.delete_experience, name='delete_experience'),
+     path('experiences/', views.get_all_experiences, name='get_all_experiences'),
+     path('experiences/<int:experience_id>/', views.get_experience_by_id, name='get_experience_by_id')
 ]
 
 
