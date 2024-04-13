@@ -80,21 +80,25 @@ const Navbar = () => {
         style={{ maxWidth: "1280px", padding: "2rem", textAlign: "center" }}
       ></div>
       <div className="my-28 md:my-8 flex md:flex-row justify-evenly gap-12">
-        <div className="md:w-1/2 pl-24">
-          <h1 className="text-4xl md:text-6xl font-semibold mb-4 text-neutralDGrey md:w-3/4 leading-snug text-center">
+        <div className="md:w-1/2 ">
+          <h1 className="text-4xl md:text-5xl font-semibold mb-4 text-neutralDGrey md:w-3/4 leading-snug text-center pt-24">
             Empower Your Portfolio with{" "}
-            <span className="text-blue-300 leading-snug">Collaboration</span>
+            <span className="text-blue-300 leading-snug text-6xl">Collaboration</span>
           </h1>
-          <p className="text-base text-neutralGrey md:text-2xl p-11">
+          <p className="text-base text-neutralGrey md:text-2xl p-11 pl-32">
             Join Academate to collaborate on projects develop your career and
             enhance your skills
           </p>
 
+          
           <div className=" pl-36">
+          <NavLink to="/Signup">
             <button className="px-8 py-2  bg bg-blue-700 text-white rounded hover:bg-neutralDGrey transition-all duration-300 hover:-translate-y-4">
               Get Started
             </button>
+            </NavLink>
           </div>
+          
         </div>
         <div className="md:w-1/2 pr-28">
           <img

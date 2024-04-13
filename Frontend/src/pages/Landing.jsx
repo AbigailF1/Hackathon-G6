@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Land/Navbar'
 import How from '../components/Land/How'
 import Testimonials from '../components/Land/Testimonial'
-import Footer from '../components/Land/Footer'
+import Footer from '../components/Footer/Footer';
 
 
 const Landing = () => {
