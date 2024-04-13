@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+
 import { IoCloseSharp } from "react-icons/io5";
 import "./popUp.css";
-const PopupWindow = ({ isOpen, onClose,roomNumber,chatLink }) => {
+const PopupWindow = ({ isOpen, onClose, roomNumber }) => {
   return (
     <div className={`popup-window ${isOpen ? "open" : ""}`}>
       <div className="popup-content">
@@ -9,7 +11,10 @@ const PopupWindow = ({ isOpen, onClose,roomNumber,chatLink }) => {
           <IoCloseSharp style={{ color: "red" }} />
         </button>
         <p>Room Number: {roomNumber}</p>
-        <p>Group Chat Link :`${chatLink} ` </p>
+        <p>
+          Group Chat Link :
+          <Link to="https://academate-group-chatt.onrender.com">Chat App</Link>
+        </p>
       </div>
     </div>
   );

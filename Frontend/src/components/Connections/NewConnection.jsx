@@ -40,41 +40,6 @@ function NewConnection() {
   console.log(Collaborate);
 
 
-
-// function NewConnection({ name, skill, message, connection }) {
-//   const [collaborate, setCollaborate] = useState([]);
-
-//   useEffect(() => {
-//     // Define an async function to fetch data
-//     const fetchData = async () => {
-//       try {
-//         // Make the HTTP request using Axios
-//         const token = localStorage.getItem("token"); // Retrieve token from local storage
-//         const response = await axios.get(
-//           "http://127.0.0.1:8000/api/feeds/2/collaborators/",
-//           {
-//             headers: {
-//               Authorization: ` Bearer ${token}`, // Include token in the request headers
-//             },
-//           }
-//         );
-//         // Extract the data from the response
-//         const data = response.data;
-//         console.log(data);
-//         // Set the fetched data to the state
-//         setCollaborate(data);
-//       } catch (error) {
-//         console.log(error);
-//         console.error("There was a problem fetching the data:", error.message);
-//       }
-//     };
-
-//     // Call the async function to fetch data when the component mounts
-//     fetchData();
-//   }, []);
-
-//   console.log(collaborate);
-
   // const accepted = async (status) => {
   //   try {
   //     const response = await axios.post(
@@ -211,7 +176,7 @@ function NewConnection() {
               <div className="about">
                 <p className="name">{collaborator.name}</p>
                 <p className="skill">
-                  {" "}
+              
                   {collaborator.user.profile.skills.map((skill, index) => (
                     <React.Fragment key={index}>
                       <span>{skill.title}</span>

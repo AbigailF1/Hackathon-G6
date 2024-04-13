@@ -1,7 +1,7 @@
 import React from "react";
 import "./RecentConnection.css";
 
-function RecentConnection({ name, skill, projectIdea }) {
+function RecentConnection() {
   // const [recentCollaborate, setRecentCollaborate] = useState([]);
 
   // useEffect(() => {
