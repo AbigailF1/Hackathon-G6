@@ -144,7 +144,7 @@ function Notification() {
             <img className="thirdImg" src={notification.image} alt="third" /> */}
           </div>
           {/* skill */}
-          <div className="NotificationText"> 
+          <div className="NotificationText">
             <p>{notification.text}</p>
             <span>{notification.time} hours</span>
           </div>
