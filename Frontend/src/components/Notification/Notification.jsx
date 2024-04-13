@@ -43,7 +43,7 @@ function Notification() {
   const notification = [
     {
       id: 1,
-      image: "https://t.ly/5EjC_",
+      image: "https://visafoto.com/img/source355x388.jpg",
       text: "Sample notification text 1",
       time: 3,
       chatLink: "https://shorturl.at/vAHJV",
@@ -51,7 +51,7 @@ function Notification() {
     },
     {
       id: 2,
-      image: "https://shorturl.at/vAHJV",
+      image: "https://visafoto.com/img/source355x388.jpg",
       text: "Sample notification text 2",
       time: 6,
       chatLink: "https://shorzturl.at/vAHJV99999",

@@ -41,7 +41,8 @@ function SentConnection() {
   const sentCollaborate = [
     {
       id: 1,
-      profileImg: "https://shorturl.at/gjptN",
+      profileImg:
+        "https://photogov-com.akamaized.net/examples/zz-240x288-pixel-photo/landmarks-US.webp",
       name: "John Doe",
       skill: "Web Development",
       connection: 100,
@@ -50,7 +51,7 @@ function SentConnection() {
     },
     {
       id: 2,
-      profileImg: "https://example.com/profile-image-2.jpg",
+      profileImg: "https://visafoto.com/img/source355x388.jpg",
       name: "Jane Smith",
       skill: "Data Science",
       connection: 50,
@@ -68,7 +69,8 @@ function SentConnection() {
     },
     {
       id: 4,
-      profileImg: "https://shorturl.at/gjptN",
+      profileImg:
+        "https://photogov-com.akamaized.net/examples/zz-240x288-pixel-photo/landmarks-US.webp",
       name: "Bob Brown",
       skill: "Mobile App Development",
       connection: 80,

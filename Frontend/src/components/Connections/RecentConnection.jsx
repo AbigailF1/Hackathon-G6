@@ -38,21 +38,30 @@ function RecentConnection() {
   const recentCollaborate = [
     {
       id: 1,
-      image: "https://shorturl.at/vAHJV",
+      image:
+        "https://photogov-com.akamaized.net/examples/zz-240x288-pixel-photo/landmarks-US.webp",
       name: "John Doe",
       skill: "Web Development",
       projectIdea: "Looking for collaborators for a new web project.",
     },
     {
       id: 2,
-      image: "https://shorturl.at/gjptN",
+      image:
+        "https://photogov-com.akamaized.net/examples/zz-240x288-pixel-photo/landmarks-US.webp",
       name: "Jane Smith",
       skill: "Data Science",
       projectIdea: "Seeking partners for a machine learning project.",
     },
     {
       id: 3,
-      image: "https://shorturl.at/gjptN",
+      image: "https://visafoto.com/img/source355x388.jpg",
+      name: "Alice Johnson",
+      skill: "Graphic Design",
+      projectIdea: "Interested in working on creative design projects.",
+    },
+    {
+      id: 4,
+      image: "https://visafoto.com/img/source355x388.jpg",
       name: "Alice Johnson",
       skill: "Graphic Design",
       projectIdea: "Interested in working on creative design projects.",
@@ -65,7 +74,7 @@ function RecentConnection() {
         <hr /> RECENT CONNECTIONS <hr />
       </p>
       <div className="recentConnection">
-        {recentCollaborate.slice(-2).map((collaborator) => (
+        {recentCollaborate.slice(-4).map((collaborator) => (
           <div className="profile" key={collaborator.id}>
             <img src={collaborator.image} alt="image" />
             <div className="about">
