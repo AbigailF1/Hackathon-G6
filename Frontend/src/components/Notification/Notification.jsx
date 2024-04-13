@@ -1,7 +1,43 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "./Notification.css";
-
+import axios from "axios";
+// http://127.0.0.1:8000/api/users/11/notifications/
 function Notification() {
+  const [notifications, setNotifications] = useState("");
+
+  useEffect(() => {
+    // Define an async function to fetch data
+    const fetchData = async () => {
+      try {
+        // Make the HTTP request using Axios
+        const token = localStorage.getItem("token"); // Retrieve token from local storage
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/users/11/notifications/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include token in the request headers
+            },
+          }
+        );
+        // Extract the data from the response
+        const data = response.data;
+        console.log(data);
+        // Set the fetched data to the state
+        setNotifications(data);
+        // Log the data to the console
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+        // Log any errors to the console
+        console.error("There was a problem fetching the data:", error.message);
+      }
+    };
+
+    // Call the async function to fetch data when the component mounts
+    fetchData();
+  }, []); // E
+  console.log(notifications);
+
   return (
     <div className="NotificationMessage">
       <div className="TimeStatus">
@@ -105,8 +141,7 @@ function Notification() {
         </div>
         <div className="NotificationText">
           <p>
-            dolorem iure doloremque a omnis amet tenetur lo consequuntur modi
-            ad
+            dolorem iure doloremque a omnis amet tenetur lo consequuntur modi ad
           </p>
           <span>9 hours</span>
         </div>
@@ -129,8 +164,7 @@ function Notification() {
         </div>
         <div className="NotificationText">
           <p>
-            dolorem iure doloremque a omnis amet tenetur lo consequuntur modi
-            ad
+            dolorem iure doloremque a omnis amet tenetur lo consequuntur modi ad
           </p>
           <span>9 hours</span>
         </div>

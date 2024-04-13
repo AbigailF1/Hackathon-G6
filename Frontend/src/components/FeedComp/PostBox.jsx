@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
-import { Modal } from 'antd';
+import  { useState } from 'react'
+import { Modal, Tag } from 'antd';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
+import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
+import { useDisclosure } from '@mantine/hooks';
+import { Drawer } from '@mantine/core';
+import CommentBox from './CommentBox';
 
 export default function IdeaBox({person}) {
     const[liked, setLiked] = useState(false);
     const [openReport, setOpenReport] = useState(false);
     const [report, setReport] = useState('');
+    const [opened, { open, close }] = useDisclosure(false);
+
    function toggleFav(){
     setLiked( (prev) => !prev);
    }
@@ -21,8 +27,8 @@ export default function IdeaBox({person}) {
     setReport(event.target.value)
     console.log("com", comment);
     setOpenReport(false);
-   };
-   const [open, setOpen] = useState(false);
+   }
+   const [opens, setOpen] = useState(false);
    const showModal = () => {
      setOpen(true);
    };
@@ -32,7 +38,7 @@ export default function IdeaBox({person}) {
     setComment(event.target.value)
     console.log("com", comment);
     setOpen(false);
-   };
+   }
    const handleCancel = () => {
      console.log('Clicked cancel button');
      setOpen(false);
@@ -63,6 +69,16 @@ export default function IdeaBox({person}) {
         </div>
         <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
         <div className="p-5" style={{fontFamily :"Adamina"}}>{person.description}</div>
+        <div className="grid grid-cols-4 md:grid-cols-8 gap-2 m-2">
+{person.colors.map((color, index) => (
+  <Tag key={index} style={{
+    background: '#f0f2f5',
+    borderStyle: 'dashed',
+  }}>
+    {color}
+  </Tag>
+))}
+</div>
         {person.image != null ? (
    <div className='border border-solid border-zinc-100'>
    <img src={person.image} alt="" className='h-[350px] rounded object-cover w-full m-auto' />
@@ -74,12 +90,12 @@ export default function IdeaBox({person}) {
       <div className='flex justify-between'>
         <div className=' flex gap-16 m-5'>
         {liked ? <FavoriteOutlinedIcon sx={{ color: 'red' }} onClick ={toggleFav} className='cursor-pointer'  /> : <FavoriteBorderOutlinedIcon onClick ={toggleFav} className='cursor-pointer'  />}
-    <TextsmsOutlinedIcon onClick={ showModal} className='cursor-pointer' />
+        <AddCommentOutlinedIcon onClick={ showModal} className='cursor-pointer' />
     
      <Modal
         title="Comment"
         style={{display: 'flex', alignItems: 'center' ,width: '100%'}}
-        open={open}
+        open={opens}
         onOk={handleComment}
         onCancel={handleCancel}
       >
@@ -88,6 +104,11 @@ export default function IdeaBox({person}) {
                 placeholder='comment...'
                 value={comment}
                 onChange ={change}/>       </Modal>
+                <Drawer opened={opened} onClose={close} title="Comments">
+      <CommentBox />
+      </Drawer>
+      <TextsmsOutlinedIcon  onClick={open} className='cursor-pointer'/>
+
                    </div>
                    <FlagOutlinedIcon  onClick={show} className='m-4 cursor-pointer'/>  
 

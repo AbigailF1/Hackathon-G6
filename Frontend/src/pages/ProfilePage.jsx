@@ -7,44 +7,28 @@ import { useEffect, useState } from "react";
 import EditProjects from "../components/Profile/EditProjects"
 import EditAbout from "../components/Profile/EditAbout"
 import EditSkill from "../components/Profile/EditSkill"
-
+import Experience from "./Experience";
+import AddExperience from "../components/Profile/AddExperience";
 const ProfilePage = () => {
-
-const [profiledata, setProfileData] = useState([]);
-
-  useEffect(() => {
-    // Define an async function to fetch data
-    const fetchData = async () => {
-      try {
-        // Make the HTTP request using Axios
-        const token = localStorage.getItem("token"); // Retrieve token from local storage
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/feeds/2/profile/",
-          {
-            headers: {
-              Authorization:  `Bearer ${token}`, // Include token in the request headers
-            },
-          }
-        );
-        // Extract the data from the response
-        const data = response.data;
-        console.log(data);
-        // Set the fetched data to the state
-        setProfileData(data);
-      } catch (error) {
-        console.log(error);
-        console.error("There was a problem fetching the data:", error.message);
-      }
-    };
-
-    // Call the async function to fetch data when the component mounts
-    fetchData();
-  }, []);
-
-  console.log(profiledata);
-
-
-
+  const profile = [
+    {
+      position: "Freelance UI/UX designer",
+      employmentType: "Self-Employed",
+      duration: "2017-Present",
+      description: "Work with clients and web studios as a freelancer. Work in areas such as eCommerce web projects, creative landing pages, iOs and Android apps, corporate websites, and corporate identity sometimes."
+    },
+    {
+      position: "UI designer",
+      employmentType: "Upwork",
+      duration: "2013-Present",
+      description: "Work with clients and web studios as a freelancer."
+    }
+  ];
+  function addExperience(){
+    return(
+      <AddExperience />
+    )
+  }
   return (
     <>
       <div className="w-full relative main_container overflow-hidden flex flex-col items-end justify-start tracking-[normal]">
@@ -79,7 +63,7 @@ const [profiledata, setProfileData] = useState([]);
                 <img
                   className="w-[850px] relative max-h-full object-cover hidden max-w-full"
                   alt=""
-                  src="/rectangle-3@2x.png"
+src="/rectangle-3@2x.png"
                 />
                 <div className="h-9 w-9 relative z-[2] flex items-center justify-center">
                   <img
@@ -114,8 +98,7 @@ const [profiledata, setProfileData] = useState([]);
               <div className="absolute top-[206px] left-[606px] text-sm md:text-xs lg:text-sm xl:text-xs leading-normal md:leading-[150%] lg:leading-normal xl:leading-[150%] z-[1]">
                 Saint Petersburg, Ethioian Federation
               </div>
-
-              <img
+<img
                 className="absolute top-[207px] left-[582px] w-4 h-4 overflow-hidden z-[1]"
                 alt=""
                 src="/navigation.svg"
@@ -172,7 +155,7 @@ const [profiledata, setProfileData] = useState([]);
             
             <div className="self-stretch flex flex-col items-start justify-start max-w-full">
               <div className="self-stretch h-[50px] flex flex-col items-start justify-start">
-                <div className="self-stretch h-px relative box-border border-t-[1px] border-solid border-gainsboro-100" />
+<div className="self-stretch h-px relative box-border border-t-[1px] border-solid border-gainsboro-100" />
                 <div className="self-stretch flex-1 relative [background:linear-gradient(180deg,_rgba(241,_244,_248,_0.8),_rgba(241,_244,_248,_0))] z-[2] mt-[-1px]" />
               </div>
               <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-end justify-start py-[30px] px-7 box-border gap-[20px] max-w-full mt-[-20px]">
@@ -185,7 +168,7 @@ const [profiledata, setProfileData] = useState([]);
                     <h3 className="m-0 relative text-inherit font-normal font-inherit inline-block min-w-[53px] z-[1]">
                       About
                     </h3>
-                    <div className="self-stretch relative text-sm leading-[150%] z-[1]">{`I'm more experienced in eCommerce web projects and mobile banking apps, but also like to work with creative projects, such as landing pages or unusual corporate websites. `}</div>
+                    <div className="self-stretch relative text-sm leading-[150%] z-[1]">I'm more experienced in eCommerce web projects and mobile banking apps, but also like to work with creative projects, such as landing pages or unusual corporate websites. </div>
                   </div>
                 </div>
                 <div className="w-[68px] relative text-xs uppercase text-steelblue-200 text-center inline-block min-w-[68px] z-[1]">
@@ -262,13 +245,13 @@ const [profiledata, setProfileData] = useState([]);
            <EditSkill/> 
             <div className="w-[850px] h-[220px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
             <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full">
-              <h3 className="m-0 relative text-inherit font-normal font-inherit z-[1]">{`Skills & Endoresments`}</h3>
+              <h3 className="m-0 relative text-inherit font-normal font-inherit z-[1]">Skills & Endoresments</h3>
               <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-3.5 box-border max-w-full text-sm">
                 <div className="flex-1 flex flex-row flex-wrap items-start justify-start gap-[17px] max-w-full">
                   <div className="flex-1 flex flex-col items-start justify-start gap-[14px] min-w-[340px] max-w-full mq1050:min-w-full">
                     <div className="self-stretch flex flex-row items-start justify-start gap-[20px] mq750:flex-wrap">
                       <div className="flex-1 rounded-md bg-white box-border flex flex-row items-start justify-start pt-[7.9px] px-5 pb-[25.3px] min-w-[162px] whitespace-nowrap z-[1] border-[1px] border-solid border-whitesmoke-200">
-                        <div className="h-[45px] w-[250px] relative rounded-md bg-white box-border hidden border-[1px] border-solid border-whitesmoke-200" />
+<div className="h-[45px] w-[250px] relative rounded-md bg-white box-border hidden border-[1px] border-solid border-whitesmoke-200" />
                         <div className="relative leading-[11.8px] z-[1]">
                           User experience (UX)
                         </div>
@@ -315,12 +298,12 @@ const [profiledata, setProfileData] = useState([]);
             <div className="self-stretch flex flex-col items-start justify-start gap-[20px] max-w-full">
               <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] pb-[31px] pr-[29px] pl-[30px] box-border gap-[19px] max-w-full">
                 <div className="w-[850px] h-[345px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
-                <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-1.5 box-border gap-[17px] max-w-full">
+                {/* <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-1.5 box-border gap-[17px] max-w-full">
                   <h3 className="m-0 relative text-inherit font-normal font-inherit inline-block min-w-[98px] z-[1]">
                     Experience
                   </h3>
                   <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full text-sm">
-                    <div className="flex flex-row items-start justify-start gap-[16px]">
+<div className="flex flex-row items-start justify-start gap-[16px]">
                       <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
                         <img
                           className="w-[54px] h-[54px] relative z-[1]"
@@ -363,9 +346,16 @@ const [profiledata, setProfileData] = useState([]);
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="self-stretch h-px relative box-border z-[1] border-t-[1px] border-solid border-whitesmoke-200" />
-                <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full text-sm">
+                </div> */}
+    <div>
+      <AddExperience  />
+      <div className="grid gap-4 mt-4">
+        {profile.map((p, index) => (
+          <Experience key={index} profile={p} />
+        ))}
+      </div>
+    </div>
+                {/* <div className="self-stretch flex flex-col items-start justify-start gap-[10px] max-w-full text-sm">
                   <div className="flex flex-row items-start justify-start gap-[16px]">
                     <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
                       <img
@@ -386,7 +376,7 @@ const [profiledata, setProfileData] = useState([]);
                           <div className="relative leading-[150%] inline-block min-w-[63px] z-[1]">
                             International
                           </div>
-                        </div>
+</div>
                         <div className="flex flex-row items-start justify-start py-0 pr-0 pl-px">
                           <div className="flex flex-row items-start justify-start gap-[14px]">
                             <div className="relative leading-[150%] inline-block min-w-[92px] z-[1]">
@@ -407,7 +397,7 @@ const [profiledata, setProfileData] = useState([]);
                       research.
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] px-[30px] pb-8 box-border gap-[17px] max-w-full">
                 <div className="w-[850px] h-[195px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
@@ -457,7 +447,7 @@ const [profiledata, setProfileData] = useState([]);
             alt=""
             src="/chat@2x.png"
           />
-        </div>
+</div>
       </div>
       <Footer />
     </>

@@ -1,0 +1,46 @@
+.community-guidelines-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+  
+  .community-guidelines-container header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .community-guidelines-container h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  .community-guidelines-container h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 40px;
+  }
+  
+  .community-guidelines-container h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 30px;
+  }
+  
+  .community-guidelines-container p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  
+  .community-guidelines-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .community-guidelines-container a:hover {
+    text-decoration: underline;
+  }

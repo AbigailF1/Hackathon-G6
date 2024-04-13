@@ -64,7 +64,7 @@ export default function NewPost() {
           onChange={handleInputChange}
         />
       </div>
-
+{/* 
       <div className="mb-5 ">
         <p className="uppercase font-semibold font-serif text-xs ">Tags:</p>
         <div className="grid grid-cols-4 md:grid-cols-8 gap-2 -ml-2 mt-4">
@@ -100,8 +100,18 @@ export default function NewPost() {
             </Tag>
           )}
         </div>
-      </div>
+      </div> */}
 
+      <Button onClick={toggle} mb="md">
+        Toggle dropdown
+      </Button>
+
+      <TagsInput
+        label="Your favorite library"
+        placeholder="Pick value or enter anything"
+        data={['React', 'Angular', 'Vue', 'Svelte']}
+        dropdownOpened={dropdownOpened}
+      />
       <div className="mt-4 ">
         <p className="uppercase font-semibold font-serif text-xs">Selected Tags:</p>
         <div>

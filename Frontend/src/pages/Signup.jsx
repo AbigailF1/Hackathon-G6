@@ -1,195 +1,220 @@
-import React, { useState } from "react";
-import collab from "../assets/collab.jpg";
-import Google_Icon from "../assets/Google_Icon.jpg";
-import { NavLink , useNavigate} from "react-router-dom";
-import Validation from "../components/Login/SignupValidation";
+import { useState } from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import SignupService from "../services/signup.service";
+import { toast } from "react-toastify";
+import { NavLink, useNavigate } from "react-router-dom";
 import Svgp from "../components/Login/Svgp";
+import {
+  TextField,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 
 const Signup = () => {
-
-  const [activeButton, setActiveButton] = useState(null);
-  const navigate = useNavigate();
-  const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName);
-    navigate(`/${buttonName}`);
-  };
-
-  const handleSignUp = () => {
-    alert('Signed up successfully');
-  };
-
+  const Navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const [values, setValues] = useState({
-    fname: "",
-    lname: "",
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
     email: "",
-    tele: "",
+    username: "",
+    role: "",
+    phone_number: "",
     password: "",
-    cpassword: "",
+    confirm_password: "",
   });
 
-  const [errors, setErrors] = useState([]);
-  const handleInput = (event) => {
-    setValues((prev) => ({
-      ...prev,
-      [event.target.name]: [event.target.value],
-    }));
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { confirm_password, ...data } = formData;
+
+    const errors = validateForm(formData);
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await SignupService.Signup(data);
+      if (response.status === 201) {
+        toast.success("Successfully registered");
+        Navigate("/login");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  async function submit(e) {
-    e.preventDefault();
-    setErrors(Validation(values));
-  }
+  const validateForm = (data) => {
+    const errors = {};
+
+    for (const key in data) {
+      if (data[key] === "") {
+        errors[key] = `${key.replace("_", " ")} is required`;
+      }
+    }
+
+    if (data.password !== data.confirm_password) {
+      errors.confirm_password = "Passwords do not match";
+    }
+
+    return errors;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setFormErrors({ ...formErrors, [name]: "" });
+  };
 
   return (
-    <div className="w-full h-screen flex">
-      <div className="relative w-1/2 h-full lg:flex flex-col items-center justify-center md:block hidden" style={{ background: 'linear-gradient(to bottom, #93C5FD, #3B82F6)'}}>
-        <Svgp className=' w-full h-full object-cover ' />
+    <div className="flex h-screen">
+      <div className="w-1/2 bg-gradient-to-b from-blue-400 to-blue-600 flex items-center justify-center">
+        <Svgp className="w-full h-full object-cover" />
       </div>
-      <div className="sm:w-2/3 w-1/2 max-w-[500px] mx-auto h-full  flex flex-col p-10 pt-20 justify-between items-center">
-        <div className=" flex flex-col ">
-          {/* <div className="w-full flex flex-col gap-2">
-            <p className="text-base gap-2">Academate</p>
-          </div> */}
-          <div className="input flex flex-col gap-4">
-            <h1 className="text-4xl text-[#060606] font-semibold ">
-              Join the Fastest Growing Online Community
-            </h1>
-            <h3 className="text-3xl font-semibold ">Sign Up</h3>
-
-            <form action="" onSubmit={submit}>
-              <div className="pb-2">
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  onChange={handleInput}
-                  name="fname"
-                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
+      <div className="w-1/2 bg-gray-100 flex flex-col justify-center items-center p-4">
+        <h1 className="text-2xl font-semibold mt-0 mb-4">Sign Up</h1>
+        <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-2">
+          <TextField
+            label="First Name"
+            variant="outlined"
+            fullWidth
+            size="small"
+            name="first_name"
+            value={formData.first_name}
+            onChange={handleChange}
+            error={!!formErrors.first_name}
+            helperText={formErrors.first_name}
+          />
+          <TextField
+            label="Last Name"
+            variant="outlined"
+            fullWidth
+            size="small"
+            name="last_name"
+            value={formData.last_name}
+            onChange={handleChange}
+            error={!!formErrors.last_name}
+            helperText={formErrors.last_name}
+          />
+          <TextField
+            type="email"
+            label="Email"
+            variant="outlined"
+            fullWidth
+            size="small"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            error={!!formErrors.email}
+            helperText={formErrors.email}
+          />
+          <TextField
+            label="User Name"
+            variant="outlined"
+            fullWidth
+            size="small"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            error={!!formErrors.username}
+            helperText={formErrors.username}
+          />
+          <FormControl fullWidth variant="outlined" size="small">
+            <InputLabel id="role-label">Role</InputLabel>
+            <Select
+              labelId="role-label"
+              label="Role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <MenuItem value="student">Student</MenuItem>
+              <MenuItem value="recruiter">Recruiter</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            label="Phone Number"
+            variant="outlined"
+            fullWidth
+            size="small"
+            name="phone_number"
+            value={formData.phone_number}
+            onChange={handleChange}
+            error={!!formErrors.phone_number}
+            helperText={formErrors.phone_number}
+          />
+          <TextField
+            type={showPassword ? "text" : "password"}
+            label="Password"
+            variant="outlined"
+            fullWidth
+            size="small"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            error={!!formErrors.password}
+            helperText={formErrors.password}
+            InputProps={{
+              endAdornment: (
+                <FaRegEye
+                  className="cursor-pointer"
+                  onClick={togglePasswordVisibility}
                 />
-                {errors.fname && (
-                  <span className="text-red-500">{errors.fname}</span>
-                )}
-              </div>
-
-              <div className="pb-2">
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  onChange={handleInput}
-                  name="lname"
-                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
+              ),
+            }}
+          />
+          <TextField
+            type={showPassword ? "text" : "password"}
+            label="Confirm Password"
+            variant="outlined"
+            fullWidth
+            size="small"
+            name="confirm_password"
+            value={formData.confirm_password}
+            onChange={handleChange}
+            error={!!formErrors.confirm_password}
+            helperText={formErrors.confirm_password}
+            InputProps={{
+              endAdornment: (
+                <FaRegEye
+                  className="cursor-pointer"
+                  onClick={togglePasswordVisibility}
                 />
-                {errors.lname && (
-                  <span className="text-red-500">{errors.lname}</span>
-                )}
-              </div>
-
-              <div className="pb-2">
-                <input
-                  type="email"
-                  onChange={handleInput}
-                  placeholder="Email"
-                  name="email"
-                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
-                />
-                {errors.email && (
-                  <span className="text-red-500">{errors.email}</span>
-                )}
-              </div>
-
-              <div className="pb-2">
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  onChange={handleInput}
-                  name="tele"
-                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
-                />
-                {errors.tele && (
-                  <span className="text-red-500">{errors.tele}</span>
-                )}
-              </div>
-
-              <div className="pb-2">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  onChange={handleInput}
-                  name="password"
-                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
-                />
-                {errors.password && (
-                  <span className="text-red-500">{errors.password}</span>
-                )}
-                <button onClick={togglePasswordVisibility}>
-                  {showPassword ? "Hide Password" : "Show Password"}
-                </button>
-              </div>
-
-              <div className="pb-2">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Confirm Password"
-                  onChange={handleInput}
-                  name="cpassword"
-                  className="w-full text-black py-3 bg-transparent border-b border-black outline-none focus:outline-none"
-                />
-                {errors.cpassword && (
-                  <span className="text-red-500">{errors.cpassword}</span>
-                )}
-                <button onClick={togglePasswordVisibility}>
-                  {showPassword ? "Hide Password" : "Show Password"}
-                </button>
-              </div>
-              {/* below input */}
-              <div className="flex flex-row gap-2 items-center justify-between">
-                <div className=" flex items-center">
-                  {/* <input type="checkbox" className="w-4 " />
-                  <p className="text-sm ">Remember me</p> */}
-                </div>
-              </div>
-
-              {/* button */}
-              <div className="flex flex-col gap-4 pt-5 pb-5">
-               <NavLink to="/ProfileList">
-                <button
-                  type="submit"
-                  className="w-full text-white font-semibold bg-blue-500 rounded-md p-4 text-center flex items-center justify-center cursor-pointer"
-                  onClick={submit}
-                  onClick={() => handleButtonClick('ProfileList')}
-                  onClick={handleSignUp}
-                >
-                  Submit And Continue
-                </button>
-                </NavLink>
-              </div>
-            </form>
-            <div className="border w-full flex flex-col gap-6">
-              <div className="w-full flex items-center justify-center relative ">
-                <div className="w-full h-[1px] bg-black/40"></div>
-                <p className="text-lg absolute text-black/80 bg-[#f5f5f5]">
-                  {" "}
-                  or
-                </p>
-              </div>
-
-              <div className="w-full flex items-center justify-center">
-                <p className="text-base font-normal text-[#060606]">
-                  {" "}
-                  Already have an account ?{" "}
-                  <NavLink to="/Login">
-                    <span className="font-semibold underline enderline-offset-2 cursor-pointer pt-10">
-                      Sign In
-                    </span>
-                  </NavLink>
-                </p>
-              </div>
-            </div>
-          </div>
+              ),
+            }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Sign Up"}
+          </Button>
+        </form>
+        <div className="mt-4 text-center">
+          <p className="text-sm text-gray-600">Already have an account?</p>
+          <NavLink to="/login" className="text-blue-500">
+            Sign In
+          </NavLink>
         </div>
       </div>
     </div>
