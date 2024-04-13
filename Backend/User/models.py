@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import BaseUserManager
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
+from cloudinary.models import CloudinaryField
 
 
 
@@ -112,7 +113,7 @@ class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to="projects")
+    image = CloudinaryField('image', blank=True, null=True)
     link = models.URLField()
 
     def __str__(self):

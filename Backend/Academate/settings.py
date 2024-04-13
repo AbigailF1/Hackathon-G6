@@ -124,7 +124,18 @@ DATABASES = {
 
 }
 
+# settings.py
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'Hackathon-G6 ',
+    'API_KEY': '288724422912995',
+    'API_SECRET': 'vZ89sfLr_G8x41aBrZl3M8fKz3w'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 DATABASES["default"] = dj_database_url.parse("postgres://django_h6_user:oWdh1CRSMUg1eFeeNouW3GoaR0LbmvN6@dpg-co9uhjgcmk4c73e63190-a.oregon-postgres.render.com/django_h6")
+
 
 CHANNEL_LAYERS = {
     "default": {

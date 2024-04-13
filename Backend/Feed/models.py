@@ -1,7 +1,7 @@
 from django.db import models
 from User.models import User
 from Tag.models import Tag
-     
+from cloudinary.models import CloudinaryField
 
 # Model for the main feed
 class Feed(models.Model):
@@ -10,7 +10,7 @@ class Feed(models.Model):
         ('idea', 'Idea'),
     )
     feedText = models.TextField()
-    image = models.TextField(null=True, blank=True)
+    image = CloudinaryField('image', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     tags = models.ManyToManyField(Tag, blank=True)
     feed_type = models.CharField(max_length=10, choices=FEED_TYPE_CHOICES ,default='post')

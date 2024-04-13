@@ -14,12 +14,12 @@ from .models import Feed
 
 
 class FeedSerializer(serializers.ModelSerializer):
-    image = serializers.CharField(allow_null=True, allow_blank=True)
+    image = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
     
     class Meta:
         model = Feed
         fields = '__all__'
-        
+
 class IdeaFeedSerializer(serializers.ModelSerializer):
     
     class Meta:

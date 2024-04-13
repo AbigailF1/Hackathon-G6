@@ -21,8 +21,6 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
-@api_view(['POST'])
-@authentication_classes([JWTAuthentication])
 @parser_classes([MultiPartParser, FormParser, FileUploadParser])
 def create_post_feed(request):
     try:
@@ -31,13 +29,14 @@ def create_post_feed(request):
 
         serializer = FeedSerializer(data=request.data)
         if serializer.is_valid():
-            # Save the base64 encoded image data to the image field
-            image_data = request.data.get('image')
-            if image_data:
-                serializer.validated_data['image'] = image_data
-
             feed = serializer.save(user=request.user, feed_type='post')
-            
+
+            # Handle image upload
+            image = request.FILES.get('image')
+            if image:
+                feed.image = image
+                feed.save()
+
             # Handle tags
             tags = request.data.get('tags', [])
             for tag_name in tags:
@@ -58,6 +57,7 @@ def create_post_feed(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])
 def create_idea_feed(request):
@@ -65,6 +65,12 @@ def create_idea_feed(request):
         serializer = IdeaFeedSerializer(data=request.data)
         if serializer.is_valid():
             idea_feed = serializer.save()
+
+            # Handle image upload
+            image = request.FILES.get('image')
+            if image:
+                idea_feed.image = image
+                idea_feed.save()
 
             # Handle tags
             tags = request.data.get('tags', [])
@@ -244,7 +250,6 @@ def list_collaborators(request, feed_id):
     collaborators = Collaborator.objects.filter(idea_feed_id=feed_id)
     serializer = CollaboratorSerializer(collaborators, many=True)
     return Response(serializer.data)
-
 
 
 
