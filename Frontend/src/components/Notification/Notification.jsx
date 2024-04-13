@@ -17,7 +17,7 @@ function Notification() {
   //       // Make the HTTP request using Axios
   //       const token = localStorage.getItem("token"); // Retrieve token from local storage
   //       const response = await axios.get(
-  //         "http://127.0.0.1:8000/api/users/11/notifications/",
+  //         "https://hackathon-g6.onrender.com/api/users/11/notifications/",
   //         {
   //           headers: {
   //             Authorization: ` Bearer ${token}`, // Include token in the request headers

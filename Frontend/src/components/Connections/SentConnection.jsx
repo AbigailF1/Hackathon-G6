@@ -15,7 +15,7 @@ function SentConnection() {
   //       // Make the HTTP request using Axios
   //       const token = localStorage.getItem("token"); // Retrieve token from local storage
   //       const response = await axios.get(
-  //         "http://127.0.0.1:8000/api/feeds/2/collaborators/",
+  //         "https://hackathon-g6.onrender.comapi/feeds/2/collaborators/",
   //         {
   //           headers: {
   //             Authorization: ` Bearer ${token}`, // Include token in the request headers
@@ -36,7 +36,6 @@ function SentConnection() {
   //   // Call the async function to fetch data when the component mounts
   //   fetchData();
   // }, []);
-  
 
   // console.log(sentCollaborate);
   const sentCollaborate = [
@@ -78,7 +77,6 @@ function SentConnection() {
     },
   ];
 
-
   return (
     <>
       <div className="sentConnection">
@@ -93,12 +91,28 @@ function SentConnection() {
                 <div className="about">
                   <p className="name">{collaborator.name}</p>
                   <p className="skill">{collaborator.skill}</p>
-                  <p className="NumOfConnection">{collaborator.connection} connections</p>
+                  <p className="NumOfConnection">
+                    {collaborator.connection} connections
+                  </p>
                 </div>
               </div>
               <p className="connectionMessage">{collaborator.message}</p>
               <div className="requestStatus">
-                <p className="requestStatus">{collaborator.status}</p>
+                <p
+                  className="requestStatus"
+                  style={{
+                    color:
+                      collaborator.status === "Pending"
+                        ? "grey" 
+                        : collaborator.status === "Accepted"
+                        ? "green" 
+                        : collaborator.status === "Declined"
+                        ? "red" 
+                        : "black",
+                  }}
+                >
+                  {collaborator.status}
+                </p>
               </div>
             </div>
           ))}

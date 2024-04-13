@@ -44,7 +44,7 @@ function NewConnection() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/accept_request/", //  API endpoint
+        "https://hackathon-g6.onrender.com/api/accept_request/", //  API endpoint
         {
           collaboratorId: collaboratorId,
           status: "accepted",
@@ -68,7 +68,7 @@ function NewConnection() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/decline_request/", //  API endpoint
+        "https://hackathon-g6.onrender.com/api/decline_request/", //  API endpoint
         {
           collaboratorId: collaboratorId,
           status: "declined",
@@ -145,7 +145,7 @@ function NewConnection() {
           <div className="connectionRequest" key={collaborator.id}>
             <div className="profile">
               <img
-                src={`http://127.0.0.1:8000/${collaborator.user.profile.image}`}
+                src={`https://hackathon-g6.onrender.com/${collaborator.user.profile.image}`}
                 alt="newConnectionImage"
               />
               <div className="about">
