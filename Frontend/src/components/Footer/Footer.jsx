@@ -1,4 +1,3 @@
-import React from "react";
 import "./Footer.css";
 import {
   TwitterOutlined,
@@ -18,6 +17,7 @@ const suffix = (
   />
 );
 const onSearch = (value, _e, info) => console.log(info?.source, value);
+
 function Footer() {
   return (
     <div className="footer">
@@ -38,37 +38,31 @@ function Footer() {
         </div>
         <div>
           <ul>
-            <Link to={"/About"}>
-              <li>About</li>
+          <Link to={"/About"}>
+          <li>About</li>
             </Link>
             <Link to={"/Goals"}>
-              <li>Our Goals</li>
+            <li>Our Goals</li>
             </Link>
             <Link to={"/Visions"}>
-              <li>Vision</li>
+            <li>Vision</li>
             </Link>
           </ul>
         </div>
-
+      
         <div>
           <ul>
             <Link to={"/Guidelines"}>
-              <li>Community Guidelines</li>
+            <li>Community Guidelines</li>
             </Link>
-            <div className="legal-info">
+            <div class="legal-info">
               <Link to={"/Privacy"}>
-                <li>
-                  <a target="_blank">Privacy Policy</a>
-                </li>
-              </Link>
-              <Link to={"/Terms"}>
-                <li>
-                  <a href="terms.html" target="_blank">
-                    Terms of Service
-                  </a>
-                </li>
-              </Link>
-            </div>
+            <li><a target="_blank">Privacy Policy</a></li>
+            </Link>
+            <Link to={"/Terms"}>
+            <li><a href="terms.html" target="_blank">Terms of Service</a></li>
+            </Link>
+        </div>
           </ul>
         </div>
         <div className="">
@@ -89,13 +83,18 @@ function Footer() {
                 <InstagramOutlined />
               </a>
             </li>
+           
           </ul>
+
+          
         </div>
+       
       </footer>
       <div className=" pl-96 mt-10">
         <p className=" pl-52">&copy; 2024 Academate. All rights reserved.</p>
-      </div>
+        </div>
     </div>
   );
 }
+
 export default Footer;

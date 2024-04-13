@@ -10,6 +10,7 @@ from django.utils.encoding import smart_str, force_str, smart_bytes, DjangoUnico
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
+
 UserModel = get_user_model()
 
 
@@ -93,7 +94,7 @@ class SetNewPasswordSerializer(serializers.Serializer):
             code = attrs.get('code')
 
             # Get the user associated with the code
-            password_reset_code = PasswordResetCode.objects.get(code=code)
+            password_reset_code = password_reset_code.objects.get(code=code)
             user = password_reset_code.user
 
             # Set the new password
@@ -105,12 +106,28 @@ class SetNewPasswordSerializer(serializers.Serializer):
 
             return attrs
 
-        except PasswordResetCode.DoesNotExist:
+        except password_reset_code.DoesNotExist:
             raise serializers.ValidationError('Invalid code')
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['bio', 'image', 'resume_link', 'skills', 'educations']
+
+
+class ExtendedUserSerializer(RegisterSerializer):
+    # Use the source argument to point to the related profile.
+    profile = ProfileSerializer(read_only=True)
+
+    class Meta(RegisterSerializer.Meta):
+        # Ensure we are working with a list here.
+        # Copy the fields from the parent class and add 'profile'.
+        fields = list(RegisterSerializer.Meta.fields) + ['profile']
 
 
 
 class SkillSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Skill
         fields = '__all__'
@@ -123,6 +140,8 @@ class EducationSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    user = ExtendedUserSerializer(read_only=True)
+
     skills = SkillSerializer(many=True)
     educations = EducationSerializer(many=True)
 

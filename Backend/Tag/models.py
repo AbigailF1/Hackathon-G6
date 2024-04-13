@@ -9,7 +9,7 @@ class Tag (models.Model):
         return self.tag_title
 
 class TagList(models.Model):
-    tag = models.ManyToManyField('Tag' ,null=True, blank=True)
+    tag = models.ManyToManyField('Tag')
     created_by = models.ForeignKey(User, on_delete=models.CASCADE ,default=1)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE ,null=True, blank=True)
     # def __str__(self):

@@ -68,7 +68,8 @@ export default function NewPost({ feedType }) {
      
       const formData = new FormData();
       formData.append("feedText", post);
-      formData.append("user", `${decoded.user_id}`); // Assuming user ID is fixed for this example
+      formData.append("user",17)
+      // formData.append("user", `${decoded.user_id}`); // Assuming user ID is fixed for this example
       formData.append("tag_list", 15);
       formData.append("feed_type", feedType);
       formData.append("image", image);
@@ -80,7 +81,7 @@ export default function NewPost({ feedType }) {
       // console.log(jsonData);
      
       const token = localStorage.getItem("token");
-       const decoded = jwtDecode(token);
+      //  const decoded = jwtDecode(token);
       const response = await axios.post(
         `http://127.0.0.1:8000/api/feeds/create/${feedType}/`,
         formData,

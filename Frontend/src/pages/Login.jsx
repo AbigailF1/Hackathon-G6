@@ -60,7 +60,7 @@ const Login = () => {
         const token = response.data.token;
         localStorage.setItem("token", token);
         toast.success("Successfully logged in");
-        Navigate("/profile");
+        Navigate("/feed");
       }
     } catch (error) {
       console.error("Error:", error.message);

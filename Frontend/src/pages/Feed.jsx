@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import Ideas from './Ideas';
-import Posts from './Posts';
-import ProfileSide from '../components/FeedComp/ProfileSide';
-import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
-import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
-import { Tabs } from 'antd';
-import ProfileHeader from '../components/Header/ProfileHeader';
-import Chat from '../components/Chat';
-import Footer from '../components/Footer/Footer';
+import React, { useState } from "react";
+import Ideas from "./Ideas";
+import Posts from "./Posts";
+import ProfileSide from "../components/FeedComp/ProfileSide";
+import EmojiObjectsOutlinedIcon from "@mui/icons-material/EmojiObjectsOutlined";
+import WysiwygOutlinedIcon from "@mui/icons-material/WysiwygOutlined";
+import { Tabs } from "antd";
+import ProfileHeader from "../components/Header/ProfileHeader";
+import Chat from "../components/Chat";
+import Footer from "../components/Footer/Footer";
 const onChange = (key) => {
   console.log(key);
 };
@@ -47,6 +47,7 @@ export default function Feed() {
   const toggleChatVisibility = () => {
     setIsChatVisible(!isChatVisible);
   };
+  console.log(isChatVisible);
   return (
     <>
       <ProfileHeader />
@@ -61,9 +62,9 @@ export default function Feed() {
         />
         ;
         <ProfileSide className="shrink w-[500px]" />
-      </div>
-      <div className="fixed margin-top-30 right-0 mb-4 mr-0 w-full h-">
-        {isChatVisible && <Chat />}
+        <div className="fixed margin-top-30 right-0 mb-4 mr-0 w-full  ">
+          {isChatVisible && <Chat />}
+        </div>
       </div>
 
       <div className="h-14 w-14   fixed right-0 top-[500px]  flex items-center justify-center ">

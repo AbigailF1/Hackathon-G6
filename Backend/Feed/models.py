@@ -80,13 +80,6 @@ class Notification(models.Model):
     collaborator = models.ForeignKey(Collaborator, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-class FeedReport(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Feed, on_delete=models.CASCADE)
-    reason = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    def __str__(self):
-        return self.reason
 class PostReport(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Feed, on_delete=models.CASCADE)
@@ -94,3 +87,4 @@ class PostReport(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.reason
+

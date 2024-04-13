@@ -23,17 +23,23 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 @parser_classes([MultiPartParser, FormParser])
 def create_post_feed(request):
     try:
-        if not request.user.is_authenticated:
-            return Response({"error": "User authentication failed"}, status=status.HTTP_401_UNAUTHORIZED)
+        # Check if the tag list ID exists
+        tag_list_id = request.data.get('tag_list')
+        tag_list = get_object_or_404(TagList, pk=tag_list_id)
 
+        # If the tag list ID exists, proceed with creating the idea feed
         serializer = FeedSerializer(data=request.data)
         if serializer.is_valid():
-            # If 'image' is provided in the form data, it will be handled by the serializer
-            # Otherwise, it will be set to None automatically
-            serializer.save(user=request.user, feed_type='post')
+            # Save the idea feed with the validated data
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except TagList.DoesNotExist:
+        # If the tag list ID does not exist, return a 404 response
+        return Response({"error": "Tag list with the provided ID does not exist"}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
+        # Catch any other unexpected errors and return a 500 response
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
 
 const ProfileHeader = () => {
   return (
@@ -15,21 +14,19 @@ const ProfileHeader = () => {
             <div className="w-[90px] flex flex-row items-start justify-start">
               <div className="flex-1 flex flex-col items-start justify-start pt-[18px] px-3 pb-0 relative gap-[10px]">
                 <div className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] bg-white" />
-                <Link to="/feed">
-                  <div className="h-6 flex flex-row items-start justify-start py-0 px-[21px] box-border">
-                    <img
-                      className="h-6 w-6 relative overflow-hidden shrink-0 z-[1]"
-                      loading="lazy"
-                      alt=""
-                      src="/rss.svg"
-                    />
+                <div className="h-6 flex flex-row items-start justify-start py-0 px-[21px] box-border">
+                  <img
+                    className="h-6 w-6 relative overflow-hidden shrink-0 z-[1]"
+                    loading="lazy"
+                    alt=""
+                    src="/rss.svg"
+                  />
+                </div>
+                <div className="flex flex-row items-start justify-start py-0 px-4">
+                  <div className="w-[34px] relative uppercas text-black inline-block min-w-[34px] z-[1]">
+                    Feed
                   </div>
-                  <div className="flex flex-row items-start justify-start py-0 px-4">
-                    <div className="w-[34px] relative uppercas text-black inline-block min-w-[34px] z-[1]">
-                      Feed
-                    </div>
-                  </div>
-                </Link>
+                </div>
                 <div className="self-stretch h-0.5 relative bg-steelblue-200 z-[1]" />
               </div>
               <div className="h-20 w-[90px] relative hidden ">
@@ -51,11 +48,9 @@ const ProfileHeader = () => {
                   className="absolute h-[30%] w-[26.67%] top-[22.5%] right-[36.67%] bottom-[47.5%] left-[36.67%] max-w-full overflow-hidden max-h-full"
                   alt=""
                 />
-                <Link to="notifications">
-                  <div className="absolute top-[65%]  text-black left-[12.22%] uppercase">
-                    Network
-                  </div>
-                </Link>
+                <div className="absolute top-[65%]  text-black left-[12.22%] uppercase">
+                  Network
+                </div>
               </div>
               <div className="flex-1 flex flex-col items-start justify-end pt-[52px] px-0 pb-3 relative ">
                 <div className="w-[calc(100%_-_17px)] h-full absolute !m-[0] top-[0px] right-[9px] bottom-[0px] left-[8px] bg-white" />
@@ -107,20 +102,18 @@ const ProfileHeader = () => {
               </div>
             </div>
             <div className="flex-1 flex flex-row items-start justify-start ">
-              <Link to="/notifications">
-                <div className="flex-1 flex flex-col items-start justify-end pt-[52px] px-0 pb-3 relative">
-                  <div className="w-[calc(100%_-_9px)] h-full absolute !m-[0] top-[0px] right-[5px] bottom-[0px] left-[4px] bg-white" />
-                  <img
-                    className="w-6 h-6 absolute !m-[0] top-[18px] left-[37px] overflow-hidden shrink-0 z-[1]"
-                    loading="lazy"
-                    alt=""
-                    src="/bell.svg"
-                  />
-                  <div className="self-stretch relative   text-black uppercase inline-block min-w-[99px] z-[1]">
-                    notification
-                  </div>
+              <div className="flex-1 flex flex-col items-start justify-end pt-[52px] px-0 pb-3 relative">
+                <div className="w-[calc(100%_-_9px)] h-full absolute !m-[0] top-[0px] right-[5px] bottom-[0px] left-[4px] bg-white" />
+                <img
+                  className="w-6 h-6 absolute !m-[0] top-[18px] left-[37px] overflow-hidden shrink-0 z-[1]"
+                  loading="lazy"
+                  alt=""
+                  src="/bell.svg"
+                />
+                <div className="self-stretch relative   text-black uppercase inline-block min-w-[99px] z-[1]">
+                  notification
                 </div>
-              </Link>
+              </div>
               <div className="h-20 w-[90px] relative hidden text-steelblue-200">
                 <div className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] bg-white" />
                 <div className="absolute h-[2.5%] w-[73.33%] top-[97.5%] right-[13.33%] bottom-[0%] left-[13.33%] bg-steelblue-200" />
