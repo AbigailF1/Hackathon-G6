@@ -55,7 +55,7 @@ function Footer() {
             <Link to={"/Guidelines"}>
               <li>Community Guidelines</li>
             </Link>
-            <div class="legal-info">
+            <div className="legal-info">
               <Link to={"/Privacy"}>
                 <li>
                   <a target="_blank">Privacy Policy</a>

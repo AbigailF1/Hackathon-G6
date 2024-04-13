@@ -4,6 +4,7 @@ import { Tag, Input } from "antd";
 import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import { jwtDecode } from "jwt-decode";
 
 export default function NewPost({ feedType }) {
   const [post, setPost] = useState("");
@@ -64,9 +65,10 @@ export default function NewPost({ feedType }) {
     event.preventDefault();
 
     try {
+     
       const formData = new FormData();
       formData.append("feedText", post);
-      formData.append("user", 17); // Assuming user ID is fixed for this example
+      formData.append("user", `${decoded.user_id}`); // Assuming user ID is fixed for this example
       formData.append("tag_list", 15);
       formData.append("feed_type", feedType);
       formData.append("image", image);
@@ -76,9 +78,11 @@ export default function NewPost({ feedType }) {
       //   jsonData[key] = value;
       // }
       // console.log(jsonData);
+     
       const token = localStorage.getItem("token");
+       const decoded = jwtDecode(token);
       const response = await axios.post(
-        `https://hackathon-g6.onrender.com/api/feeds/create/${feedType}/`,
+        `http://127.0.0.1:8000/api/feeds/create/${feedType}/`,
         formData,
         {
           headers: {

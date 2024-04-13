@@ -19,7 +19,7 @@ export default function ProfileSide() {
          // Make the HTTP request using Axios
          const token = localStorage.getItem("token"); // Retrieve token from local storage
          const response = await axios.get(
-           "https://hackathon-g6.onrender.com/api/list-tags/",
+           "http://127.0.0.1:8000/api/list-tags/",
            {
              headers: {
                Authorization: `Bearer ${token}`, // Include token in the request headers
