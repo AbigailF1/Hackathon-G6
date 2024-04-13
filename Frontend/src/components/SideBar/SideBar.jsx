@@ -18,19 +18,13 @@ function SideBar() {
     <div className="sidebar">
       <div
         className={
-          "numConnection " + (activeLink === "/SentConnection" ? "active" : "")
+          "invitation " + (activeLink === "/Notifications" ? "active" : "")
         }
       >
         <Link
-          to="/SentConnection"
-          onClick={() => handleLinkClick("/SentConnection")}
+          to="/Notifications"
+          onClick={() => handleLinkClick("/Notifications")}
         >
-          <FiLink /> connection
-        </Link>
-        <span>1038</span>
-      </div>
-      <div className={"invitation " + (activeLink === "/" ? "active" : "")}>
-        <Link to="/" onClick={() => handleLinkClick("/")}>
           <FaRegCircleDot /> Invitations
         </Link>
         <span>2</span>
@@ -40,8 +34,13 @@ function SideBar() {
           <GiStrongbox /> teammates
         </Link>
       </div>
-      <div className={"groups " + (activeLink === "/profile" ? "active" : "")}>
-        <Link to="/profile" onClick={() => handleLinkClick("/profile")}>
+
+      <div className={"groups "}>
+        <Link
+          to="https://academate-group-chatt.onrender.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <MdOutlineGroup /> Groups
         </Link>
         <span>6</span>

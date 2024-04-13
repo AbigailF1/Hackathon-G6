@@ -4,7 +4,7 @@ import "./NewConnection.css";
 import axios from "axios";
 
 function NewConnection() {
-  const [Collaborate, setCollaborate] = useState([]);
+  const [collaborate, setCollaborate] = useState([]);
 
   useEffect(() => {
     // Define an async function to fetch data
@@ -13,7 +13,7 @@ function NewConnection() {
         // Make the HTTP request using Axios
         const token = localStorage.getItem("token"); // Retrieve token from local storage
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/feeds/2/collaborators/",
+          "https://hackathon-g6.onrender.com/api/feeds/2/collaborators/",
           {
             headers: {
               Authorization: `Bearer ${token}`, // Include token in the request headers
@@ -36,34 +36,9 @@ function NewConnection() {
 
     // Call the async function to fetch data when the component mounts
     fetchData();
-  }, []); // E
-  console.log(Collaborate);
+  }, []); 
+  console.log(collaborate);
 
-
-  // const accepted = async (status) => {
-  //   try {
-  //     const response = await axios.post(
-  //       "http://127.0.0.1:8000/api/feeds/2/collaborators/",
-  //       status
-  //     );
-  //     return response;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   // return response;
-  // };
-  // const declined = async (status) => {
-  //   try {
-  //     const response = await axios.post(
-  //       "http://127.0.0.1:8000/api/feeds/2/collaborators/",
-  //       status
-  //     );
-  //     return response;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   // return response;
-  // };
 
   const handleAccept = async (collaboratorId) => {
     try {
@@ -164,14 +139,14 @@ function NewConnection() {
     <>
       <div className="connections">
         <p className="connectionText">
-          <hr /> YOU HAVE <span> {Collaborate.length} NEW REQUESTS</span> <hr />
+          <hr /> YOU HAVE <span> {collaborate.length} NEW REQUESTS</span> <hr />
         </p>
-        {Collaborate.map((collaborator) => (
+        {collaborate.map((collaborator) => (
           <div className="connectionRequest" key={collaborator.id}>
             <div className="profile">
               <img
                 src={`http://127.0.0.1:8000/${collaborator.user.profile.image}`}
-                alt="newconnectionImage"
+                alt="newConnectionImage"
               />
               <div className="about">
                 <p className="name">{collaborator.name}</p>
