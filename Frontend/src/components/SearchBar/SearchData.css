@@ -1,0 +1,9 @@
+.about,
+.additional,
+.status {
+    padding: 15px;
+  width: 90%;
+  box-shadow: 1px 2px 7px 1px rgb(231, 38, 38);
+}
+.user-list h1{
+padding-left: 40%;}
