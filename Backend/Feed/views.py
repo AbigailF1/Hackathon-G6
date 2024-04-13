@@ -15,13 +15,15 @@ from rest_framework.decorators import api_view, authentication_classes, parser_c
 
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.decorators import api_view, parser_classes
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.parsers import MultiPartParser, FormParser , FileUploadParser
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
-@parser_classes([MultiPartParser, FormParser])
+@api_view(['POST'])
+@authentication_classes([JWTAuthentication])
+@parser_classes([MultiPartParser, FormParser, FileUploadParser])
 def create_post_feed(request):
     try:
         if not request.user.is_authenticated:
@@ -29,6 +31,11 @@ def create_post_feed(request):
 
         serializer = FeedSerializer(data=request.data)
         if serializer.is_valid():
+            # Save the base64 encoded image data to the image field
+            image_data = request.data.get('image')
+            if image_data:
+                serializer.validated_data['image'] = image_data
+
             feed = serializer.save(user=request.user, feed_type='post')
             
             # Handle tags
@@ -51,7 +58,6 @@ def create_post_feed(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])
 def create_idea_feed(request):
