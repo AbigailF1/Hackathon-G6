@@ -2,11 +2,11 @@ import React, { useEffect }  from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import './Testimonial.css';
-import user1 from '../../assets/profile-pictures/user1.jpg';
-import user2 from '../../assets/profile-pictures/user2.jpg';
+import Abigail from '../../assets/Abigail.jpg';
+import gebby from '../../assets/gebby.jpg';
 import user3 from '../../assets/profile-pictures/user3.jpg';
-import user4 from '../../assets/profile-pictures/user4.jpg';
-import user5 from '../../assets/profile-pictures/user5.jpg';
+import zahir from '../../assets/zahir.jpg';
+import solomon from '../../assets/solomon.jpg';
 import user6 from '../../assets/profile-pictures/user6.jpg';
 import AOS from 'aos'; 
 import "aos/dist/aos.css"
@@ -43,40 +43,45 @@ const Testimonials = () => {
       <Carousel responsive={responsive}>
       <div data-aos="fade-right">
         <div className="card">
-            <img src={user3} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
-            <h3 className="text-lg pb-6"> Mike Tyson</h3>
-            <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
+            <img src={Abigail} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <h3 className="text-lg pb-6"> Abigail Fuad </h3>
+            <p className="text-base text-neutral-950">Django team lead </p>
         </div>
         </div>
 
         <div data-aos="zoom-in">
         <div className="card">
-            <img src={user2} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
-            <h3 className="text-lg pb-6"> Leah Tsegaye</h3>
-            <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
+            <img src={user6} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <h3 className="text-lg pb-6"> Yohanna Betsiha</h3>
+            <p className="text-base text-neutral-950">React team lead</p>
         </div>
         </div>
 
         <div data-aos="zoom-in">
         <div className="card">
-            <img src={user1} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
-            <h3 className="text-lg pb-6"> John Doe</h3>
+            <img src={gebby} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <h3 className="text-lg pb-6"> Gebrehiwot Tesfaye</h3>
             <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
         </div>
         </div>
         <div className="card">
-            <img src={user4} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
-            <h3 className="text-lg pb-6"> Mike Tyson</h3>
+            <img src={zahir} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <h3 className="text-lg pb-6"> Zahir </h3>
             <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
         </div>
         <div className="card">
-            <img src={user5} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
-            <h3 className="text-lg pb-6"> Mike Tyson</h3>
+            <img src={solomon} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <h3 className="text-lg pb-6"> Solomon Tadesse</h3>
             <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
         </div>
         <div className="card">
             <img src={user6} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
-            <h3 className="text-lg pb-6"> Mike Tyson</h3>
+            <h3 className="text-lg pb-6"> Leah Tsegaye</h3>
+            <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
+        </div>
+        <div className="card">
+            <img src={user6} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <h3 className="text-lg pb-6"> Yeabsira Abebe</h3>
             <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
         </div>
        
