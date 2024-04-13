@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import status
@@ -21,7 +22,6 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
 @parser_classes([MultiPartParser, FormParser])
-
 def create_post_feed(request):
     try:
         if not request.user.is_authenticated:
@@ -224,9 +224,6 @@ def toggle_like_feed(request, user_id, feed_id):
         return Response({'message': 'Liked successfully'}, status=status.HTTP_201_CREATED)
 
 
-
-
-
 # collaborators 
 @api_view(['PUT'])
 def toggle_collaborate_button(request, feed_id):
@@ -302,3 +299,23 @@ def list_tags_for_feed(request, feed_id):
     tags = feed.tags.all()
     serializer = TagSerializer(tags, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def user_likes(request, user_id):
+    try:
+        user_likes = Like.objects.filter(user_id=user_id, time__lte=timezone.now())
+        serializer = LikeSerializer(user_likes, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Like.DoesNotExist:
+        return Response({'message': 'No likes found for the user'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def post_feeds_count(request, user_id):
+    post_feeds_count = Feed.objects.filter(user_id=user_id, feed_type='post').count()
+    return Response({'post_feeds_count': post_feeds_count})
+
+@api_view(['GET'])
+def idea_feeds_count(request, user_id):
+    idea_feeds_count = Feed.objects.filter(user_id=user_id, feed_type='idea').count()
+    return Response({'idea_feeds_count': idea_feeds_count})

@@ -22,7 +22,7 @@ urlpatterns = [
     
     # urls related to likes
     path('users/<int:user_id>/feeds/<int:feed_id>/toggle-like/', views.toggle_like_feed, name='toggle_like_feed'),
-    
+    path('user/<int:user_id>/likes/', views.user_likes, name='user_likes'),
     # path('feeds/<int:feed_id>/like/', views.like_feed, name='like_feed'),
     # path('feeds/<int:feed_id>/unlike/', views.unlike_feed, name='unlike_feed'),
     
@@ -38,5 +38,8 @@ urlpatterns = [
     path('feeds/content_type/', views.view_content_type, name='get_content_type'),
 
     #url related to tags
-    path('tags/list/<int:feed_id>/', views.list_tags_for_feed, name='list_tags_for_feed')
+    path('tags/list/<int:feed_id>/', views.list_tags_for_feed, name='list_tags_for_feed'),
+
+    path('user/<int:user_id>/post-feeds-count/', views.post_feeds_count, name='post_feeds_count'),
+    path('user/<int:user_id>/idea-feeds-count/', views.idea_feeds_count, name='idea_feeds_count')
 ]
