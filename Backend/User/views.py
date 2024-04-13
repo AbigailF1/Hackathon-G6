@@ -3,12 +3,13 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import login, logout, get_user_model
-from .models import Profile, Skill, Education, User, PasswordResetCode
+from .models import Profile, Skill, Education, User, PasswordResetCode, Project, Experience
 from .serializers import (
     UserSerializer, ProfileSerializer, SkillSerializer,
-    EducationSerializer
-)
-from .serializers import RegisterSerializer, SetNewPasswordSerializer, ResetPasswordEmailRequestSerializer, EmailVerificationSerializer, LoginSerializer
+    EducationSerializer)
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from .serializers import RegisterSerializer, SetNewPasswordSerializer, ResetPasswordEmailRequestSerializer, EmailVerificationSerializer, LoginSerializer, ProjectSerializer, ExperienceSerializer
 from .validations import custom_validation, validate_email, validate_password
 from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
@@ -325,8 +326,107 @@ class EducationViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return Education.objects.filter(profile__user=user)
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_project(request):
+    if request.method == 'POST':
+        serializer = ProjectSerializer(data=request.data)
+        if serializer.is_valid():
+            # Associate the project with the authenticated user
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def edit_project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    # Check if the project belongs to the authenticated user
+    if project.user != request.user:
+        return Response({'message': 'You do not have permission to edit this project.'}, status=status.HTTP_403_FORBIDDEN)
     
+    if request.method == 'POST':
+        serializer = ProjectSerializer(project, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    # Check if the project belongs to the authenticated user
+    if project.user != request.user:
+        return Response({'message': 'You do not have permission to delete this project.'}, status=status.HTTP_403_FORBIDDEN)
     
+    if request.method == 'DELETE':
+        project.delete()
+        return Response({'message': 'Project deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_all_projects(request):
+    # Retrieve projects associated with the authenticated user
+    projects = Project.objects.filter(user=request.user)
+    serializer = ProjectSerializer(projects, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_project_by_id(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    # Check if the project belongs to the authenticated user
+    if project.user != request.user:
+        return Response({'message': 'You do not have permission to view this project.'}, status=status.HTTP_403_FORBIDDEN)
+    
+    serializer = ProjectSerializer(project)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_experience(request):
+    if request.method == 'POST':
+        serializer = ExperienceSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def edit_experience(request, experience_id):
+    experience = get_object_or_404(Experience, pk=experience_id)
+    if request.method == 'POST':
+        serializer = ExperienceSerializer(experience, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_experience(request, experience_id):
+    experience = get_object_or_404(Experience, pk=experience_id)
+    if request.method == 'DELETE':
+        experience.delete()
+        return Response({'message': 'Experience deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_all_experiences(request):
+    user = request.user
+    experiences = Experience.objects.filter(profile__user=user)
+    serializer = ExperienceSerializer(experiences, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_experience_by_id(request, experience_id):
+    experience = get_object_or_404(Experience, pk=experience_id)
+    serializer = ExperienceSerializer(experience)
+    return Response(serializer.data)
+
 # class UserRegister(APIView):
 #     permission_classes = (permissions.AllowAny,)
 # class add_project(APIView):
