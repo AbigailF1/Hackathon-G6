@@ -25,7 +25,7 @@ const ProfilePage = () => {
         const token = localStorage.getItem("token");
         // Make the HTTP request using Axios
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/profiles/${decoded.user_id}/user/`,
+          `https://hackathon-g6.onrender.com/api/profiles/${decoded.user_id}/user/`,
           {
             headers: {
               Authorization: `Bearer ${token}`, // Include token in the request headers
@@ -47,7 +47,7 @@ const ProfilePage = () => {
 
     // Call the async function to fetch data when the component mounts
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // E
   console.log(profileData);
 
@@ -202,14 +202,14 @@ const ProfilePage = () => {
               </div>
               <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-end justify-start py-[30px] px-7 box-border gap-[20px] max-w-full mt-[-20px]">
                 <button className="cursor-pointer [border:none] pt-[9.9px] px-[9.7px] pb-[7px] bg-gray-400 flex-1 rounded shadow-[0px_10px_30px_rgba(113,_123,_133,_0.05)] flex flex-row items-end justify-start gap-[6.3px] z-[2]">
-                    <div className="h-9 w-[132px] relative rounded bg-gray-400 shadow-[0px_10px_30px_rgba(113,_123,_133,_0.05)] hidden" />
-                    
-                    <div className="flex-1 flex flex-col items-start justify-start pt-[3.1px] px-0 pb-0">
-                      <div className="self-stretch relative text-xs uppercase font-adamina  text-center inline-block min-w-[90px] z-[1]">
-                        Edit profile
-                      </div>
+                  <div className="h-9 w-[132px] relative rounded bg-gray-400 shadow-[0px_10px_30px_rgba(113,_123,_133,_0.05)] hidden" />
+
+                  <div className="flex-1 flex flex-col items-start justify-start pt-[3.1px] px-0 pb-0">
+                    <div className="self-stretch relative text-xs uppercase font-adamina  text-center inline-block min-w-[90px] z-[1]">
+                      Edit profile
                     </div>
-                  </button>
+                  </div>
+                </button>
                 <div className="w-[850px] h-[170px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
                 <div className="self-stretch flex flex-row items-start justify-start py-0 px-0.5 box-border max-w-full">
                   <div className="flex-1 flex flex-col items-start justify-start gap-[7px] max-w-full">
@@ -279,7 +279,6 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
-              
             </div>
             <div className="relative text-xs uppercase text-steelblue-200 inline-block min-w-[93px] z-[1]">
               Show all (12)

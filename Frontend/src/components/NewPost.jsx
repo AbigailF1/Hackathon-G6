@@ -78,7 +78,7 @@ export default function NewPost({ feedType }) {
       // console.log(jsonData);
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `http://127.0.0.1:8000/api/feeds/create/${feedType}/`,
+        `https://hackathon-g6.onrender.com/api/feeds/create/${feedType}/`,
         formData,
         {
           headers: {

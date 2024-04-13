@@ -13,7 +13,7 @@ export default function Posts() {
         // Make the HTTP request using Axios
         const token = localStorage.getItem("token"); // Retrieve token from local storage
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/feeds/post/",
+          "https://hackathon-g6.onrender.com/api/feeds/post/",
           {
             headers: {
               Authorization: `Bearer ${token}`, // Include token in the request headers
