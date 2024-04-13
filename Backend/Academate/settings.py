@@ -15,7 +15,6 @@ from pathlib import Path
 import os 
 import datetime
 import dj_database_url
-import cloudinary
 import cloudinary_storage
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,7 +66,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'cloudinary',
-    'cloudinary_storage',
+    'cloudinary_storage'
 
 ]
 
@@ -128,7 +127,7 @@ DATABASES = {
 # settings.py
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'Hackathon-G6',
+    'CLOUD_NAME': 'dpdtjngoq',
     'API_KEY': '288724422912995',
     'API_SECRET': 'vZ89sfLr_G8x41aBrZl3M8fKz3w'
 }
