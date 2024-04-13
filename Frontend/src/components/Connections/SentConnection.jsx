@@ -4,80 +4,42 @@ import { useState } from "react";
 import SideBar from "../SideBar/SideBar";
 import ButtonConnection from "./ButtonConnection";
 import "./SentConnection.css";
+import axios from "axios";
 
 function SentConnection() {
-  // const [sentCollaborate, setSentCollaborate] = useState([]);
+  const [sentCollaborate, setSentCollaborate] = useState([]);
+  const feed_id = 1;
+  useEffect(() => {
+    // Define an async function to fetch data
+    const fetchData = async () => {
+      try {
+        // Make the HTTP request using Axios
+        const token = localStorage.getItem("token"); // Retrieve token from local storage
+        const response = await axios.get(
+          `https://hackathon-g6.onrender.com/api/feeds/${feed_id}/collaborators/`,
 
-  // useEffect(() => {
-  //   // Define an async function to fetch data
-  //   const fetchData = async () => {
-  //     try {
-  //       // Make the HTTP request using Axios
-  //       const token = localStorage.getItem("token"); // Retrieve token from local storage
-  //       const response = await axios.get(
-  //         "https://hackathon-g6.onrender.comapi/feeds/2/collaborators/",
-  //         {
-  //           headers: {
-  //             Authorization: ` Bearer ${token}`, // Include token in the request headers
-  //           },
-  //         }
-  //       );
-  //       // Extract the data from the response
-  //       const data = response.data;
-  //       console.log(data);
-  //       // Set the fetched data to the state
-  //       setSentCollaborate(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //       console.error("There was a problem fetching the data:", error.message);
-  //     }
-  //   };
+          {
+            headers: {
+              Authorization: ` Bearer ${token}`, // Include token in the request headers
+            },
+          }
+        );
+        // Extract the data from the response
+        const data = response.data;
+        console.log(data);
+        // Set the fetched data to the state
+        setSentCollaborate(data);
+      } catch (error) {
+        console.log(error);
+        console.error("There was a problem fetching the data:", error.message);
+      }
+    };
 
-  //   // Call the async function to fetch data when the component mounts
-  //   fetchData();
-  // }, []);
+    // Call the async function to fetch data when the component mounts
+    fetchData();
+  }, []);
 
-  // console.log(sentCollaborate);
-  const sentCollaborate = [
-    {
-      id: 1,
-      profileImg:
-        "https://photogov-com.akamaized.net/examples/zz-240x288-pixel-photo/landmarks-US.webp",
-      name: "John Doe",
-      skill: "Web Development",
-      connection: 100,
-      message: "Hi there! Let's collaborate on a project.",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      profileImg: "https://visafoto.com/img/source355x388.jpg",
-      name: "Jane Smith",
-      skill: "Data Science",
-      connection: 50,
-      message: "Hello! I'm interested in working with you.",
-      status: "Accepted",
-    },
-    {
-      id: 3,
-      profileImg: "https://shorturl.at/vAHJV",
-      name: "Alice Johnson",
-      skill: "Graphic Design",
-      connection: 75,
-      message: "Hey! Let's create something amazing together.",
-      status: "Declined",
-    },
-    {
-      id: 4,
-      profileImg:
-        "https://photogov-com.akamaized.net/examples/zz-240x288-pixel-photo/landmarks-US.webp",
-      name: "Bob Brown",
-      skill: "Mobile App Development",
-      connection: 80,
-      message: "Hi! I'd like to connect with you.",
-      status: "Pending",
-    },
-  ];
+  console.log("***SentCollaboration", sentCollaborate);
 
   return (
     <>
@@ -89,7 +51,10 @@ function SentConnection() {
           {sentCollaborate.map((collaborator) => (
             <div className="connection" key={collaborator.id}>
               <div className="profile">
-                <img src={collaborator.profileImg} alt="profile" />
+                <img
+                  src={`https://hackathon-g6.onrender.com/${collaborator.user.profile.image}`}
+                  alt="profile"
+                />
                 <div className="about">
                   <p className="name">{collaborator.name}</p>
                   <p className="skill">{collaborator.skill}</p>
@@ -105,11 +70,11 @@ function SentConnection() {
                   style={{
                     color:
                       collaborator.status === "Pending"
-                        ? "grey" 
+                        ? "grey"
                         : collaborator.status === "Accepted"
-                        ? "green" 
+                        ? "green"
                         : collaborator.status === "Declined"
-                        ? "red" 
+                        ? "red"
                         : "black",
                   }}
                 >
