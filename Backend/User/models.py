@@ -4,9 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import BaseUserManager
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
-from cloudinary.models import CloudinaryField
-
-
+# from cloudinary.models import CloudinaryField
 
 
 class UserManager(BaseUserManager):

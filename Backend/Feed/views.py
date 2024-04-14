@@ -31,23 +31,13 @@ def create_post_feed(request):
             if image:
                 feed.image = image
                 feed.save()
-
+            
             # Handle tags
             tags = request.data.get('tags', [])
-            for tag_name in tags:
-                # Create a new request object for the create_tag function
-                tag_request = Request(request._request)
-                tag_request._full_data = {'tag_title': tag_name}
-                
-                # Call the create_tag function
-                tag_response = create_tag(tag_request)
-                
-                # Check if the tag was created successfully
-                if tag_response.status_code in [status.HTTP_200_OK, status.HTTP_201_CREATED]:
-                    tag_id = tag_response.data.get('tag_id')
-                    tag = Tag.objects.get(id=tag_id)
-                    feed.tags.add(tag)
+            feed.tags = tags
+            feed.save()
 
+        
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
@@ -69,20 +59,8 @@ def create_idea_feed(request):
 
             # Handle tags
             tags = request.data.get('tags', [])
-            for tag_name in tags:
-                # Create a new request object for the create_tag function
-                tag_request = Request(request._request)
-                tag_request._full_data = {'tag_title': tag_name}
-                
-                # Call the create_tag function
-                tag_response = create_tag(tag_request, idea_feed.id)
-                
-                # Check if the tag was created successfully
-                if tag_response.status_code in [status.HTTP_200_OK, status.HTTP_201_CREATED]:
-                    tag_id = tag_response.data.get('tag_id')
-                    tag = Tag.objects.get(id=tag_id)
-                    idea_feed.tags.add(tag)
-
+            feed.tags = tags
+            feed.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -338,9 +316,17 @@ def idea_feeds_count(request, user_id):
 
 from django.shortcuts import get_object_or_404
 
+
 @api_view(['GET'])
 def list_feed_tags(request, feed_id):
     feed = get_object_or_404(Feed, pk=feed_id)
-    tags = feed.tags.all()
-    serializer = TagSerializer(tags, many=True)
-    return Response(serializer.data)
+    tags = list(feed.tags)
+    return Response(tags)
+
+@api_view(['GET'])
+def tags_view(request):
+    tags = []
+    feeds = Feed.objects.all()
+    for feed in feeds:
+        tags.extend(list(feed.tags))
+    return Response(tags)

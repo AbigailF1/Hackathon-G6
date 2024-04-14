@@ -42,5 +42,7 @@ urlpatterns = [
     path('user/<int:user_id>/post-feeds-count/', views.post_feeds_count, name='post_feeds_count'),
     path('user/<int:user_id>/idea-feeds-count/', views.idea_feeds_count, name='idea_feeds_count'), 
 
-    path('feeds/<int:feed_id>/tags/', views.list_feed_tags, name='list_feed_tags')
+    path('feeds/<int:feed_id>/tags/', views.list_feed_tags, name='list_feed_tags'), 
+    path('tags/', views.tags_view, name='tags')    
+
 ]
