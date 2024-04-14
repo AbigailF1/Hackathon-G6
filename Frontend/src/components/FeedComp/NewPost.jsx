@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Tag, Input } from 'antd';
-import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
-export default function NewPost() {
+export default function NewPost({feedType}) {
   const [post, setPost] = useState('');
   const tagsData = [
     'Web Dev',
@@ -20,6 +19,7 @@ export default function NewPost() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [newTagInputVisible, setNewTagInputVisible] = useState(false);
   const [newTagInputValue, setNewTagInputValue] = useState('');
+  const [imageBase64, setImageBase64] = useState('');
 
   const handleChange = (tag, checked) => {
     const nextSelectedTags = checked
@@ -43,12 +43,39 @@ export default function NewPost() {
     setNewTagInputVisible(false);
     setNewTagInputValue('');
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(post);
-    setPost('');
+  const handleImageInputChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImageBase64(reader.result);
+      };
+    }
   };
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        // Make the API call based on the feed_type (post or idea)
+        const response = await axios.post(
+          `https://hackathon-g6.onrender.com/feeds/create/${feedType}/`,
+          {
+            feedText: post,
+            image: imageData, // You need to set imageData from the uploaded file
+            user: userId, // You need to set userId based on your authentication
+            tags: selectedTags.map(tag => tag.id), // Assuming tags have IDs
+            feed_type: feedType,
+          }
+        );
+        console.log('Post created:', response.data);
+        setPost('');
+        setSelectedTags([]);
+      } catch (error) {
+        console.error('Error creating post:', error);
+      }
+    };
+  
+
 
   return (
     <div className="flex flex-col px-8 bg-white rounded shadow-2xl w-[280px] md:w-[450px] lg:w-[850px] max-md:px-5 mb-12 ml-5 ">
@@ -64,7 +91,7 @@ export default function NewPost() {
           onChange={handleInputChange}
         />
       </div>
-{/* 
+
       <div className="mb-5 ">
         <p className="uppercase font-semibold font-serif text-xs ">Tags:</p>
         <div className="grid grid-cols-4 md:grid-cols-8 gap-2 -ml-2 mt-4">
@@ -100,18 +127,9 @@ export default function NewPost() {
             </Tag>
           )}
         </div>
-      </div> */}
+      </div>
 
-      <Button onClick={toggle} mb="md">
-        Toggle dropdown
-      </Button>
-
-      <TagsInput
-        label="Your favorite library"
-        placeholder="Pick value or enter anything"
-        data={['React', 'Angular', 'Vue', 'Svelte']}
-        dropdownOpened={dropdownOpened}
-      />
+    
       <div className="mt-4 ">
         <p className="uppercase font-semibold font-serif text-xs">Selected Tags:</p>
         <div>
@@ -128,14 +146,11 @@ export default function NewPost() {
       </div>
 
       <div className="flex flex-1 gap-6 justify-end items-center pb-2 mb-2">
-        <label htmlFor="fileInput">
-          <AttachFileOutlinedIcon sx={{ color: 'gray', cursor: 'pointer' }} />
-        </label>
-        <input type="file" id="fileInput" style={{ display: 'none' }} />
+
         <label htmlFor="imageInput">
           <ImageOutlinedIcon sx={{ color: 'gray', cursor: 'pointer' }} />
         </label>
-        <input type="file" accept="image/*" id="imageInput" style={{ display: 'none' }} />
+        <input type="file" accept="image/*" id="imageInput" style={{ display: 'none' }} onChange={handleImageInputChange} />
         <SendOutlinedIcon
           sx={{ color: 'rgb(5, 190, 250)', cursor: 'pointer' }}
           onClick={handleSubmit}

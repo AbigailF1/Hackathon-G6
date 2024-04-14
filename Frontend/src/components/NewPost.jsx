@@ -55,6 +55,7 @@ export default function NewPost({ feedType }) {
   const handleNewTagInputConfirm = () => {
     if (newTagInputValue && !selectedTags.includes(newTagInputValue)) {
       setSelectedTags([...selectedTags, newTagInputValue]);
+
     }
     setNewTagInputVisible(false);
     setNewTagInputValue("");
@@ -67,18 +68,21 @@ export default function NewPost({ feedType }) {
       const formData = new FormData();
       formData.append("feedText", post);
       formData.append("user", 17); // Assuming user ID is fixed for this example
-      formData.append("tag_list", 15);
+      formData.append("tag_list", selectedTags);
       formData.append("feed_type", feedType);
-      formData.append("image", image);
-
+      if (image) {
+        formData.append("image", image);
+      }
       // const jsonData = {};
       // for (const [key, value] of formData.entries()) {
       //   jsonData[key] = value;
       // }
       // console.log(jsonData);
+      console.log(selectedTags );
+
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `http://127.0.0.1:8000/api/feeds/create/${feedType}/`,
+        `https://hackathon-g6.onrender.com/api/feeds/create/${feedType}/`,
         formData,
         {
           headers: {
@@ -92,7 +96,7 @@ export default function NewPost({ feedType }) {
 
       setPost("");
       setImage(null);
-      setSelectedImage(null); // Reset selectedImage after successful submission
+      newTagInputVisible(false)// Reset selectedImage after successful submission
     } catch (error) {
       console.error(error);
     }
