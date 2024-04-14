@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ( ProfileViewSet, SkillViewSet, EducationViewSet, UserViewSet )
+from .views import ( ProfileViewSet, SkillViewSet, EducationViewSet)
 from .views import RegisterView, UserLogout, SetNewPasswordAPIView, VerifyEmail, LoginAPIView, RequestPasswordResetEmail, UserView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -10,7 +10,6 @@ from . import views
 
 # Create a router and register viewsets with it
 router = DefaultRouter()
-router.register(r'users', UserViewSet, basename='users')
 router.register(r'profiles', ProfileViewSet, basename='profile')
 router.register(r'skills', SkillViewSet, basename='skill')
 router.register(r'educations', EducationViewSet, basename='education')

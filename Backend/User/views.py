@@ -271,10 +271,8 @@ class UserLogout(APIView):
 		logout(request)
 		return Response(status=status.HTTP_200_OK)
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = UserModel.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+
     
 class UserView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
@@ -294,13 +292,23 @@ class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        profile = serializer.save(user=self.request.user)
+        user = self.request.user
+        profile = serializer.save(user=user)
+
+        # Retrieve skills and educations associated with the user
+        skills = Skill.objects.filter(profile__user=user)
+        educations = Education.objects.filter(profile__user=user)
+
+        # Assign retrieved skills and educations to the profile
+        profile.skills.set(skills)
+        profile.educations.set(educations)
 
         # Handle image upload
         image = self.request.FILES.get('image')
         if image:
             profile.image = image
             profile.save()
+
     def get_queryset(self):
         """
         Optionally restricts the returned profiles to a given user,
@@ -321,6 +329,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
         profile = get_object_or_404(Profile, user__id=user_id)
         serializer = self.get_serializer(profile)
         return Response(serializer.data)
+
 
 
 

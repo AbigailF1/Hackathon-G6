@@ -96,20 +96,27 @@ class EducationSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    skills = SkillSerializer(many=True)
-    educations = EducationSerializer(many=True)
+    skills = SkillSerializer(many=True, read_only=True)
+    educations = EducationSerializer(many=True, read_only=True)
 
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = ['user', 'bio', 'image', 'resume_link', 'skills', 'educations']
+        extra_kwargs = {
+            'skills': {'required': False},
+            'educations': {'required': False},
+        }
+
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer()
+    profile = ProfileSerializer(read_only=True)
+    skills = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    educations = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = UserModel
-        fields = ['id', 'username', 'email', 'role', 'phone_number', 'profile']
+        fields = ['id', 'username', 'email', 'role', 'phone_number', 'profile', 'skills', 'educations']
 
 
 class ProjectSerializer(serializers.ModelSerializer):
