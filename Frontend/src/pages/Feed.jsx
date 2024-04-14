@@ -6,7 +6,6 @@ import ProfileSide from '../components/FeedComp/ProfileSide';
 import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import axios from 'axios';
-import ProfileHeader from '../components/Header/ProfileHeader';
 import Chat from '../components/Chat';
 import Footer from '../components/Footer/Footer';
 import { jwtDecode } from "jwt-decode";
@@ -41,8 +40,6 @@ export default function Feed() {
   }, []);
   return (
     <>
-      <ProfileHeader />
-
       <div className="flex">
       <Tabs
       color="rgb(5, 190, 250)"
@@ -87,9 +84,6 @@ export default function Feed() {
         />
       </div>
 
-      <div>
-        <Footer />
-      </div>
     </>
   );
 }

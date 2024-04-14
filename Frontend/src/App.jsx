@@ -15,7 +15,7 @@ import Home from "./pages/Landing";
 // import Favorites from "./pages/Home";
 import Login from "./pages/Login";
 import Terms from "./pages/Footer_pages/Terms";
-
+import Header from './components/Header (2)';
 
 //import  Post from './pages/Post';
 
@@ -89,7 +89,7 @@ const Root = () => {
   const isHeaderVisible = headerVisiblePaths.includes(location.pathname);
   return (
     <>
-      {/* {isHeaderVisible && <Header /> } */}
+      {isHeaderVisible && <Header /> }
       <div>
         <Outlet />
       </div>

@@ -38,10 +38,10 @@ export default function Header() {
   }));
 
   return (
-  <Header className = 'text-white flex items-center justify-around w-full' bodybg='#f5f5f5'>
+  <Header className = 'text-white flex items-center justify-between w-full' bodybg='#f5f5f5'>
       <img src="../src/assets/acadamate.png" className='items-center max-w-full w-16 pr-4 left-0 '/>
       <Menu
-        className='flex w-screen gap-1 justify-around'
+        className='flex w-screen gap-7 justify-between'
         mode="horizontal"
         items={items}
       />

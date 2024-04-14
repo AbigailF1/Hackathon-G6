@@ -13,16 +13,12 @@ function Collaborate() {
   //http://127.0.0.1:8000/api/feeds/2/collaborators/
   return (
     <>
-      <div className="header">
-        <ProfileHeader />
-      </div>
+      
       <div className="container">
         <SideBar />
         <Connections />
       </div>
-      <div>
-        <Footer/>
-      </div>
+      
     </>
   );
 }

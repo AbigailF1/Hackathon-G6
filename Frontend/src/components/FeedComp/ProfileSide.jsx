@@ -26,7 +26,7 @@ export default function ProfileSide() {
      <GroupCard />
       </div>
 
-  <div className= 'shadow-md bg-slate-100 rounded w-[300px] ml-7 p-7 gap-2 mb-20 invisible md:visible'>
+  <div className= 'shadow-md bg-slate-100 rounded w-[288px] ml-4 p-7 gap-2 mb-20 invisible md:visible'>
     <div className='m-auto text-black'>FOLLOWED TAGS</div>
     <div className='grid grid-cols-3 gap-2 pt-5 text-black'>
       {tag.map((tags, index) => (

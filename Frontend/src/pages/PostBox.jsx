@@ -216,7 +216,7 @@ export default function IdeaBox({ key, data }) {
   console.log(data);
 
   return (
-    <div className="flex flex-col m-5 pt-2.5 bg-white rounded max-w-[850px]">
+    <div className="flex flex-col m-5 md:shrink-0 pt-2.5 bg-white rounded w-[280px] md:w-[450px] sm:w-[400px] lg:w-[850px] overflow-x-hidden">
   
 
 <div className="flex justify-between">
@@ -238,7 +238,7 @@ export default function IdeaBox({ key, data }) {
         </div>
         <div className="flex flex-col gap-0">
           <div
-            className="text-black text-center font-semibold"
+            className="text-black text-sm text-center font-semibold"
             style={{ fontFamily: "Adamina" }}
           >
             {data.user.username}
@@ -297,7 +297,7 @@ export default function IdeaBox({ key, data }) {
         />
       </div>
       <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
-      <div className="p-5" style={{ fontFamily: "Adamina" }}>
+      <div className="p-5 text-sm" style={{ fontFamily: "Adamina" }}>
         {data.feed.feedText}
       </div>
       {data.feed.image != null && (
