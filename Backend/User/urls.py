@@ -41,7 +41,8 @@ urlpatterns = [
     path('experiences/<int:experience_id>/edit/', views.edit_experience, name='edit_experience'),
     path('experiences/<int:experience_id>/delete/', views.delete_experience, name='delete_experience'),
     path('experiences/', views.get_all_experiences, name='get_all_experiences'),
-    path('experiences/<int:experience_id>/', views.get_experience_by_id, name='get_experience_by_id')
+    path('experiences/<int:experience_id>/', views.get_experience_by_id, name='get_experience_by_id'),
+    path('experiences/<int:user_id>/', views.get_experience_by_user_id, name='get_experience_by_user_id')
 ]
 
 
