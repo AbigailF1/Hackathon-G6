@@ -25,7 +25,7 @@ const MyComponent = () => {
 
   return (
     <div>
-      <button onClick={handleEditClick}>
+      <button onClick={handleEditClick} style={{alignSelf: "end"}}>
         <FiEdit />
       </button>
       <Modal
@@ -45,13 +45,13 @@ const MyComponent = () => {
           <label className="text-start" htmlFor="">
             Detail
           </label>
-          <Input className="w-full" placeholder="Project Name" />
+          <Input className="w-full" placeholder="Detail" />
         </div>
         <div className="flex flex-col gap-1 py-1">
           <label className="text-start" htmlFor="">
-            URL 
+            image URL 
           </label>
-          <Input className="w-full" placeholder="Project Name" />
+          <Input className="w-full" placeholder="Image URL" />
         </div>
       </Modal>
     </div>
