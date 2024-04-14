@@ -5,7 +5,7 @@ import axios from "axios";
 export default function DeleteConfirm({ isOpen, onClose, onConfirm, feedId, config }) {
 
   const handleDelete = () => {
-    axios.delete(`https://hackathon-g6.onrender.com/api/feeds/${feedId}`, config)
+    axios.delete(`https://hackathon-g6.onrender.com/api/feeds/${feedId}/delete/`, config)
       .then((response) => {
         console.log("Deleted successfully", response);
         onConfirm(); // Call the parent component's onConfirm function to trigger any necessary actions
@@ -13,6 +13,7 @@ export default function DeleteConfirm({ isOpen, onClose, onConfirm, feedId, conf
       .catch((error) => {
         console.error("Error deleting", error);
       });
+      console.log(feedId)
   };
 
   return (

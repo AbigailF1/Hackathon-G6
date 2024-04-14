@@ -3,7 +3,7 @@ import axios from "axios";
 import { Tag, Input } from "antd";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-
+import { jwtDecode } from "jwt-decode";
 export default function NewPost({ feedType }) {
   const [post, setPost] = useState("");
   const tagsData = [
@@ -58,48 +58,42 @@ export default function NewPost({ feedType }) {
     setNewTagInputVisible(false);
     setNewTagInputValue("");
   };
-
+  const token = localStorage.getItem("token");
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const formData = new FormData();
       formData.append("feedText", post);
-      formData.append("user", 17); // Assuming user ID is fixed for this example
-      formData.append("tags", JSON.stringify(selectedTags));
+      formData.append("user", jwtDecode(localStorage.getItem("token")).user_id);
       formData.append("feed_type", feedType);
-      if (image) {
+      // Append each tag individually
+      selectedTags.forEach((tag, index) => {
+        formData.append(`tags[${index}]`, tag);
+            });
+
+      // Only append image if it is not null
+      if (image !== null) {
         formData.append("image", image);
       }
-      // const jsonData = {};
-      // for (const [key, value] of formData.entries()) {
-      //   jsonData[key] = value;
-      // }
-      // console.log(jsonData);
-      console.log(selectedTags );
-
+      console.log(formData);
       const token = localStorage.getItem("token");
       const response = await axios.post(
         `https://hackathon-g6.onrender.com/api/feeds/create/${feedType}/`,
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data", // Include token in the request headers
+            Authorization:` Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
       console.log(response.data);
-
-      setPost("");
-      setImage(null);
-      newTagInputVisible(false)// Reset selectedImage after successful submission
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
     }
-  };
-
+  }
   return (
     <div className="flex flex-col px-8 bg-white rounded shadow-2xl w-[280px] md:w-[450px] lg:w-[850px] max-md:px-5 mb-12 ml-5 ">
       <div className="text-xs uppercase  font-serif font-bold text-neutral-900 max-md:max-w-full mt-5">

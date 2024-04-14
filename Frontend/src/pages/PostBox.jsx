@@ -13,7 +13,7 @@ import { jwtDecode } from "jwt-decode";
 import { Drawer } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 // import { Modal } from '@mantine/core';
-import { Menu , rem, Button } from '@mantine/core';
+import { Menu , Button } from '@mantine/core';
 import {
   IconDotsVertical,
   IconEdit,
@@ -22,6 +22,8 @@ import {
 import axios from "axios";
 import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
 import EditPost from "../components/FeedComp/EditPost";
+import {  IconCheck } from '@tabler/icons-react';
+import { Notification, rem } from '@mantine/core';
 
 const token = localStorage.getItem("token");
     const config = {
@@ -31,6 +33,8 @@ const token = localStorage.getItem("token");
     };
 export default function IdeaBox({ key, data }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [comment, setComment] = useState("");
+  const [apply, setApply] = useState(false);
 
   const openEditModal = () => {
     setIsEditModalOpen(true);
@@ -45,7 +49,7 @@ export default function IdeaBox({ key, data }) {
      feedText: newPost
    }
    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-   const targetUrl = `https://hackathon-g6.onrender.com/api/feeds/${data.feed.id}`
+   const targetUrl = `https://hackathon-g6.onrender.com/api/feeds/${data.feed.id}/`
    axios.put(proxyUrl + targetUrl, body, {
     headers: {
       'Content-Type': 'application/json',
@@ -62,6 +66,7 @@ export default function IdeaBox({ key, data }) {
   const [liked, setLiked] = useState(false);
   const decoded = jwtDecode(token);
   const [opened, { open, close }] = useDisclosure(false);
+  const checkIcon = <IconCheck style={{ width: rem(20), height: rem(20) }} />;
 
   console.log(decoded.user_id);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -94,11 +99,10 @@ export default function IdeaBox({ key, data }) {
     
     const body = {
       text_content: comment,
-     feed: data.feed.id,
     };
   
     axios
-      .post(`https://hackathon-g6.onrender.com/api/feeds/add_comment/${body.feed}/${data.user.id}`, body, config)
+      .post(`https://hackathon-g6.onrender.com/api/feeds/add_comment/${data.feed.id}/${data.user.id}/`, body, config)
       .then((response) => {
         console.log("Comment added successfully", response.data);
         console.log(response.data.text);
@@ -108,8 +112,7 @@ export default function IdeaBox({ key, data }) {
       });
   }
   
-  const [comment, setComment] = useState("");
-  const [apply, setApply] = useState(false);
+  
 
   // http://127.0.0.1:8000/api/feeds/16/comments/
 
@@ -120,7 +123,7 @@ export default function IdeaBox({ key, data }) {
         // Make the HTTP request using Axios
         const token = localStorage.getItem("token"); // Retrieve token from local storage
         const response = await axios.get(
-          `/api/feeds/${decoded.user_id}/comments/`,
+          `/api/feeds/${data.feed.id}/comments/`,
 
           {
             headers: {
@@ -142,7 +145,6 @@ export default function IdeaBox({ key, data }) {
 
     fetchData();
   }, []); // E
-  console.log(comment);
   const uniqueKey = `likedState_${decoded.user_id}_${data.feed.id}`;
 
  // Load liked state from local storage on component mount
@@ -337,20 +339,14 @@ export default function IdeaBox({ key, data }) {
           />
         </Modal>
         <Drawer opened={opened} onClose={close} title="Comments">
-          <CommentBox />
+          <CommentBox feedId={data.feed.id} />
         </Drawer>
         <TextsmsOutlinedIcon onClick={open} className="cursor-pointer" />
         <PersonAddAlt1OutlinedIcon onClick={toggleCollab} />
         {apply ? (
-          <Space direction="vertical" style={{ width: "100%" }}>
-            <Alert
-              message="Successful!"
-              description={`You have requested to join ${data.user.username}'s team`}
-              type="success"
-              banner
-              closable
-            />
-          </Space>
+          <Notification icon={checkIcon} color="teal" title="Success!" mt="md">
+You have requested to collaborate      
+  </Notification>
         ) : (
           ""
         )}
