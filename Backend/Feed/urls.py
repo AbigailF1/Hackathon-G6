@@ -16,10 +16,11 @@ urlpatterns = [
     # urls related to comments
     path('feeds/add_comment/<int:feed_id>/<int:user_id>/', views.add_comment, name='add_comment'),
     # path('feeds/<int:feed_id>/comments/add/', views.add_comment, name='add_comment'),
-    path('feeds/<user_id>/comments/', views.list_comments, name='list_comments'),
+    # path('feeds/<user_id>/comments/', views.list_comments, name='list_comments'),
     path('feeds/<int:feed_id>/comments/<int:comment_id>/', views.edit_comment, name='edit_comment'),
     path('feeds/<int:feed_id>/comments/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
-    
+    path('feeds/<int:feed_id>/comments/', list_comments, name='list_comments'),
+]
     # urls related to likes
     path('users/<int:user_id>/feeds/<int:feed_id>/toggle-like/', views.toggle_like_feed, name='toggle_like_feed'),
     path('user/<int:user_id>/likes/', views.user_likes, name='user_likes'),
