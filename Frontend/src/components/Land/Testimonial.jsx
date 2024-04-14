@@ -4,10 +4,10 @@ import "react-multi-carousel/lib/styles.css";
 import './Testimonial.css';
 import Abigail from '../../assets/Abigail.jpg';
 import gebby from '../../assets/gebby.jpg';
-import user3 from '../../assets/profile-pictures/user3.jpg';
+import Yohanna from '../../assets/Yohanna.jpg';
 import zahir from '../../assets/zahir.jpg';
 import solomon from '../../assets/solomon.jpg';
-import user6 from '../../assets/profile-pictures/user6.jpg';
+import Profile from '../../assets/Profile.jpg';
 import AOS from 'aos'; 
 import "aos/dist/aos.css"
 
@@ -45,15 +45,15 @@ const Testimonials = () => {
         <div className="card">
             <img src={Abigail} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
             <h3 className="text-lg pb-6"> Abigail Fuad </h3>
-            <p className="text-base text-neutral-950">Django team lead </p>
+            <p className="text-base text-neutral-950">Backend </p>
         </div>
         </div>
 
         <div data-aos="zoom-in">
         <div className="card">
-            <img src={user6} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <img src={Yohanna} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
             <h3 className="text-lg pb-6"> Yohanna Betsiha</h3>
-            <p className="text-base text-neutral-950">React team lead</p>
+            <p className="text-base text-neutral-950">Frontend</p>
         </div>
         </div>
 
@@ -61,28 +61,28 @@ const Testimonials = () => {
         <div className="card">
             <img src={gebby} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
             <h3 className="text-lg pb-6"> Gebrehiwot Tesfaye</h3>
-            <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
+            <p className="text-base text-neutral-950">Backend</p>
         </div>
         </div>
         <div className="card">
             <img src={zahir} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
-            <h3 className="text-lg pb-6"> Zahir </h3>
-            <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
+            <h3 className="text-lg pb-6"> Zahir Ahmed </h3>
+            <p className="text-base text-neutral-950">backend</p>
         </div>
         <div className="card">
             <img src={solomon} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
             <h3 className="text-lg pb-6"> Solomon Tadesse</h3>
-            <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
+            <p className="text-base text-neutral-950">Frontend</p>
         </div>
         <div className="card">
-            <img src={user6} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <img src={Profile} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
             <h3 className="text-lg pb-6"> Leah Tsegaye</h3>
-            <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
+            <p className="text-base text-neutral-950">Frontend</p>
         </div>
         <div className="card">
-            <img src={user6} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
+            <img src={Profile} alt="picture" style={{ width: '150px', height: '150px' }} className=" ml-20 mb-8"/>
             <h3 className="text-lg pb-6"> Yeabsira Abebe</h3>
-            <p className="text-base text-neutral-950">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quaerat nesciunt architecto?</p>
+            <p className="text-base text-neutral-950">Frontend</p>
         </div>
        
       </Carousel>
