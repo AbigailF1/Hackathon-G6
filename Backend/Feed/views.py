@@ -149,27 +149,30 @@ def search_feed_by_tag(request, tag_name):
     return Response(serializer.data)
 
 # related to comments 
+from django.contrib.auth.models import User
+
 @api_view(['POST'])
-def add_comment(request, feed_id):
+def add_comment(request, feed_id, user_id):
     feed = get_object_or_404(Feed, pk=feed_id)
+    user = get_object_or_404(User, pk=user_id)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save(feed=feed, user=request.user)
+        serializer.save(feed=feed, user=user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['GET'])
-# def list_comments(request, feed_id):
-#     comments = Comment.objects.filter(feed_id=feed_id)
-#     serializer = CommentSerializer(comments, many=True)
-#     return Response(serializer.data)
-
 @api_view(['GET'])
-def list_comments(request, user_id):
-    # Filter comments by user_id
-    comments = Comment.objects.filter(user__id=user_id)
+def list_comments(request, feed_id):
+    comments = Comment.objects.filter(feed_id=feed_id)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
+
+# @api_view(['GET'])
+# def list_comments(request, user_id):
+#     # Filter comments by user_id
+#     comments = Comment.objects.filter(user__id=user_id)
+#     serializer = CommentSerializer(comments, many=True)
+#     return Response(serializer.data)
 
 @api_view(['PUT'])
 def edit_comment(request, comment_id):
