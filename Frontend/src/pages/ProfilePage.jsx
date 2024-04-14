@@ -44,7 +44,7 @@ const ProfilePage = () => {
           <div className="absolute h-full top-[0px] bottom-[0px] left-[890px] bg-snow w-[290px]" />
         </div>
 
-        <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-[21px] pr-[26px] pl-5 box-border max-w-full text-left text-lg  font-adamina">
+        <section className="self-stretch flex flex-row items-start justify-center pt-10  pr-[26px] pl-5 box-border max-w-full text-left text-lg  font-adamina">
           <div className="w-[1186px] flex flex-row flex-wrap items-start justify-start gap-[40px] max-w-full mq750:gap-[20px]">
             <EditName />
 

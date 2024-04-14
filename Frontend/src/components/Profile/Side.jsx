@@ -35,7 +35,7 @@ const Side = () => {
                 </div>
                 <div className="flex flex-row items-start justify-start py-0 pr-0 pl-0.5 mt-[-11px] text-sm ">
                   <div className="relative leading-[150%] inline-block min-w-[77px] z-[1]">
-                    posts views
+                    posts feed
                   </div>
                 </div>
               </div>
@@ -44,7 +44,7 @@ const Side = () => {
                   9
                 </div>
                 <div className="relative text-sm leading-[150%]  z-[1] mt-[-4px]">
-                  search appereances
+                  idea feed
                 </div>
               </div>
             </div>

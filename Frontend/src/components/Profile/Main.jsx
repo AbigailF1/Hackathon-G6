@@ -32,7 +32,7 @@ const EditName = () => {
         <img
           className="w-[850px] relative max-h-full object-cover hidden max-w-full"
           alt=""
-          src="/rectangle-3@2x.png"
+          //src="/rectangle-3@2x.png"
         />
         <div className="w-[178px] flex flex-row items-start justify-start gap-[10px]"></div>
       </div>
