@@ -17,6 +17,7 @@ import Skills from "../components/Profile/Skills";
 import Education from "../components/Profile/Education";
 import Chat from "../components/Chat";
 
+
 const ProfilePage = () => {
   const profile = [
     {
