@@ -123,8 +123,7 @@ DATABASES = {
     # }
 
 }
-
-# settings.py
+DATABASES["default"] = dj_database_url.parse("postgres://django_h6_user:oWdh1CRSMUg1eFeeNouW3GoaR0LbmvN6@dpg-co9uhjgcmk4c73e63190-a.oregon-postgres.render.com/django_h6")
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dpdtjngoq',
@@ -133,8 +132,6 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-DATABASES["default"] = dj_database_url.parse("postgres://django_h6_user:oWdh1CRSMUg1eFeeNouW3GoaR0LbmvN6@dpg-co9uhjgcmk4c73e63190-a.oregon-postgres.render.com/django_h6")
 
 
 CHANNEL_LAYERS = {

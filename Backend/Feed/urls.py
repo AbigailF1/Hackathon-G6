@@ -14,9 +14,8 @@ urlpatterns = [
     path('feeds/search/tag/<str:tag_>/', views.search_feed_by_tag, name='search_feed_by_tag'),
 
     # urls related to comments
-    
-    path('feeds/<user_id>/comments/', views.list_comments, name='list_comments'),
     path('feeds/<int:feed_id>/comments/add/', views.add_comment, name='add_comment'),
+    path('feeds/<user_id>/comments/', views.list_comments, name='list_comments'),
     path('feeds/<int:feed_id>/comments/<int:comment_id>/', views.edit_comment, name='edit_comment'),
     path('feeds/<int:feed_id>/comments/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
     
@@ -41,5 +40,7 @@ urlpatterns = [
     path('tags/list/<int:feed_id>/', views.list_tags_for_feed, name='list_tags_for_feed'),
 
     path('user/<int:user_id>/post-feeds-count/', views.post_feeds_count, name='post_feeds_count'),
-    path('user/<int:user_id>/idea-feeds-count/', views.idea_feeds_count, name='idea_feeds_count')
+    path('user/<int:user_id>/idea-feeds-count/', views.idea_feeds_count, name='idea_feeds_count'), 
+
+    path('feeds/<int:feed_id>/tags/', views.list_feed_tags, name='list_feed_tags')
 ]

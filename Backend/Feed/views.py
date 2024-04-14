@@ -3,21 +3,16 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import status
 from django.contrib.contenttypes.models import ContentType
-from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
 from .serializers import (FeedSerializer, IdeaFeedSerializer, CommentSerializer, LikeSerializer, CollaboratorSerializer, CollaboratorChatSerializer, NotificationSerializer, ContentTypeSerializer, PostReportSerializer )
 from .models import ( User,Feed, IdeaFeed, Comment, Like, Collaborator, Tag ,CollaboratorChat, Notification)
 from User.serializers import UserSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, authentication_classes, parser_classes
-
-# related to the feed itself
-
-from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import MultiPartParser, FormParser , FileUploadParser
 from rest_framework_simplejwt.authentication import JWTAuthentication
-
+from Tag.serializers import TagSerializer
 
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
@@ -57,7 +52,7 @@ def create_post_feed(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
+
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])
 def create_idea_feed(request):
@@ -94,13 +89,9 @@ def create_idea_feed(request):
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-@api_view(['GET'])
-def view_content_type(request):
-    content_types = ContentType.objects.all()
-    serializer = ContentTypeSerializer(content_types, many=True)
-    return Response(serializer.data)
 
 @api_view(['PUT'])
+@parser_classes([MultiPartParser, FormParser])
 def update_feed(request, feed_id):
     try:
         feed = Feed.objects.get(pk=feed_id)
@@ -109,9 +100,22 @@ def update_feed(request, feed_id):
 
     serializer = FeedSerializer(feed, data=request.data)
     if serializer.is_valid():
-        serializer.save()
+        feed = serializer.save()
+
+        # Handle image upload
+        image = request.FILES.get('image')
+        if image:
+            feed.image = image
+            feed.save()
+
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def view_content_type(request):
+    content_types = ContentType.objects.all()
+    serializer = ContentTypeSerializer(content_types, many=True)
+    return Response(serializer.data)
 
 @api_view(['DELETE'])
 def delete_feed(request, feed_id):
@@ -169,7 +173,7 @@ def search_feed_by_tag(request, tag_name):
 # related to comments 
 @api_view(['POST'])
 def add_comment(request, feed_id):
-    feed = Feed.objects.get(pk=feed_id)
+    feed = get_object_or_404(Feed, pk=feed_id)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save(feed=feed, user=request.user)
@@ -181,6 +185,7 @@ def add_comment(request, feed_id):
 #     comments = Comment.objects.filter(feed_id=feed_id)
 #     serializer = CommentSerializer(comments, many=True)
 #     return Response(serializer.data)
+
 @api_view(['GET'])
 def list_comments(request, user_id):
     # Filter comments by user_id
@@ -330,3 +335,12 @@ def post_feeds_count(request, user_id):
 def idea_feeds_count(request, user_id):
     idea_feeds_count = Feed.objects.filter(user_id=user_id, feed_type='idea').count()
     return Response({'idea_feeds_count': idea_feeds_count})
+
+from django.shortcuts import get_object_or_404
+
+@api_view(['GET'])
+def list_feed_tags(request, feed_id):
+    feed = get_object_or_404(Feed, pk=feed_id)
+    tags = feed.tags.all()
+    serializer = TagSerializer(tags, many=True)
+    return Response(serializer.data)

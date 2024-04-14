@@ -30,6 +30,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 import secrets
 import os
+from rest_framework.decorators import parser_classes
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 
@@ -287,6 +289,14 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
+    def perform_create(self, serializer):
+        profile = serializer.save(user=self.request.user)
+
+        # Handle image upload
+        image = self.request.FILES.get('image')
+        if image:
+            profile.image = image
+            profile.save()
     def get_queryset(self):
         """
         Optionally restricts the returned profiles to a given user,
@@ -326,19 +336,29 @@ class EducationViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return Education.objects.filter(profile__user=user)
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
+@parser_classes([MultiPartParser, FormParser])
 def add_project(request):
     if request.method == 'POST':
         serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid():
             # Associate the project with the authenticated user
-            serializer.save(user=request.user)
+            project = serializer.save(user=request.user)
+
+            # Handle image upload
+            image = request.FILES.get('image')
+            if image:
+                project.image = image
+                project.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
+@parser_classes([MultiPartParser, FormParser])
 def edit_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     # Check if the project belongs to the authenticated user
@@ -348,7 +368,14 @@ def edit_project(request, project_id):
     if request.method == 'POST':
         serializer = ProjectSerializer(project, data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            project = serializer.save()
+
+            # Handle image upload
+            image = request.FILES.get('image')
+            if image:
+                project.image = image
+                project.save()
+
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

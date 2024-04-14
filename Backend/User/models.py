@@ -101,7 +101,7 @@ class Profile(models.Model):
     # user = models.OneToOneField("User", on_delete=models.CASCADE, related_name='profile')
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to="user",null=True, blank=True)
+    image = models.ImageField(upload_to="user/",null=True, blank=True)
     resume_link = models.URLField(blank=True, null=True)
     skills = models.ManyToManyField(Skill)
     educations = models.ManyToManyField(Education)
@@ -113,7 +113,7 @@ class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = CloudinaryField('image', blank=True, null=True)
+    image = models.ImageField(upload_to='project_images/', null=True, blank=True)
     link = models.URLField()
 
     def __str__(self):
