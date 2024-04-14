@@ -13,6 +13,7 @@ from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import MultiPartParser, FormParser , FileUploadParser
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from Tag.serializers import TagSerializer
+from django.core.exceptions import ObjectDoesNotExist
 
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
@@ -148,13 +149,15 @@ def search_feed_by_tag(request, tag_name):
     serializer = FeedSerializer(feeds, many=True)
     return Response(serializer.data)
 
-# related to comments 
-from django.contrib.auth.models import User
-
+# related to comments
 @api_view(['POST'])
 def add_comment(request, feed_id, user_id):
-    feed = get_object_or_404(Feed, pk=feed_id)
-    user = get_object_or_404(User, pk=user_id)
+    try:
+        feed = Feed.objects.get(id=feed_id)
+        user = User.objects.get(id=user_id)
+    except ObjectDoesNotExist:
+        return Response({'error': 'Feed or User does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save(feed=feed, user=user)

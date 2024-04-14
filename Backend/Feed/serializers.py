@@ -53,12 +53,12 @@ class CollaboratorChatSerializer(serializers.ModelSerializer):
     class Meta:
         model = CollaboratorChat
         fields = '__all__'
+        
 class CommentSerializer(serializers.ModelSerializer):
-    user = ExtendedUserSerializer(read_only=True)
-
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ['id', 'text_content', 'time', 'feed', 'user']
+        read_only_fields = ['feed', 'user']
 
 class LikeSerializer(serializers.ModelSerializer):
     user = ExtendedUserSerializer(read_only=True)
