@@ -1,62 +1,65 @@
-import React, { useState } from 'react';
-import { Button, Modal } from 'antd';
-import { Input } from 'antd';
-import { DateRange } from 'react-date-range';
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
-import axios from 'axios';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import React, { useState } from "react";
+import { Button, Modal } from "antd";
+import { Input } from "antd";
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import axios from "axios";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 export default function AddExperience() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [position, setPosition] = useState('');
-  const [employmentType, setEmploymentType] = useState('');
+  const [title, setTitle] = useState("");
+  const [company, setCompany] = useState("");
+  const [description, setDescription] = useState("");
   const [state, setState] = useState([
     {
       startDate: new Date(),
       endDate: null,
-      key: 'selection'
-    }
+      key: "selection",
+    },
   ]);
 
   const handleEditClick = () => {
-    console.log('Edit button clicked');
+    console.log("Edit button clicked");
     setIsModalOpen(true);
   };
 
   const handleOk = () => {
-    console.log('OK button clicked');
+    console.log("OK button clicked");
     setIsModalOpen(false);
 
     const experienceData = {
-      position,
-      employmentType,
+      title,
+      company,
       startDate: state[0].startDate,
-      endDate: state[0].endDate
+      endDate: state[0].endDate,
+      description,
     };
 
     axios
-      .post('https://api.example.com/experiences', experienceData)
-      .then(response => {
+      .post(
+        "https://hackathon-g6.onrender.com/experiences/add/",
+        experienceData
+      )
+      .then((response) => {
         // Handle the API response if needed
-        console.log('API response:', response.data);
+        console.log("API response:", response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle any errors that occurred during the request
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
   };
 
   const handleCancel = () => {
-    console.log('Cancel button clicked');
+    console.log("Cancel button clicked");
     setIsModalOpen(false);
   };
 
   const handleDateRangeChange = (ranges) => {
     setState([ranges.selection]);
   };
-
-
 
   // class Experience(models.Model):
   //   user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -70,9 +73,9 @@ export default function AddExperience() {
   //       return self.title
 
   return (
-    <div className='pl-96 ml-96'>
+    <div className="pl-96 ml-96">
       <button onClick={handleEditClick}>
-      <AddCircleOutlineOutlinedIcon />
+        <AddCircleOutlineOutlinedIcon />
       </button>
       <Modal
         className="header:text-center"
@@ -88,8 +91,8 @@ export default function AddExperience() {
           <Input
             className="w-full"
             placeholder="Position"
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-1 py-1">
@@ -99,8 +102,8 @@ export default function AddExperience() {
           <Input
             className="w-full"
             placeholder="Employment type"
-            value={employmentType}
-            onChange={(e) => setEmploymentType(e.target.value)}
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
           />
         </div>
         <DateRange
@@ -113,7 +116,12 @@ export default function AddExperience() {
           <label className="text-start" htmlFor="">
             Description
           </label>
-          <Input className="w-full" placeholder="Description" />
+          <Input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full"
+            placeholder="Description"
+          />
         </div>
       </Modal>
     </div>

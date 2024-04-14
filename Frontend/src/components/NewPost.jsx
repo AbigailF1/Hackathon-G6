@@ -79,7 +79,7 @@ export default function NewPost({ feedType }) {
       if (image !== null) {
         formData.append("image", image);
       }
-console.log(formData);
+      console.log(formData);
       const token = localStorage.getItem("token");
       const response = await axios.post(
         `https://hackathon-g6.onrender.com/api/feeds/create/${feedType}/`,

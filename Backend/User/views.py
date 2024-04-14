@@ -420,13 +420,13 @@ def delete_experience(request, experience_id):
 @permission_classes([IsAuthenticated])
 def get_all_experiences(request):
     user = request.user
-    experiences = Experience.objects.filter(profile__user=user)
+    experiences = Experience.objects.all()
     serializer = ExperienceSerializer(experiences, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_experience_by_id(request, experience_id):
-    experience = get_object_or_404(Experience, pk=experience_id)
-    serializer = ExperienceSerializer(experience)
+def get_experience_by_user_id(request, user_id):
+    experiences = Experience.objects.filter(user_id=user_id)  # Filter experiences by user_id
+    serializer = ExperienceSerializer(experiences, many=True)
     return Response(serializer.data)
