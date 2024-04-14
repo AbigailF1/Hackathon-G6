@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Tag, Input } from "antd";
-import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 
@@ -22,7 +21,6 @@ export default function NewPost({ feedType }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [newTagInputVisible, setNewTagInputVisible] = useState(false);
   const [newTagInputValue, setNewTagInputValue] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
   const [file, setFile] = useState(null);
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -68,7 +66,7 @@ export default function NewPost({ feedType }) {
       const formData = new FormData();
       formData.append("feedText", post);
       formData.append("user", 17); // Assuming user ID is fixed for this example
-      formData.append("tag_list", selectedTags);
+      formData.append("tags", JSON.stringify(selectedTags));
       formData.append("feed_type", feedType);
       if (image) {
         formData.append("image", image);
@@ -172,15 +170,6 @@ export default function NewPost({ feedType }) {
       </div>
 
       <div className="flex flex-1 gap-6 justify-end items-center pb-2 mb-2">
-        <label htmlFor="fileInput">
-          <AttachFileOutlinedIcon sx={{ color: "gray", cursor: "pointer" }} />
-        </label>
-        <input
-          type="file"
-          id="fileInput"
-          style={{ display: "none" }}
-          onChange={handleFileInputChange}
-        />
         <label htmlFor="imageInput">
           <ImageOutlinedIcon sx={{ color: "gray", cursor: "pointer" }} />
         </label>

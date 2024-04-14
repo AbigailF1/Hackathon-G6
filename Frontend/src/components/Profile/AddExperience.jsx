@@ -36,7 +36,7 @@ export default function AddExperience() {
     };
 
     axios
-      .post('https://api.example.com/experiences', experienceData)
+      .post('https://hackathon-g6.onrender.com/experiences', experienceData)
       .then(response => {
         // Handle the API response if needed
         console.log('API response:', response.data);

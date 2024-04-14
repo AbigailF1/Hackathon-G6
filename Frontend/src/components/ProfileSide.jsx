@@ -9,7 +9,7 @@ const gridStyle = {
   width: '25%',
   textAlign: 'center',
 };
-export default function ProfileSide() {
+export default function ProfileSide({userData}) {
   const [tags,setTags]=useState(null);
 
    useEffect(() => {
@@ -50,7 +50,7 @@ export default function ProfileSide() {
 
   return (
     <section className="mt-14 flex flex-col gap-5 mr-16">
-      <Profile />
+      <Profile userData={userData}/>
 
       <div className="w-[350px] rounded-lg bg-slate-100 shadow-sm py-8 flex flex-col gap-4 justify-center pl-6">
         <h4 className="text-center text-black font-bold m-4">My Groups</h4>

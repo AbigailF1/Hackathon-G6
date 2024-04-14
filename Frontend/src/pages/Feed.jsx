@@ -1,23 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Tabs, rem } from '@mantine/core';
 import Ideas from './Ideas';
 import Posts from './Posts';
 import ProfileSide from '../components/FeedComp/ProfileSide';
 import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
-
+import axios from 'axios';
 import ProfileHeader from '../components/Header/ProfileHeader';
 import Chat from '../components/Chat';
 import Footer from '../components/Footer/Footer';
+import { jwtDecode } from "jwt-decode";
+
 
 
 export default function Feed() {
-  
   const [isChatVisible, setIsChatVisible] = useState(false);
-
+   
   const toggleChatVisibility = () => {
     setIsChatVisible(!isChatVisible);
   };
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const decoded = jwtDecode(token);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .get(`https://hackathon-g6.onrender.com/api/profiles/${decoded.user_id}/user/,` , config)
+      .then((response) => {
+        // const username  = response.data.username
+        // const profile = response.data.profile
+        console.log(response.data)
+        console.log("User name", response.data.username);
+                  })
+      .catch((error) => {
+        console.error('Failed to fetch user data', error);
+      });
+  }, []);
   return (
     <>
       <ProfileHeader />
@@ -51,8 +72,7 @@ export default function Feed() {
       
       </Tabs.Panel>
     </Tabs>
-        <ProfileSide className="shrink w-[500px]" />
-      </div>
+    <ProfileSide className="shrink w-[500px]"  />      </div>
       <div className="fixed margin-top-30 right-0 mb-4 mr-0 w-full h-">
         {isChatVisible && <Chat />}
       </div>

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
+import DeleteConfirm from "../components/FeedComp/DeleteConfirm";
 import { Alert, Space, Modal } from "antd";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
@@ -11,18 +12,69 @@ import CommentBox from "../components/FeedComp/CommentBox";
 import { jwtDecode } from "jwt-decode";
 import { Drawer } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-
+// import { Modal } from '@mantine/core';
+import { Menu , rem, Button } from '@mantine/core';
+import {
+  IconDotsVertical,
+  IconEdit,
+  IconTrash,
+} from '@tabler/icons-react';
 import axios from "axios";
 import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
+import EditPost from "../components/FeedComp/EditPost";
 
+const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 export default function IdeaBox({ key, data }) {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const openEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const handleEditPost = (newPost) => {
+   const body ={
+     feedText: newPost
+   }
+   const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+   const targetUrl = `https://hackathon-g6.onrender.com/api/feeds/${data.feed.id}`
+   axios.put(proxyUrl + targetUrl, body, {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest' // This header is needed for CORS Anywhere
+    }
+  })
+  .then(response => {
+    console.log('Put request successful:', response.data);
+  })
+  .catch(error => {
+    console.error('Error while sending put request:', error);
+  });
+  };
   const [liked, setLiked] = useState(false);
-  const token = localStorage.getItem("token");
   const decoded = jwtDecode(token);
   const [opened, { open, close }] = useDisclosure(false);
 
   console.log(decoded.user_id);
-  
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const openDeleteModal = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+  };
+
+
   const [opens, setOpen] = useState(false);
   const showModal = () => {
     setOpen(true);
@@ -39,23 +91,18 @@ export default function IdeaBox({ key, data }) {
   };
   
   function sendCommentRequest() {
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    
     const body = {
       text_content: comment,
-      feed: data.feed.id, 
-      user: decoded.user_id,
+     feed: data.feed.id,
     };
   
     axios
-      .post(`https://hackathon-g6.onrender.com/api/feeds/${body.feed}/comments/add/`, body, config)
+      .post(`https://hackathon-g6.onrender.com/api/feeds/add_comment/${body.feed}/${data.user.id}`, body, config)
       .then((response) => {
         console.log("Comment added successfully", response.data);
-      })
+        console.log(response.data.text);
+        console.log(response.data.user);      })
       .catch((error) => {
         console.error("Error adding comment", error);
       });
@@ -83,11 +130,9 @@ export default function IdeaBox({ key, data }) {
         );
         // Extract the data from the response
         const data = response.data;
-        console.log(data);
         // Set the fetched data to the state
         // setComment(data);
         // Log the data to the console
-        console.log(data);
       } catch (error) {
         console.log(error);
         // Log any errors to the console
@@ -98,7 +143,7 @@ export default function IdeaBox({ key, data }) {
     fetchData();
   }, []); // E
   console.log(comment);
- const uniqueKey = `likedState_${data.feed.id}`;
+  const uniqueKey = `likedState_${decoded.user_id}_${data.feed.id}`;
 
  // Load liked state from local storage on component mount
  useEffect(() => {
@@ -116,22 +161,24 @@ export default function IdeaBox({ key, data }) {
     event.preventDefault();
     setComment(event.target.value);
   }
-  function toggleComment() {
+  function toggleCollab() {
     setApply((prev) => !prev);
-    sendRequest();
-  }
+    axios
+    .put(`https://hackathon-g6.onrender.com/api/feeds/${data.feed.id}/toggle_collaborate/`, {}, config)
+    .then((response) => {
+      console.log("Toggle collaborate successful", response.data);
+      // Perform any necessary actions after toggling collaborate
+    })
+    .catch((error) => {
+      console.error("Toggle collaborate error", error);
+    });  }
   function toggleFav() {
     setLiked((prev) => !prev);
     sendLikeRequest();
   }
   
   function sendLikeRequest() {
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+
     const body = {
       user: data.user.id,
       feed: data.feed.id, // Assuming data is an array and you want to send the first feed's ID
@@ -161,15 +208,16 @@ export default function IdeaBox({ key, data }) {
         });
     }
   }
-  function sendRequest() {
-    console.log("Request sent");
-  }
+  
   // eslint-disable-next-line react/prop-types
   // console.log(data[0].user.username);
   console.log(data);
 
   return (
     <div className="flex flex-col m-5 pt-2.5 bg-white rounded max-w-[850px]">
+  
+
+<div className="flex justify-between">
       <div className="flex items-center gap-2">
         <div className="avatar mx-2 mb-2">
           <div className="w-12 rounded">
@@ -212,11 +260,45 @@ export default function IdeaBox({ key, data }) {
           </div>
         </div>
       </div>
+      {data.user.id === decoded.user_id && (
+        <div>
+          <Menu shadow="md" width={200}>
+            <Menu.Target className='mr-4 cursor-pointer'>
+              <IconDotsVertical/>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item onClick={openEditModal} leftSection={<IconEdit style={{ width: rem(14), height: rem(14) }} />}>
+                Edit post
+              </Menu.Item>
+              <Menu.Item color="red"
+              onClick={openDeleteModal} 
+              leftSection={<IconTrash style={{ width: rem(14), height: rem(14) }} />}>
+                Delete my post
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
+        </div>
+      )}
+
+<EditPost
+        isOpen={isEditModalOpen}
+        onClose={closeEditModal}
+        onSubmit={handleEditPost}
+        initialPost={data.feed.feedText} 
+      />
+<DeleteConfirm
+          isOpen={deleteModalOpen}
+          onClose={closeDeleteModal}
+          onConfirm={closeDeleteModal} 
+          feedId={data.feed.id}
+          config={config}
+        />
+      </div>
       <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
       <div className="p-5" style={{ fontFamily: "Adamina" }}>
         {data.feed.feedText}
       </div>
-      {data.feed.image != null ? (
+      {data.feed.image != null && (
         <div className="border border-solid border-zinc-100">
           <img
             src={`http://127.0.0.1:8000/${data.feed.image}`}
@@ -224,8 +306,6 @@ export default function IdeaBox({ key, data }) {
             className="h-auto max-w-lg rounded-lg w-full m-auto"
           />
         </div>
-      ) : (
-        ""
       )}
       <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
       <div className=" flex gap-16 m-5">
@@ -260,7 +340,7 @@ export default function IdeaBox({ key, data }) {
           <CommentBox />
         </Drawer>
         <TextsmsOutlinedIcon onClick={open} className="cursor-pointer" />
-        <PersonAddAlt1OutlinedIcon onClick={toggleComment} />
+        <PersonAddAlt1OutlinedIcon onClick={toggleCollab} />
         {apply ? (
           <Space direction="vertical" style={{ width: "100%" }}>
             <Alert
