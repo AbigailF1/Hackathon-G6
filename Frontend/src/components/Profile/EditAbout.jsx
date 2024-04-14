@@ -2,9 +2,11 @@ import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { Button, Modal } from "antd";
 import { Input } from "antd";
+import axios from "axios"; // Import Axios
 
 const MyComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [aboutText, setAboutText] = useState(""); // State to store the text input
 
   const handleEditClick = () => {
     console.log("Edit button clicked");
@@ -13,7 +15,15 @@ const MyComponent = () => {
 
   const handleOk = () => {
     console.log("OK button clicked");
-    setIsModalOpen(false); 
+    // Send POST request using Axios
+    axios.post('YOUR_API_ENDPOINT', { about: aboutText })
+      .then(response => {
+        console.log(response.data); // Log the response from the server
+        setIsModalOpen(false); // Close modal after successful POST
+      })
+      .catch(error => {
+        console.error('Error:', error); // Log any errors
+      });
   };
 
   const handleCancel = () => {
@@ -35,13 +45,14 @@ const MyComponent = () => {
       >
         <div className="flex flex-col gap-1 py-1">
           <label className="text-start" htmlFor="projectName">
-            Project Name
+            About 
           </label>
           <Input 
             id="projectName"
             className="w-full" 
-            placeholder="Project Name" 
+            placeholder="About " 
             autosize={{ minRows: 2, maxRows: 6 }} // Make the input field flexible
+            onChange={(e) => setAboutText(e.target.value)} // Update aboutText state on input change
           />
         </div>
       </Modal>
