@@ -2,8 +2,11 @@ import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { Button, Modal } from "antd";
 import { Input } from "antd";
+import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
+
 const MyComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [image,setImage] = useState ("null");
 
   const handleEditClick = () => {
     
@@ -21,6 +24,12 @@ const MyComponent = () => {
     
     console.log("Cancel button clicked");
     setIsModalOpen(false); 
+  };
+
+  const handleImageInputChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(event.target.files[0].name);
+    setImage(file);
   };
 
   return (
@@ -48,10 +57,16 @@ const MyComponent = () => {
           <Input className="w-full" placeholder="Detail" />
         </div>
         <div className="flex flex-col gap-1 py-1">
-          <label className="text-start" htmlFor="">
-            image URL 
-          </label>
-          <Input className="w-full" placeholder="Image URL" />
+        <label htmlFor="imageInput">
+          <ImageOutlinedIcon sx={{ color: "gray", cursor: "pointer" }} />
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          id="imageInput"
+          style={{ display: "none" }}
+          onChange={handleImageInputChange}
+        />
         </div>
       </Modal>
     </div>

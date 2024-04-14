@@ -18,6 +18,7 @@ import Education from "../components/Profile/Education";
 import Chat from "../components/Chat";
 
 
+
 const ProfilePage = () => {
   const profile = [
     {
