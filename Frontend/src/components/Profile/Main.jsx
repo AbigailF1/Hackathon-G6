@@ -2,19 +2,14 @@ import { FiEdit } from "react-icons/fi";
 import { Button, Modal } from "antd";
 import { useEffect, useState } from "react";
 import EditMain from "./EditMain";
-
+import EditImage from "./EditImage"
 import React from "react";
 
 const EditName = () => {
   return (
     <div className="h-[360px] flex-1 relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] min-w-[556px] max-w-full mq450:h-auto mq450:min-h-[360] mq750:min-w-full">
       <div className="absolute top-[0px] left-[calc(50%_-_428px)] rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] w-full h-full hidden" />
-      <img
-        className="absolute top-[160px] left-[calc(50%_-_397px)] rounded-[50%] w-[170px] h-[170px] object-cover z-[2]"
-        loading="lazy"
-        alt=""
-        //src="/ellipse@2x.png"
-      />
+      <EditImage/>
       <h3 className="m-0 absolute top-[205px] left-[calc(50%_-_202px)] text-inherit  text-black font-normal font-inherit inline-block min-w-[127px] z-[1]">
         Yeabsera
         {/* {profiledata.name} */}
