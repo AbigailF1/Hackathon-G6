@@ -28,29 +28,29 @@ const MyComponent = () => {
       </button>
       <Modal
         className="header:text-center"
-        title="Edit Projects"
+        title="Edit Skill"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
       >
         <div className="flex flex-col gap-1 py-1">
-          <label className="text-start" htmlFor="projectName">
+          <label className="text-start" htmlFor="skillName">
             Skills
           </label>
           <Input 
-            id="projectName"
+            id="skillName"
             className="w-full" 
             
             autosize={{ minRows: 2, maxRows: 6 }} // Make the input field flexible
           />
           <Input 
-            id="projectName"
+            id="skillName"
             className="w-full" 
             
             autosize={{ minRows: 2, maxRows: 6 }} // Make the input field flexible
           />
           <Input 
-            id="projectName"
+            id="skillName"
             className="w-full" 
             
             autosize={{ minRows: 2, maxRows: 6 }} // Make the input field flexible

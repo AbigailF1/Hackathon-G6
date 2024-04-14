@@ -48,7 +48,7 @@ const AddProjects = () => {
       </button>
       <Modal
         className="header:text-center"
-        title="Add About"
+        title="Add Projects"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
