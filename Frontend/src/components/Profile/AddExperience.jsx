@@ -6,6 +6,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import axios from "axios";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { jwtDecode } from "jwt-decode";
 
 export default function AddExperience() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +20,10 @@ export default function AddExperience() {
       key: "selection",
     },
   ]);
+  const formattedStartDate = state[0].startDate.toISOString().split("T")[0];
+  const formattedEndDate = state[0].endDate
+    ? state[0].endDate.toISOString().split("T")[0]
+    : null;
 
   const handleEditClick = () => {
     console.log("Edit button clicked");
@@ -28,19 +33,28 @@ export default function AddExperience() {
   const handleOk = () => {
     console.log("OK button clicked");
     setIsModalOpen(false);
-
+    const token = localStorage.getItem("token");
+    // const user_id = jwtDecode(localStorage.getItem("token")).user_id;
+    const user_id = 11;
     const experienceData = {
       title,
       company,
-      startDate: state[0].startDate,
-      endDate: state[0].endDate,
+      start_date: formattedStartDate,
+      end_date: formattedEndDate,
       description,
+      user: user_id,
     };
-
+    console.log("Experience data:", experienceData);
     axios
       .post(
-        "https://hackathon-g6.onrender.com/experiences/add/",
-        experienceData
+        "http://127.0.0.1:8000/api/experiences/add/",
+
+        experienceData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in the request headers
+          },
+        }
       )
       .then((response) => {
         // Handle the API response if needed

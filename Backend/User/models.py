@@ -91,7 +91,7 @@ class Profile(models.Model):
     resume_link = models.URLField(blank=True, null=True)
     skills = models.ManyToManyField('Skill')
     educations = models.ManyToManyField('Education')
-    expriences = models.ManyToManyField('Experience')
+    # expriences = models.ManyToManyField('Experience')
 
     def __str__(self):
         return self.user.username
