@@ -2,8 +2,29 @@ import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { Button, Modal } from "antd";
 import { Input } from "antd";
+
+
+
+
+
+// class Profile(models.Model):
+//     # user = models.OneToOneField("User", on_delete=models.CASCADE, related_name='profile')
+//     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
+//     bio = models.TextField()
+//     image = models.ImageField(upload_to="user",)
+//     resume_link = models.URLField(blank=True, null=True)
+//     skills = models.ManyToManyField('Skill')
+//     educations = models.ManyToManyField('Education')
+//     expriences = models.ManyToManyField('Experience')
+//     projects = models.ManyToManyField('Project')
+
+//     def __str__(self):
+//         return self.user.username
 const MyComponent = () => {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [image ,setImage] = useState(null);
+  
 
   const handleEditClick = () => {
     

@@ -56,6 +56,19 @@ export default function AddExperience() {
     setState([ranges.selection]);
   };
 
+
+
+  // class Experience(models.Model):
+  //   user = models.ForeignKey(User, on_delete=models.CASCADE)
+  //   title = models.CharField(max_length=255)
+  //   company = models.CharField(max_length=255)
+  //   start_date = models.DateField()
+  //   end_date = models.DateField(null=True, blank=True)
+  //   description = models.TextField()
+
+  //   def __str__(self):
+  //       return self.title
+
   return (
     <div className='pl-96 ml-96'>
       <button onClick={handleEditClick}>
@@ -70,7 +83,7 @@ export default function AddExperience() {
       >
         <div className="flex flex-col gap-1 py-1">
           <label className="text-start" htmlFor="">
-            Position
+            title
           </label>
           <Input
             className="w-full"
@@ -81,7 +94,7 @@ export default function AddExperience() {
         </div>
         <div className="flex flex-col gap-1 py-1">
           <label className="text-start" htmlFor="">
-            Employment type
+            company
           </label>
           <Input
             className="w-full"

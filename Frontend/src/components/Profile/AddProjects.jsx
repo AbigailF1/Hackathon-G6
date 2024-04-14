@@ -7,9 +7,10 @@ import { MdAddCircleOutline } from "react-icons/md";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 
 
+
 const AddProjects = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [aboutText, setAboutText] = useState(""); // State to store the text input
+  const [projectText, setAboutText] = useState(""); // State to store the text input
   const [image,setImage] = useState ("null");
 
   const handleEditClick = () => {

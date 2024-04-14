@@ -1,52 +1,49 @@
-import { Avatar, Card } from 'antd';
-import { Flex, Tag } from 'antd';
+import { Avatar, Card } from "antd";
+import { Flex, Tag } from "antd";
 
-import Profile from './Profile';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import Profile from "./Profile";
+import axios from "axios";
+import { useEffect, useState } from "react";
 const { Meta } = Card;
 const gridStyle = {
-  width: '25%',
-  textAlign: 'center',
+  width: "25%",
+  textAlign: "center",
 };
 export default function ProfileSide() {
-  const [tags,setTags]=useState(null);
+  const [tags, setTags] = useState(null);
 
-   useEffect(() => {
-     // Define an async function to fetch data
-     const fetchData = async () => {
-       try {
-         // Make the HTTP request using Axios
-         const token = localStorage.getItem("token"); // Retrieve token from local storage
-         const response = await axios.get(
-           "https://hackathon-g6.onrender.com/api/list-tags/",
-           {
-             headers: {
-               Authorization: `Bearer ${token}`, // Include token in the request headers
-             },
-           }
-         );
-         // Extract the data from the response
-         const data = response.data;
+  useEffect(() => {
+    // Define an async function to fetch data
+    const fetchData = async () => {
+      try {
+        // Make the HTTP request using Axios
+        const token = localStorage.getItem("token"); // Retrieve token from local storage
+        const response = await axios.get(
+          "https://hackathon-g6.onrender.com/api/tags/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include token in the request headers
+            },
+          }
+        );
+        // Extract the data from the response
+        const data = response.data;
 
-         // Set the fetched data to the state
-         setTags(data);
-         // Log the data to the console
-         console.log(data);
-       } catch (error) {
-         console.log(error);
-         // Log any errors to the console
-         console.error("There was a problem fetching the data:", error.message);
-       }
-     };
+        // Set the fetched data to the state
+        setTags(data);
+        // Log the data to the console
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+        // Log any errors to the console
+        console.error("There was a problem fetching the data:", error.message);
+      }
+    };
 
-     // Call the async function to fetch data when the component mounts
-     fetchData();
-   }, []); // E
-   console.log(tags);
-
-
-
+    // Call the async function to fetch data when the component mounts
+    fetchData();
+  }, []); // E
+  console.log(tags);
 
   return (
     <section className="mt-14 flex flex-col gap-5 mr-16">
@@ -64,7 +61,7 @@ export default function ProfileSide() {
           }}
           cover={
             <img
-            className="w-[300px] h-[200px]"
+              className="w-[300px] h-[200px]"
               alt="example"
               src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
             />
@@ -129,5 +126,3 @@ export default function ProfileSide() {
     </section>
   );
 }
-
-

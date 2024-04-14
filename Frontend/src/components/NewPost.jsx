@@ -70,13 +70,16 @@ export default function NewPost({ feedType }) {
       // formData.append("user", 5);
       formData.append("user", jwtDecode(localStorage.getItem("token")).user_id);
       formData.append("feed_type", feedType);
-      // formData.append("tags", selectedTags.join(","));
+      // Append each tag individually
+      selectedTags.forEach((tag, index) => {
+        formData.append(`tags[${index}]`, tag);
+      });
 
       // Only append image if it is not null
       if (image !== null) {
         formData.append("image", image);
       }
-
+console.log(formData);
       const token = localStorage.getItem("token");
       const response = await axios.post(
         `https://hackathon-g6.onrender.com/api/feeds/create/${feedType}/`,

@@ -3,7 +3,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import login, logout, get_user_model
-from .models import Profile, Skill, Education, User, PasswordResetCode, Project, Experience
+from .models import Profile, Skill, Education, User,  Project, Experience
 from .serializers import (
     UserSerializer, ProfileSerializer, SkillSerializer,
     EducationSerializer)

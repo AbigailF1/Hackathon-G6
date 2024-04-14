@@ -92,7 +92,6 @@ class Profile(models.Model):
     skills = models.ManyToManyField('Skill')
     educations = models.ManyToManyField('Education')
     expriences = models.ManyToManyField('Experience')
-    projects = models.ManyToManyField('Project')
 
     def __str__(self):
         return self.user.username

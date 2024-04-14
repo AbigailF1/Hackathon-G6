@@ -1,7 +1,13 @@
-import React, { useRef } from 'react';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import { useRef, useState } from 'react';
 
 const YourComponent = () => {
+  const[image, setImage] = useState(null);
   const fileInputRef = useRef(null);
+    const token = localStorage.getItem("token");
+    // const token = "eyJ0eXAiO.../// jwt token";
+    const decoded = jwtDecode(token);
 
   const handleImageClick = () => {
     // Trigger the file input click event
@@ -24,6 +30,44 @@ const YourComponent = () => {
       reader.readAsDataURL(file);
     }
   };
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  try {
+    const formData = new FormData();
+   
+    // formData.append("user", 5);
+    formData.append("user", jwtDecode(localStorage.getItem("token")).user_id);
+    
+    // formData.append("tags", selectedTags.join(","));
+
+    // Only append image if it is not null
+    if (image !== null) {
+      formData.append("image", image);
+    }
+
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      `http://127.0.0.1:8000/api/profiles/${decoded.user_id}/user/`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    console.log(response.data);
+
+  
+    setImage(null);
+   
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
   return (
     <div>
