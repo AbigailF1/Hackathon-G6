@@ -3,7 +3,7 @@ import axios from "axios";
 const Signup = async (formData) => {
   try {
     const response = await axios.post(
-      "http://127.0.0.1:8000/api/register/",
+      "https://hackathon-g6.onrender.com/api/register/",
       formData
     );
     return response;
@@ -16,7 +16,7 @@ const Signup = async (formData) => {
 const Login = async (formData) => {
   try {
     const response = await axios.post(
-      "http://127.0.0.1:8000/api/login/",
+      "https://hackathon-g6.onrender.com/api/login/",
       formData
     );
     return response;
@@ -28,7 +28,7 @@ const Login = async (formData) => {
 const Reset = async (formData) => {
   try {
     const response = await axios.post(
-      "http://127.0.0.1:8000/api/request-reset-email/",
+      "https://hackathon-g6.onrender.com/api/request-reset-email/",
       formData
     );
     return response;

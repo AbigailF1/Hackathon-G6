@@ -65,30 +65,25 @@ export default function NewPost({ feedType }) {
     event.preventDefault();
 
     try {
-     
       const formData = new FormData();
       formData.append("feedText", post);
-      formData.append("user",17)
-      // formData.append("user", `${decoded.user_id}`); // Assuming user ID is fixed for this example
-      formData.append("tag_list", 15);
+      // formData.append("user", 5);
+      formData.append("user", jwtDecode(localStorage.getItem("token")).user_id);
       formData.append("feed_type", feedType);
-      formData.append("image", image);
 
-      // const jsonData = {};
-      // for (const [key, value] of formData.entries()) {
-      //   jsonData[key] = value;
-      // }
-      // console.log(jsonData);
-     
+      // Only append image if it is not null
+      if (image !== null) {
+        formData.append("image", image);
+      }
+
       const token = localStorage.getItem("token");
-      //  const decoded = jwtDecode(token);
       const response = await axios.post(
-        `http://127.0.0.1:8000/api/feeds/create/${feedType}/`,
+        `https://hackathon-g6.onrender.com/api/feeds/create/${feedType}/`,
         formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data", // Include token in the request headers
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -97,7 +92,7 @@ export default function NewPost({ feedType }) {
 
       setPost("");
       setImage(null);
-      setSelectedImage(null); // Reset selectedImage after successful submission
+      setSelectedImage(null);
     } catch (error) {
       console.error(error);
     }

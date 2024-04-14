@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-   font-family: 'Times New Roman', Times, serif;
+   /* font-family: 'Times New Roman', Times, serif; */
    color: rgb(90, 84, 84);
 }
 @font-face {
