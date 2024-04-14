@@ -134,6 +134,18 @@ export default function IdeaBox({ data }) {
             ) : (
               ""
             )}
+            {item.feed && item.feed.tags != null ? (
+              <div className="border border-solid border-zinc-100">
+                {item.feed && item.feed.tags.map((tag) => (
+                  <span key={tag.id} className="text-xs text-gray-500">
+                    {tag.tag_title}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
+
             <div className="mt-2.5 w-full border border-solid bg-zinc-100 border-zinc-100 min-h-[1px] max-md:max-w-full" />
             <div className=" flex gap-16 m-5">
               {liked ? (

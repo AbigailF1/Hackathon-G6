@@ -7,8 +7,10 @@ from django.utils import timezone
 from .models import Chat
 from .serializers import ChatSerializer
 import openai
+import os
 
-openai_api_key = 'place your api key'
+openai_api_key = os.getenv('API_KEY')
+
 openai.api_key = openai_api_key
 
 @method_decorator(csrf_exempt, name='dispatch')

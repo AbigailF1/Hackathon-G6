@@ -6,23 +6,26 @@ const MyComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleEditClick = () => {
+    
     console.log("Edit button clicked");
-    setIsModalOpen(true);
+    setIsModalOpen(true); 
   };
 
   const handleOk = () => {
+   
     console.log("OK button clicked");
-    setIsModalOpen(false);
+    setIsModalOpen(false); 
   };
 
   const handleCancel = () => {
+    
     console.log("Cancel button clicked");
-    setIsModalOpen(false);
+    setIsModalOpen(false); 
   };
 
   return (
     <div>
-      <button onClick={handleEditClick} style={{ alignSelf: "end" }}>
+      <button onClick={handleEditClick} style={{alignSelf: "end"}}>
         <FiEdit />
       </button>
       <Modal
@@ -46,7 +49,7 @@ const MyComponent = () => {
         </div>
         <div className="flex flex-col gap-1 py-1">
           <label className="text-start" htmlFor="">
-            Location
+            Location 
           </label>
           <Input className="w-full" placeholder="Location " />
         </div>

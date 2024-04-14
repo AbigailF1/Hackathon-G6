@@ -1,11 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import collab from "../assets/collab.jpg";
 import Google_Icon from "../assets/Google_Icon.jpg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Password } from "@mui/icons-material";
 import Svgp from "../components/Login/Svgp";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const Skills = () => {
+
+
+
+  const token = localStorage.getItem("token");
+  // const token = "eyJ0eXAiO.../// jwt token";
+  const decoded = jwtDecode(token);
+
+  console.log(decoded.user_id);
+  const [profileData, setProfileData] = useState(null);
+
+
+
+
+  useEffect(() => {
+    // Define an async function to fetch data
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        // Make the HTTP request using Axios
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/skills/${decoded.user_id}/user/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include token in the request headers
+            },
+          }
+        );
+        // Extract the data from the response
+        const data = response.data;
+        // Set the fetched data to the state
+        setProfileData(data);
+        // Log the data to the console
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+        // Log any errors to the console
+        console.error("There was a problem fetching the data:", error.message);
+      }
+    };
+
+    // Call the async function to fetch data when the component mounts
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // E
+  console.log(profileData);
+
     const [activeButton, setActiveButton] = useState(null);
     const navigate = useNavigate();
     const handleButtonClick = (buttonName) => {

@@ -1,9 +1,10 @@
+import React from "react";
 import EditEducation from "./EditEducation";
 
 const Education = () => {
   return (
     <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start pt-[30px] px-[30px] pb-8 box-border gap-[17px] max-w-full">
-      <EditEducation />
+      <EditEducation/>
       <div className="w-[850px] h-[195px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
       <h3 className="m-0 relative text-inherit font-normal font-inherit inline-block min-w-[88px] z-[1]">
         Education

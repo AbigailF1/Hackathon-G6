@@ -70,6 +70,7 @@ export default function NewPost({ feedType }) {
       // formData.append("user", 5);
       formData.append("user", jwtDecode(localStorage.getItem("token")).user_id);
       formData.append("feed_type", feedType);
+      // formData.append("tags", selectedTags.join(","));
 
       // Only append image if it is not null
       if (image !== null) {
