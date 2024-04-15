@@ -76,9 +76,9 @@ const handleSubmit = async (event) => {
         className="absolute top-[160px] left-[calc(50%_-_397px)] rounded-[50%] w-[170px] h-[170px] object-cover z-[2]"
       >
         <img
-          src="/path-to-default-image.png"
+          src="/pf.jpg"
           alt=""
-          className="w-full h-full rounded-[50%] object-cover"
+          className="w-full h-full rounded-[50%] object-cover bg-blend-color-burn"
         />
       </button>
 

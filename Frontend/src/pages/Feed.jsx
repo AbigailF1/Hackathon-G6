@@ -62,7 +62,7 @@ export default function Feed() {
         />
         ;
         <ProfileSide className="shrink w-[500px]" />
-        <div className="fixed margin-top-30 right-0 mb-4 mr-0 w-full  ">
+        <div className="fixed margin-top-25 right-0 mb-10 mr-0 w-full  ">
           {isChatVisible && <Chat />}
         </div>
       </div>

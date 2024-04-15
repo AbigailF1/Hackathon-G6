@@ -35,14 +35,14 @@ export default function AddExperience() {
     setIsModalOpen(false);
     const token = localStorage.getItem("token");
     // const user_id = jwtDecode(localStorage.getItem("token")).user_id;
-    const user_id = 11;
+    const user = 11;
     const experienceData = {
-      title,
-      company,
-      start_date: formattedStartDate,
-      end_date: formattedEndDate,
-      description,
-      user: user_id,
+      "title": title,
+      "company": company,
+      "start_date": formattedStartDate,
+      "end_date": formattedEndDate,
+      "description": description,
+       "user": user,
     };
     console.log("Experience data:", experienceData);
     axios
@@ -75,16 +75,7 @@ export default function AddExperience() {
     setState([ranges.selection]);
   };
 
-  // class Experience(models.Model):
-  //   user = models.ForeignKey(User, on_delete=models.CASCADE)
-  //   title = models.CharField(max_length=255)
-  //   company = models.CharField(max_length=255)
-  //   start_date = models.DateField()
-  //   end_date = models.DateField(null=True, blank=True)
-  //   description = models.TextField()
-
-  //   def __str__(self):
-  //       return self.title
+ 
 
   return (
     <div className="pl-96 ml-96">

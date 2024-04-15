@@ -15,9 +15,11 @@ const About = () => {
         <div className="self-stretch flex-1 relative [background:linear-gradient(180deg,_rgba(241,_244,_248,_0.8),_rgba(241,_244,_248,_0))] z-[2] mt-[-1px]" />
       </div>
       <div className="self-stretch rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] flex flex-col items-start justify-start py-[30px] px-7 box-border gap-[20px] max-w-full mt-[-20px]">
-        <AddAbout />
         <EditAbout />
-
+        <div className="  items-end ">
+          
+          <AddAbout />
+        </div>
         <div className="w-[850px] h-[170px] relative rounded bg-white shadow-[0px_20px_60px_rgba(241,_245,_248,_0.5)] hidden max-w-full" />
         <div className="self-stretch flex flex-row items-start justify-start py-0 px-0.5 box-border max-w-full">
           <div className="flex-1 flex flex-col items-start justify-start gap-[7px] max-w-full">

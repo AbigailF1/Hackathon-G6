@@ -126,7 +126,7 @@ const ProfilePage = () => {
             </div>
           </div>
         </section>
-        <div className="fixed margin-top-30 right-0 mb-4 mr-0 w-full h-">
+        <div className=" mt-0 fixed right-0 mb-20 mr-0 w-full h-full">
           {isChatVisible && <Chat />}
         </div>
 
@@ -140,7 +140,10 @@ const ProfilePage = () => {
           />
         </div>
       </div>
-      <Footer />
+      <div className="mb-100">
+       
+        <Footer />
+      </div>
     </>
   );
 };

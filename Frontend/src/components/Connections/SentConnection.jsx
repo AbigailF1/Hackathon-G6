@@ -5,6 +5,7 @@ import { useState } from "react";
 import SideBar from "../SideBar/SideBar";
 import ButtonConnection from "./ButtonConnection";
 import "./SentConnection.css";
+import ProfileHeader from "../Header/ProfileHeader";
 
 function SentConnection() {
   // const [sentCollaborate, setSentCollaborate] = useState([]);
@@ -82,6 +83,7 @@ function SentConnection() {
 
   return (
     <>
+    <div><ProfileHeader/></div>
       <div className="sentConnection">
         <SideBar />
         <div className="Scontainer">

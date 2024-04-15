@@ -101,12 +101,22 @@ function Notification() {
       {notification.map((notification, index) => (
         <div className="recentNotification" key={notification.id}>
           <div className="images">
-            <img className="firstImg" src={notification.image} alt="first" />
-            <img className="secondImg" src={notification.image} alt="second" />
-            <img className="thirdImg" src={notification.image} alt="third" />
+            <div className="images">
+              <img
+                className="firstImg"
+                src={`http://127.0.0.1:8000/${notification.user.profile.image}`}
+                alt="first"
+              />
+
+              {/* <img className="secondImg" src={notification.image} alt="second" />
+            <img className="thirdImg" src={notification.image} alt="third" /> */}
+            </div>
+            {/* <img className="secondImg" src={notification.image} alt="second" />
+            <img className="thirdImg" src={notification.image} alt="third" /> */}
           </div>
           <div className="NotificationText">
-            <p>{notification.text}</p>
+            <p>{notification.user.username}</p>
+
             <span>{notification.time} hours</span>
           </div>
           <span
@@ -116,11 +126,12 @@ function Notification() {
           >
             ...
           </span>
+
           <PopupWindow
             isOpen={popupOpen[index]} // Pass corresponding isOpen state
             onClose={() => togglePopup(index)}
-            chatLink={notification.chatLink}
-            roomNumber={notification.roomNumber}
+            chatLink=" https://academate-group-chatt.onrender.com"
+            roomNumber="ROOM562"
             key={notification.roomNumber}
           />
         </div>
@@ -143,13 +154,13 @@ function Notification() {
             {/* <img className="secondImg" src={notification.image} alt="second" />
             <img className="thirdImg" src={notification.image} alt="third" /> */}
           </div>
+
           {/* skill */}
           <div className="NotificationText">
-            <p>{notification.text}</p>
-            <span>{notification.time} hours</span>
+            <p>{notification.user.username}</p>
+            {/* <span>{notification.time} hours</span> */}
           </div>
           <div className="NotificationText">
-            <p>{notification.text}</p>
             <span>{notification.time} hours</span>
           </div>
           <span

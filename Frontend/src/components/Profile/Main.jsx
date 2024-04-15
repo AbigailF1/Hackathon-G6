@@ -117,12 +117,12 @@ const EditName = () => {
           Edit Profile
         </div>
       </button>
-      <div className="absolute top-[0px] left-[6px] w-full flex flex-row items-start justify-between py-5 px-[30px] box-border bg-[url('/public/rectangle-3@2x.png')] bg-cover bg-no-repeat bg-[top] min-h-[180px] gap-[20px] max-w-full z-[1] mq450:flex-wrap">
+      <div className="absolute top-[0px]  w-full flex flex-row items-start justify-between py-5 px-[30px] box-border bg-[url('/public/bg.jpg')] bg-cover bg-no-repeat bg-[top] min-h-[180px] gap-[20px] max-w-full z-[1] mq450:flex-wrap">
         <EditMain />
         <img
           className="w-[850px] relative max-h-full object-cover hidden max-w-full"
           alt=""
-          //src="/rectangle-3@2x.png"
+          src="/rectangle-3@2x.png"
         />
         <div className="w-[178px] flex flex-row items-start justify-start gap-[10px]"></div>
       </div>
