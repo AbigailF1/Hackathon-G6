@@ -1,10 +1,19 @@
+import { RingProgress, Text, SimpleGrid, Paper, Center, Group, rem } from '@mantine/core';
+import { IconArrowUpRight, IconArrowDownRight } from '@tabler/icons-react';
 import React, { useEffect, useState } from "react";
 import "./NotificationSideBar.css";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 const token = localStorage.getItem("token"); // Retrieve token from local storage
 const decoded = jwtDecode(token);
-function NotificationSideBar() {
+
+const icons = {
+  up: IconArrowUpRight,
+  down: IconArrowDownRight,
+};
+
+export function Notif() {
+   
   const [likes, setLikes] = useState(0);
   const [postFeed, setPostFeed] = useState(0);
   const [ideaFeed, setIdeaFeed] = useState(0);
@@ -87,34 +96,55 @@ function NotificationSideBar() {
       }
     };
 
+
     // Call the async function to fetch data when the component mounts
     fetchLike();
     fetchIdeaFeed();
     fetchPostFeed();
   }, []);
+  const data = [
+    { label: 'Likes', stats: `${likes}`, progress: 0, color: 'teal', icon: 'up' },
+    { label: 'Post Feed', stats: `${postFeed}`, progress: 6, color: 'blue', icon: 'up' },
+    {
+      label: 'Idea Feed',
+      stats: `${ideaFeed}`, 
+      progress: 8,
+      color: 'red',
+      icon: 'down',
+    },
+  ];
+  const stats = data.map((stat) => {
+    const Icon = icons[stat.icon];
+    
+    return (
+        <div className=' my-32'>
+      <Paper withBorder radius="md" p="sm" key={stat.label}>
+        <Group>
+          <RingProgress
+            size={180}
+            roundCaps
+            thickness={8}
+            sections={[{ value: stat.progress, color: stat.color }]}
+            label={
+              <Center>
+                <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
+              </Center>
+            }
+          />
 
-  return (
-    <div className="NotificationSideBar">
-      <div className="dashboard">
-        <h4>YOUR DASHBOARD</h4>
-        <span className="stats">GO TO STATS</span>
+          <div>
+            <Text c="dimmed" size="xs" tt="uppercase" fw={700}>
+              {stat.label}
+            </Text>
+            <Text fw={700} size="xl">
+              {stat.stats}
+            </Text>
+          </div>
+        </Group>
+      </Paper>
       </div>
-      <div>
-        <div>
-          <p>{likes}</p>
-          <span>Likes</span>
-        </div>
-        <div>
-          <p>{postFeed}</p>
-          <span>Post Feed </span>
-        </div>
-        <div>
-          <p>{ideaFeed}</p>
-          <span>Idea Feed</span>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  });
+
+  return <SimpleGrid cols={{ base: 1, sm: 3 }}>{stats}</SimpleGrid>;
 }
-
-export default NotificationSideBar;

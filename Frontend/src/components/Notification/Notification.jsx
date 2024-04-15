@@ -58,7 +58,7 @@ function Notification() {
     <div className="NotificationMessage">
       <div className="TimeStatus">
         <hr />
-        <p>RECENT</p>
+        <p></p>
         <hr />
       </div>
 
@@ -92,7 +92,7 @@ function Notification() {
 
       <div className="TimeStatus">
         <hr />
-        <p>EARLIER</p>
+        <p></p>
         <hr />
       </div>
 

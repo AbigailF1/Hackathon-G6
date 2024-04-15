@@ -1,23 +1,44 @@
 .NotificationSideBar {
-  width: 25%;
-  padding: 10px;
-  box-shadow: 1px 2px 7px 1px rgb(229, 228, 228);
-  height: 300px;
-  /* margin-top: 10px; */
+  width: calc(100vw - 40px); /* Adjusted width to be full-page with margin */
+  max-width: 800px; /* Set maximum width for content */
+  margin: 20px auto; /* Center the component horizontally */
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.dashboard {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 0.5px solid rgb(202, 198, 198);
-  padding-bottom: 5px;
-  margin-bottom: 10px;
-}
-.NotificationSideBar p {
-  color: rgb(7, 106, 219);
 
-  font-size: xx-large;
+.dashboard {
+  margin-bottom: 30px; /* Increased margin bottom for spacing */
 }
+
+.dashboard h4 {
+  font-size: 24px; /* Increased font size */
+  color: #333;
+  margin-bottom: 15px; /* Increased margin bottom for spacing */
+}
+
 .stats {
-  color: rgb(7, 106, 219);
-  text-decoration: underline;
+  font-size: 16px; /* Increased font size */
+  color: #666;
+  cursor: pointer;
+}
+
+.stats:hover {
+  color: #333;
+}
+
+.NotificationSideBar div {
+  margin-bottom: 25px; /* Increased margin bottom for spacing */
+}
+
+.NotificationSideBar p {
+  font-size: 32px; /* Increased font size */
+  color: #333;
+  margin-bottom: 10px; /* Increased margin bottom for spacing */
+}
+
+.NotificationSideBar span {
+  font-size: 18px; /* Increased font size */
+  color: #666;
 }
