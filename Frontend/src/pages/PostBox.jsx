@@ -303,7 +303,7 @@ export default function IdeaBox({ key, data }) {
       {data.feed.image != null && (
         <div className="border border-solid border-zinc-100">
           <img
-            src={`http://127.0.0.1:8000/${data.feed.image}`}
+            src={data.feed.image}
             alt=""
             className="h-auto max-w-lg rounded-lg w-full m-auto"
           />

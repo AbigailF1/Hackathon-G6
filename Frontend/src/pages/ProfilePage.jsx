@@ -1,6 +1,6 @@
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header (2)";
-import ProfileHeader from "../components/Profile/ProfileHeader";
+import ProfileHeader from "../components/Header/ProfileHeader";
 import { FiEdit } from "react-icons/fi";
 import { Button, Modal } from "antd";
 import { useEffect, useState } from "react";
@@ -40,6 +40,7 @@ const ProfilePage = () => {
   }
   return (
     <>
+     <ProfileHeader/>
       <div className="w-full relative main_container overflow-hidden flex flex-col items-end justify-start tracking-[normal]">
         <div className="w-[1180px] h-[2200px] relative hidden max-w-full">
           <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] bg-snow w-[850px]" />

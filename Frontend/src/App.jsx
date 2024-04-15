@@ -36,6 +36,7 @@ import Goals from "./pages/Footer_pages/Goals";
 import CommunityGuidelines from "./pages/Footer_pages/CommunityGuidelines";
 import Visions from "./pages/Footer_pages/Visions";
 import Testimonials from "./components/Land/Testimonial";
+import ProfileHeader from './components/Header/ProfileHeader';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -89,11 +90,11 @@ const Root = () => {
   const isHeaderVisible = headerVisiblePaths.includes(location.pathname);
   return (
     <>
-      {isHeaderVisible && <Header /> }
+      {isHeaderVisible && <ProfileHeader/> }
       <div>
         <Outlet />
       </div>
-      {isHeaderVisible && <Footer /> }
+      {isHeaderVisible && <Footer/> }
     </>
   );
 };

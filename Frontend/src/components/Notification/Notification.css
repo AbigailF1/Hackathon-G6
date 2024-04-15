@@ -21,7 +21,7 @@ img {
   box-shadow: 1px 2px 7px 1px rgb(229, 228, 228);
 }
 .NotificationText {
-  max-width: 70%;
+  max-width: 100%;
   justify-self: flex-start;
   flex-grow: 0;
 }
@@ -67,14 +67,14 @@ img {
 .thirdImg {
   left: 32px;
 }
-.header{
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    right: 0;
-    margin-bottom: 100px;
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  right: 0;
+  margin-bottom: 100px;
 }
 
 @media (max-width: 910px) {
@@ -138,20 +138,21 @@ img {
   }
   div.NotificationText {
     /* justify-self: center; */
-    padding: 20px 0 0 0 ;
+    padding: 20px 0 0 0;
     max-width: 100%;
     text-align: center;
   }
-   div.recentNotification p,
+  div.recentNotification p,
   div.earlierNotification p {
     max-width: 100%;
     white-space: wrap;
   }
-  div.recentNotification p, div.earlierNotification p {
+  div.recentNotification p,
+  div.earlierNotification p {
     width: 100%;
   }
-  div.notification{
-   max-width: 95%;
-    margin-left:70px;
+  div.notification {
+    max-width: 95%;
+    margin-left: 70px;
   }
 }

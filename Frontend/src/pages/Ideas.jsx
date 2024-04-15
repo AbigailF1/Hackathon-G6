@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import NewPost from "../components/NewPost";
 import IdeaBox from "./PostBox";
+import Footer from '../components/Footer/Footer';
+import ProfileHeader from "../components/Header/ProfileHeader";
+
 
 export default function Ideas() {
   const [ideaFeed, setIdeaFeed] = useState([]);
@@ -29,6 +32,8 @@ export default function Ideas() {
   }, []);
 
   return (
+    <>
+    {/* <ProfileHeader/> */}
     <div className="ml-12">
       <NewPost feedType="idea" />
 
@@ -36,5 +41,7 @@ export default function Ideas() {
         <IdeaBox key={idea.id} data={idea} />
       ))}
     </div>
+    {/* <Footer/> */}
+    </>
   );
 }

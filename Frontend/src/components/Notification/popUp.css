@@ -1,6 +1,6 @@
 /* CSS code for the popup window */
 div.popup-window {
-  display: none; 
+  display: none;
   position: fixed;
   top: 50%;
   left: 60%;
@@ -9,11 +9,11 @@ div.popup-window {
   padding: 20px;
   border: 1px solid rgb(252, 244, 244);
   z-index: 1;
-   box-shadow: 0 4px 8px rgba(31, 28, 28, 0.1); 
+  box-shadow: 0 4px 8px rgba(31, 28, 28, 0.1);
 }
 
 div.popup-window.open {
-  display: block; 
+  display: block;
 }
 
 .popup-content {
@@ -22,7 +22,7 @@ div.popup-window.open {
 }
 
 .close-btn {
- position: absolute;
-  top: 0px; 
-  right: 0px; 
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }

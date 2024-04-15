@@ -8,7 +8,7 @@ export default function ProfileSide() {
     image : "../src/assets/img.jpg",
     profession: 'Web Developer',
     tags : [
-      "tag 1", "tag 2", "tag 3", "tag 4", "tag 5", "tag 6"
+      "React", "Django", "Web", "Flutter", "Laravel", "Science"
     ],
     content: "What did the Dursleys care if Harry lost his place on the House Quidditch team because he hadn’t practiced all summer? What was it tothe Dursleys if Harry went back to school without any of his homework done? The Dursleys were what wizards called Muggles (not a drop of magical blood in their veins)."
    }

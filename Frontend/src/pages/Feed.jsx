@@ -7,8 +7,11 @@ import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import axios from 'axios';
 import Chat from '../components/Chat';
-import Footer from '../components/Footer/Footer';
 import { jwtDecode } from "jwt-decode";
+import Footer from '../components/Footer/Footer';
+import Header from '../components/Header (2)';
+import ProfileHeader from '../components/Header/ProfileHeader';
+
 
 
 
@@ -40,23 +43,24 @@ export default function Feed() {
   }, []);
   return (
     <>
+    <ProfileHeader/>
       <div className="flex">
       <Tabs
       color="rgb(5, 190, 250)"
       className="shrink w-[1000px] ml-20 mr-10"
       defaultValue="gallery">
       <Tabs.List>
-        <Tabs.Tab value="ideas" leftSection = { <EmojiObjectsOutlinedIcon
+        <Tabs.Tab value="ideas" leftSection = { <WysiwygOutlinedIcon
           className=""
           sx={{ color: "rgb(5, 190, 250)" }}
         />}>
-          Ideas
+          Posts
         </Tabs.Tab>
-        <Tabs.Tab value="posts" leftSection={<WysiwygOutlinedIcon
+        <Tabs.Tab value="posts" leftSection={<EmojiObjectsOutlinedIcon
           className=""
           sx={{ color: "rgb(5, 190, 250)" }}
         />} >
-          Posts
+          Idea
         </Tabs.Tab>
       </Tabs.List>
 
@@ -83,6 +87,7 @@ export default function Feed() {
           onClick={toggleChatVisibility}
         />
       </div>
+      <Footer/>
 
     </>
   );
